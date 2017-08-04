@@ -15,10 +15,10 @@ googleAnalytics = ""
 
 	# Repository
 	# provider = "GitHub"
-	# repo_url = "https://github.com/visocon/api-docs"
+	# repo_url = "https://github.com/visocon/api-doc"
 
 	version = "1.0.0"
-	logo = "images/logo.png"
+	logo = "images/logo.svg"
 	favicon = ""
 
 	permalink = "#"
@@ -32,7 +32,7 @@ googleAnalytics = ""
 
 	[params.palette]
     	primary = "deep-purple"
-    	accent  = "red"
+    	accent  = "teal"
 
     [params.font]
     	text = "Ubuntu"
@@ -54,6 +54,10 @@ googleAnalytics = ""
 	url    = "getting-started/"
 	weight = 10
 
+[[menu.main]]
+	name   = "API Reference"
+	url    = "api-reference/"
+	weight = 20
 
 [blackfriday]
 	smartypants	= true
