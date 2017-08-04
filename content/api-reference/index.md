@@ -19,6 +19,10 @@ HEADERS:
   - Authorization: <YOUR_API_KEY>
 ```
 
+{{< warning title="TODO" >}}
+Info about when to use Authorization and when to use access key is missing!
+{{< /warning >}}
+
 ## eyeson Room
 
 ```
@@ -269,11 +273,56 @@ content      | String (required) | Data content.
 
 ## Presentation
 
+The eyeson API offers presentation handling that will automatically store the
+current presenter, store current presented slide and switch the current stream
+layout to display the slide in full-size and participant in small windows on
+the bottom position. This is especially helpful if you broadcast a stream (e.g.
+to YouTube, Facebook, etc.) and want to ensure that viewers receive any content
+presented. Participants of the eyeson GUI will additionally receive an image of
+the slide.
+
 ```
-POST   /rooms/:access_key/presentation
-PUT    /rooms/:access_key/presentation
+POST /rooms/:access_key/presentation
+  RESPONSES 201 CREATED, 400 BAD REQUEST
+PUT /rooms/:access_key/presentation
+  RESPONSES 200 OK, 404 NOT FOUND
 DELETE /rooms/:access_key/presentation
+  RESPONSES 200 OK
 ```
+
+Parameters   | Type              | Description
+------------ | ----------------- | ------------
+slide        | String (required) | URL to PNG image, to show in video stream.
+
+EXAMPLE RESPONSE
+```json
+{
+  "slide": "https://some-cloud-storage.io/converted-file/page-42.png",
+  "room": {
+    "id":   "596f5e442a3d24196f1b7d32",
+    "name": "eyeson room",
+    "ready": false,
+    "shutdown": false,
+    "sip": {
+      "uri": "https://.../",
+      "domain": "example.eyeson.team",
+      "authorizationUser": "username",
+    },
+    "guest_token": "5971daf62a3d241b0d263ec6"
+  },
+  user: {
+    "id": "596f5e442a3d24196f1b7d32",
+    "name": "Jane Doe",
+    "avatar": "https://example.com/avatar.png",
+    "guest": false
+  }
+}
+```
+
+{{< note title="Note" >}}
+A presentation is locked to the user that created it. Any user can still stop
+a presentation but not switch to another slide.
+{{< /note >}}
 
 ## Screen capture
 
@@ -283,20 +332,87 @@ detection and will guide a participant on how to install the extension
 required.
 
 ```
-POST   /rooms/:access_key/presentation
-PUT    /rooms/:access_key/presentation
+POST /rooms/:access_key/presentation
+  RESPONSES 201 CREATED
+PUT /rooms/:access_key/presentation
+  RESPONSES 200 OK
 DELETE /rooms/:access_key/presentation
+  RESPONSES 200 OK
+```
+
+{{< note title="Note" >}}
+Screen capture presentation share the endpoint with slideshow presentations,
+obviously without providing an URL to a slide.
+{{< /note >}}
+
+EXAMPLE RESPONSE
+```json
+{
+  "slide": null,
+  "room": {
+    "id":   "596f5e442a3d24196f1b7d32",
+    "name": "eyeson room",
+    "ready": false,
+    "shutdown": false,
+    "sip": {
+      "uri": "https://.../",
+      "domain": "example.eyeson.team",
+      "authorizationUser": "username",
+    },
+    "guest_token": "5971daf62a3d241b0d263ec6"
+  },
+  user: {
+    "id": "596f5e442a3d24196f1b7d32",
+    "name": "Jane Doe",
+    "avatar": "https://example.com/avatar.png",
+    "guest": false
+  }
+}
 ```
 
 ## Recording
 
 ```
+POST /rooms/:access_key/recording
+  RESPONSES 201 CREATED, 400 BAD REQUEST
 DELETE /rooms/:access_key/recording
-POST   /rooms/:access_key/recording
+  RESPONSES 200 OK
 ```
 
 ```
 GET /recordings/:identifier
+  RESPONSES 200 OK, 404 NOT FOUND
+```
+
+EXAMPLE RESPONSE
+```json
+{
+  "id": "596f5e442a3d24196f1b7d32",
+  "created_at": "TODO",
+  "duration": 12345, // duration in seconds
+  "links": {
+    self: "https://api.eyeson.team/recordings/596f5e442a3d24196f1b7d32",
+    download: "https://cloud-storage.eyeson.team/recordings/<key>.webm"
+  },
+  user: {
+    "id": "596f5e442a3d24196f1b7d32",
+    "name": "Jane Doe",
+    "avatar": "https://example.com/avatar.png",
+    "guest": false
+  },
+  "room": {
+    "id":   "596f5e442a3d24196f1b7d32",
+    "name": "eyeson room",
+    "ready": false,
+    "shutdown": false,
+    "sip": {
+      "uri": "https://.../",
+      "domain": "example.eyeson.team",
+      "authorizationUser": "username",
+    },
+    "guest_token": "5971daf62a3d241b0d263ec6"
+  }
+}
 ```
 
 ## Broadcast
