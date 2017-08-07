@@ -1,4 +1,4 @@
-baseurl = "https://developers.eyeson.team/api/"
+baseurl = "https://visocon.github.io/api/"
 languageCode = "en-us"
 title = "eyeson API documentation"
 theme = "hugo-material-docs"
@@ -14,8 +14,8 @@ googleAnalytics = ""
 	copyright = "VisoCon GmbH"
 
 	# Repository
-	# provider = "GitHub"
-	# repo_url = "https://github.com/visocon/api-doc"
+	provider = "GitHub"
+	repo_url = "https://github.com/visocon/api"
 
 	version = "1.0.0alpha"
 	logo = "images/logo.svg"
