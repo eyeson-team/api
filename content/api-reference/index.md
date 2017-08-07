@@ -14,9 +14,10 @@ data and image injection be directly controlled.
 
 ## Authorization
 
-There are two levels of authorization: team-based and user-based. To create a
-room and register webhooks (for any rooms) you have to provide a team-based
-authorization sending the API key in an HTTP header.
+There are two levels of authorization: team-based via api-key and user-based
+temporary access-key. To create a room and to register webhooks (for any rooms)
+you have to provide a team-based authorization sending the API key in the HTTP
+header.
 
 ```plain
 https://api.eyeson.team/<path>
@@ -27,8 +28,31 @@ HEADERS:
 Any other communication with the API requires user-based authorization.
 Meaning: an active room and user identified by an `access_key`. The
 access key is provided by the resource endpoint, no additional headers needed.
+headers needed.
 
 ## eyeson Room
+
+Any room can be created with a team-based API request, resulting in everything
+to be needed to join a eyeson video conference. Within the response the current
+state of a room can be seen on the ready states for user, room and the global
+ready state that combines these two.
+
+In the links section you can find a direct URL to the eyeson GUI. By using this
+no further communication with the API is required and your user is ready-to-go
+by using this link with any WebRTC capable user-agent like webbrowser Chrome
+or Firefox.
+
+The guest-token can be used to **quick-join** an eyeson room. Using the eyeson
+web GUI a quick-join URL can be generated using the following pattern:
+
+```
+https://app.eyeson.team/guest=<guest_token>
+```
+
+The user to join the room has to be provided. If someone already created and
+joined the room session, the user provided will join this existing room
+session.
+
 
 ```
 POST /rooms # create room a new room or join an existing by id.
@@ -63,11 +87,11 @@ EXAMPLE RESPONSE:
     "guest_token": "5971daf62a3d241b0d263ec6"
   },
   "team": {
-    "name": "my own company"
+    "name": "My Company Ltd."
   },
   "user": {
-    "id": "unique-user-id",
-    "name": "Some User",
+    "id": "596f5e442a3d24196f1b7d32",
+    "name": "Jane Doe",
     "avatar": "https://example.com/avatar.png",
     "guest": false,
     "ready": false,
@@ -75,10 +99,10 @@ EXAMPLE RESPONSE:
       "uri": "https://.../",
       "domain": "example.eyeson.team",
       "wsServers": [ "..." ],
-      "instanceId": "instance-id",
+      "instanceId": "some-instance-id",
       "userAgentString": "user-id",
       "authorizationUser": "username",
-      "displayName": "display name",
+      "displayName": "mrs. doe",
       "stunServers": [ "..." ],
       "turnServers": [ "..." ],
       "registerExpires": "...",
@@ -515,6 +539,12 @@ Parameters   | Type              | Description
 url          | String (required) | Target URL.
 types        | String (required) | Comma separated resource types.
 
+In order to get notified for new recordings in any room session, you can
+register a webhook upfront, using your target location and the webhook type
+`recording`. See the recording resource on details of the received json
+document.
 
+[chrome-browser]: https://www.google.com/chrome/index.html "Google Chrome Webbrowser"
+[firefox-browser]: https://www.mozilla.org/firefox/ "Mozilla Firefox Webbrowser"
 [yt-streaming-api]: https://developers.google.com/youtube/v3/live/getting-started " YouTube Live Streaming API Overview"
 [fb-streaming-api]: https://developers.facebook.com/docs/videos/live-video "Live Video on Facebook"
