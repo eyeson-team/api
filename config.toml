@@ -18,7 +18,7 @@ googleAnalytics = ""
 	repo_url = "https://github.com/visocon/api"
 
 	version = "1.0.0alpha"
-	logo = "images/logo.svg"
+	logo = "images/logo.png"
 	favicon = ""
 
 	permalink = "#"
