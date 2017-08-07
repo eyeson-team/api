@@ -12,7 +12,7 @@ ensures regular updates with the latest features as well as a stable and well
 designed user experience. Any mobile visitors will be handled automatically
 given the choice to join the meeting via mobile applications.
 
-## Get your api key
+## Get Your Api Key
 
 Please [contact us](https://eyeson.team/developers/#contact-me) to receive your
 personal API key for your implementation.
@@ -28,7 +28,7 @@ Authorization: <YOUR_API_KEY>
 Responses will always contain an appropriate HTML status code plus a JSON
 object in the body.
 
-## Start and join eyeson room
+## Start and Join eyeson Room
 
 It's incredibly easy to get started. All you need to do is implement a single
 request. This request creates an eyeson MCU instance and provides you with a
@@ -80,7 +80,7 @@ API is a modern WebSocket based API providing you with a real time stream of
 events and enabling you to build a powerful UI in combination with our
 JavaScript libraries, SDK's and REST API.
 
-### Go further with SDKs
+### Go Further with SDKs
 
 Test your integration with (by using) the predefined eyeson UI. Build a totally
 customized UI and UX by using the SDK's. Integrate eyeson features in your own
@@ -89,7 +89,7 @@ available via the API.
 
 Our REST API allows you to build your individual video communication solutions.
 
-### Use advanced MCU features
+### Use Advanced MCU Features
 
 Inject live data sources into the MCU (live video, play video file, static
 image, static text). Specify layers and positions/sizes for live data source

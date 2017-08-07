@@ -13,20 +13,26 @@ Within an eyeson room, all features like broadcast, recording, layout, inject
 data like images or text with background and foreground images can be directly
 controlled.
 
+## Authorization
+
+There are two levels of authorization: team-based and user-based. To create a
+room and to register webhooks (for any rooms) you have to provide a team-based authorization sending the API key in the HTTP headers as following.
+
 ```plain
 https://api.eyeson.team/<path>
 HEADERS:
   - Authorization: <YOUR_API_KEY>
 ```
 
-{{< warning title="TODO" >}}
-Info about when to use Authorization and when to use access key is missing!
-{{< /warning >}}
+Any other communication with the API requires an user-based authorization,
+therefor an active room and user that are identified by an `access_key`. The
+access key is provided in the resource endpoint, no additional headers needed.
 
 ## eyeson Room
 
 ```
 POST /rooms # create room a new room or join an existing by id.
+  HEADERS Authorization
   RESPONSES 201 CREATED, 400 BAD REQUEST
 GET  /rooms/:access_key # receive details of a persisted room.
   RESPONSES 200 OK, 404 NOT FOUND
@@ -372,6 +378,10 @@ EXAMPLE RESPONSE
 
 ## Recording
 
+Recordings are saved on a cloud storage and can be downloaded from there.
+Direct URLs to downloads expire, so better store the recording identifier and
+fetch a valid resource link on demand.
+
 ```
 POST /rooms/:access_key/recording
   RESPONSES 201 CREATED, 400 BAD REQUEST
@@ -417,29 +427,94 @@ EXAMPLE RESPONSE
 
 ## Broadcast
 
+To connect a eyeson room with a broadcast you have to provide a valid streaming
+URL. To receive one please follow the instructions from [YouTube](yt-streaming-api),
+[Facebook](fb-streaming-api), or other.
+
 ```
-POST   /rooms/:access_key/broadcasts
-DELETE /rooms/:access_key/broadcasts
-PUT    /rooms/:access_key/broadcasts/:platform
+POST /rooms/:access_key/broadcasts
+  RESPONSES 201 CREATED, 400 BAD REQUEST
+```
+
+Parameters   | Type              | Description
+------------ | ----------------- | ------------
+platform     | String (required) | Platform identifier (e.g. 'twitter').
+stream\_url  | String (required) | Streaming URL.
+player\_url  | String (optional) | Public URL to view the live video.
+
+```
+PUT /rooms/:access_key/broadcasts/:platform
+  RESPONSES 200 OK, 400 BAD REQUEST, 404 NOT FOUND
+```
+
+Parameters   | Type              | Description
+------------ | ----------------- | ------------
+platform     | String (required) | Platform identifier (e.g. 'twitter').
+player\_url  | String (required) | Public URL to view the live video.
+
+```
 DELETE /rooms/:access_key/broadcasts/:platform
+  RESPONSES 200 OK, 400 BAD REQUEST
+DELETE /rooms/:access_key/broadcasts # delete all broadcasts
+  RESPONSES 200 OK, 400 BAD REQUEST, 404 NOT FOUND
 ```
+
+{{< note title="Note" >}}
+You can use multiple plattforms to broadcast to but there is a limitation of
+one stream per platform.
+{{< /note >}}
 
 ## Content Integration aka Layers
 
+Show any data content inside your video using the eyeson layer service. In
+order to insert data, there are three ways to do so. To show simple text
+message inserts you can use the insert parameter. With that you can listen for
+tweets in a separate service and display them using the tweet senders avatar
+as icon, name as title and tweet as content.
+
+For more complex data generate an image and either upload the image or provide
+a public URL. For overlaying images use a transparent background.
+
+Any eyeson room video has a resolution of **1280x960** pixel. Ensure any file
+uploaded is an alpha interlaced PNG image with corresponding resolution to
+avoid any distortions.
+
 ```
-POST   /rooms/<access_key>/layers
-DELETE /rooms/<access_key>/layers/<identifier>
+POST /rooms/:access_key/layers # insert image or text message
+  RESPONSES 201 CREATED, 400 BAD REQUEST
 ```
 
+Parameters      | Type              | Description
+--------------- | ----------------- | ------------
+file            | String (optional) | File upload.
+url             | String (optional) | File URL.
+insert[icon]    | String (optional) | URL for an icon to show.
+insert[title]   | String (optional) | Message title.
+insert[content] | String (optional) | Message content.
+z-index         | String (optional) | Use -1 for background or 1 (default) for foreground position.
+layout          | String (optional) | Layout mode either 'fixed' or 'auto' (default).
+
+```
+DELETE /rooms/:access_key/layers/:index # clear layer, index: -1 or 1
+  RESPONSES 200 OK, 400 BAD REQUEST
+```
+
+## Register Webhooks
+
+Register webhook for any update events using one or multiple of the following
+resource types comma separated: user, document, recording, broadcast,
+room\_instance, team or presentation.
 
 ```
 webhooks POST /webhooks
+  HEADERS Authorization
 ```
 
-## Websocket Connection
+Parameters   | Type              | Description
+------------ | ----------------- | ------------
+url          | String (required) | Target URL.
+types        | String (required) | Comma separated resource types.
 
-Websocket connection endpoint is received in the response of the room creation.
 
-Events:
-  - Files Conversion Progress (0-1)
-
+[yt-streaming-api]: https://developers.google.com/youtube/v3/live/getting-started " YouTube Live Streaming API Overview"
+[fb-streaming-api]: https://developers.facebook.com/docs/videos/live-video "Live Video on Facebook"

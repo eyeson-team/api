@@ -59,6 +59,11 @@ googleAnalytics = ""
 	url    = "api-reference/"
 	weight = 20
 
+[[menu.main]]
+	name   = "Websocket Events"
+	url    = "websocket-events/"
+	weight = 30
+
 [blackfriday]
 	smartypants	= true
 	fractions = true
