@@ -5,18 +5,18 @@ draft: false
 ---
 
 Video conferences are organized in eyeson rooms. You can control who will join
-a room by using an unique identifier. Every user will receive a link to the
-GUI containing a user-based unique access key that will match room and user
-allowing to join the eyeson room.
+a room by using a unique identifier. Every user will receive a link to the
+GUI containing a unique access key scoped to the room and user. This key grants
+access to the the eyeson room.
 
-Within an eyeson room, all features like broadcast, recording, layout, inject
-data like images or text with background and foreground images can be directly
-controlled.
+Within an eyeson room, all features like broadcast, recording, layout,
+data and image injection be directly controlled.
 
 ## Authorization
 
 There are two levels of authorization: team-based and user-based. To create a
-room and to register webhooks (for any rooms) you have to provide a team-based authorization sending the API key in the HTTP headers as following.
+room and register webhooks (for any rooms) you have to provide a team-based
+authorization sending the API key in an HTTP header.
 
 ```plain
 https://api.eyeson.team/<path>
@@ -24,9 +24,9 @@ HEADERS:
   - Authorization: <YOUR_API_KEY>
 ```
 
-Any other communication with the API requires an user-based authorization,
-therefor an active room and user that are identified by an `access_key`. The
-access key is provided in the resource endpoint, no additional headers needed.
+Any other communication with the API requires user-based authorization.
+Meaning: an active room and user identified by an `access_key`. The
+access key is provided by the resource endpoint, no additional headers needed.
 
 ## eyeson Room
 
@@ -42,7 +42,7 @@ Parameters   | Type              | Description
 ------------ | ----------------- | ------------
 id           | String (optional) | If you want to get a single user or a handful of users into a specific meeting room, you can define an arbitrary id here. If kept empty, a random id will be returned.
 name         | String (optional) | If you want to give the room a readable name.
-user[id]     | String (optional) | You can commit a custom user id in order to identify the user in further REST requests without the need of remembering the eyeson user id e.g. your internal user id, an e-mail address, phone number, etc. If kept empty, a random id will be assigned.
+user[id]     | String (optional) | You can supply a custom user id to identify the user in further REST requests without the need of remembering the eyeson user id e.g. your internal user id, an e-mail address, phone number, etc. If kept empty, a random id will be assigned.
 user[name]   | String (required) | Display name of the user.
 user[avatar] | URL (optional)    | Avatars will be displayed in the sidebar of our pre-defined user interface.
 
@@ -111,11 +111,11 @@ EXAMPLE RESPONSE:
 ```
 
 Using the guest token received from the room creation, any number of guest
-users can be created. This provides the opportunity to offer a quick join
+users can be created. This provides an option for you to offer a "quick join"
 method to a meeting.
 
-A guest user has only access to a running meeting session. As soon a meeting
-has ended, the guest user can no longer join any future meeting on this room.
+A guest user only has access to a running meeting session. Once a meeting
+ends, the guest user cannot join any future meetings in this room.
 
 ```
 POST /guests/:guest_token # Create a guest user for a meeting.
@@ -279,11 +279,11 @@ content      | String (required) | Data content.
 
 ## Presentation
 
-The eyeson API offers presentation handling that will automatically store the
-current presenter, store current presented slide and switch the current stream
-layout to display the slide in full-size and participant in small windows on
-the bottom position. This is especially helpful if you broadcast a stream (e.g.
-to YouTube, Facebook, etc.) and want to ensure that viewers receive any content
+The eyeson API offers presentation handling out of the box. Meaning it will
+automatically store the current presenter, the currently presented slide and
+switch the stream layout to accommodate the slide in full-size and the
+participants. This is especially helpful if you broadcast a stream (e.g. to
+YouTube, Facebook, etc.) and want to ensure that viewers receive any content
 presented. Participants of the eyeson GUI will additionally receive an image of
 the slide.
 
@@ -333,9 +333,8 @@ a presentation but not switch to another slide.
 ## Screen capture
 
 In order to provide screen capture presentations, the clients user agent
-requires to have an extension installed. The eyeson GUI has a built in feature
-detection and will guide a participant on how to install the extension
-required.
+requires an extension to be installed. The GUI has built in feature detection
+and will guide a participant through the installation.
 
 ```
 POST /rooms/:access_key/presentation
@@ -347,8 +346,8 @@ DELETE /rooms/:access_key/presentation
 ```
 
 {{< note title="Note" >}}
-Screen capture presentation share the endpoint with slideshow presentations,
-obviously without providing an URL to a slide.
+Screen capture presentation share the endpoint with slide-show presentations.
+Without providing a URL to a slide, obviously.
 {{< /note >}}
 
 EXAMPLE RESPONSE
@@ -378,9 +377,9 @@ EXAMPLE RESPONSE
 
 ## Recording
 
-Recordings are saved on a cloud storage and can be downloaded from there.
-Direct URLs to downloads expire, so better store the recording identifier and
-fetch a valid resource link on demand.
+Recordings are saved in eyesons cloud storage and can be downloaded from there.
+Direct URLs to downloads _expire_, so it's better store the recording identifier
+and fetch a valid resource link on demand.
 
 ```
 POST /rooms/:access_key/recording
@@ -427,7 +426,7 @@ EXAMPLE RESPONSE
 
 ## Broadcast
 
-To connect a eyeson room with a broadcast you have to provide a valid streaming
+To connect an eyeson room with a broadcast you have to provide a valid streaming
 URL. To receive one please follow the instructions from [YouTube](yt-streaming-api),
 [Facebook](fb-streaming-api), or other.
 
@@ -460,23 +459,24 @@ DELETE /rooms/:access_key/broadcasts # delete all broadcasts
 ```
 
 {{< note title="Note" >}}
-You can use multiple plattforms to broadcast to but there is a limitation of
+You can use multiple platforms to broadcast to but there is a limitation of
 one stream per platform.
 {{< /note >}}
 
 ## Content Integration aka Layers
 
-Show any data content inside your video using the eyeson layer service. In
-order to insert data, there are three ways to do so. To show simple text
-message inserts you can use the insert parameter. With that you can listen for
-tweets in a separate service and display them using the tweet senders avatar
-as icon, name as title and tweet as content.
+Show any data content inside your video using the eyeson layer service. There
+are currently three ways to achieve this.
+
+To show simple text message inserts you can use the insert parameter. You'd
+listen for tweets in a separate service and display them using the tweet senders
+avatar as an icon, name as title and the tweet as content.
 
 For more complex data generate an image and either upload the image or provide
 a public URL. For overlaying images use a transparent background.
 
-Any eyeson room video has a resolution of **1280x960** pixel. Ensure any file
-uploaded is an alpha interlaced PNG image with corresponding resolution to
+Any eyeson room video has a resolution of **1280x960** pixels. Ensure any file
+uploaded is an alpha interlaced PNG image with a corresponding resolution to
 avoid any distortions.
 
 ```
@@ -501,7 +501,7 @@ DELETE /rooms/:access_key/layers/:index # clear layer, index: -1 or 1
 
 ## Register Webhooks
 
-Register webhook for any update events using one or multiple of the following
+Register webhooks for any updates using one or multiple of the following
 resource types comma separated: user, document, recording, broadcast,
 room\_instance, team or presentation.
 
