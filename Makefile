@@ -1,4 +1,4 @@
-MD=hugo
+CMD=hugo
 
 all: build deploy
 

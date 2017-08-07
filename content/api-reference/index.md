@@ -223,20 +223,20 @@ EXAMPLE RESPONSE
       "conversion_progress": 1.0,
       "failed": false,
       "links": {
-        self: "https://api.eyeson.team/rooms/<access-key>/files/<file-id>",
-        slides: [
+        "self": "https://api.eyeson.team/rooms/<access-key>/files/<file-id>",
+        "slides": [
           "https://some-cloud-storage.io/converted-file/page-01.png",
           "https://some-cloud-storage.io/converted-file/page-02.png",
           // ...
           "https://some-cloud-storage.io/converted-file/page-99.png"
         ],
-        thumbnails: [
+        "thumbnails": [
           "https://some-cloud-storage.io/converted-file/thumb-01.png",
           "https://some-cloud-storage.io/converted-file/thumb-02.png",
           // ...
           "https://some-cloud-storage.io/converted-file/thumb-99.png"
         ],
-        download: "https://some-cloud-storage.io/most-awesome-presentation.pdf"
+        "download": "https://some-cloud-storage.io/most-awesome-presentation.pdf"
       }
     },
     {
@@ -269,20 +269,20 @@ EXAMPLE RESPONSE
   "conversion_progress": 1.0,
   "failed": false,
   "links": {
-    self: "https://api.eyeson.team/rooms/<access-key>/files/<file-id>",
-    slides: [
+    "self": "https://api.eyeson.team/rooms/<access-key>/files/<file-id>",
+    "slides": [
       "https://some-cloud-storage.io/converted-file/page-01.png",
       "https://some-cloud-storage.io/converted-file/page-02.png",
       // ...
       "https://some-cloud-storage.io/converted-file/page-99.png"
     ],
-    thumbnails: [
+    "thumbnails": [
       "https://some-cloud-storage.io/converted-file/thumb-01.png",
       "https://some-cloud-storage.io/converted-file/thumb-02.png",
       // ...
       "https://some-cloud-storage.io/converted-file/thumb-99.png"
     ],
-    download: "https://some-cloud-storage.io/most-awesome-presentation.pdf"
+    "download": "https://some-cloud-storage.io/most-awesome-presentation.pdf"
   }
 }
 ```
@@ -340,7 +340,7 @@ EXAMPLE RESPONSE
     },
     "guest_token": "5971daf62a3d241b0d263ec6"
   },
-  user: {
+  "user": {
     "id": "596f5e442a3d24196f1b7d32",
     "name": "Jane Doe",
     "avatar": "https://example.com/avatar.png",
@@ -390,7 +390,7 @@ EXAMPLE RESPONSE
     },
     "guest_token": "5971daf62a3d241b0d263ec6"
   },
-  user: {
+  "user": {
     "id": "596f5e442a3d24196f1b7d32",
     "name": "Jane Doe",
     "avatar": "https://example.com/avatar.png",
@@ -424,10 +424,10 @@ EXAMPLE RESPONSE
   "created_at": "TODO",
   "duration": 12345, // duration in seconds
   "links": {
-    self: "https://api.eyeson.team/recordings/596f5e442a3d24196f1b7d32",
-    download: "https://cloud-storage.eyeson.team/recordings/<key>.webm"
+    "self": "https://api.eyeson.team/recordings/596f5e442a3d24196f1b7d32",
+    "download": "https://cloud-storage.eyeson.team/recordings/<key>.webm"
   },
-  user: {
+  "user": {
     "id": "596f5e442a3d24196f1b7d32",
     "name": "Jane Doe",
     "avatar": "https://example.com/avatar.png",
