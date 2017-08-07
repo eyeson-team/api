@@ -1,0 +1,1142 @@
+<!DOCTYPE html>
+  
+  
+  
+  
+   <html class="no-js"> 
+
+  <head lang="en-us">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=10" />
+    <title>API Reference - eyeson API documentation</title>
+    <meta name="generator" content="Hugo 0.25.1" />
+
+    
+    <meta name="description" content="eyeson API documentation">
+    
+    <link rel="canonical" href="https://visocon.github.io/api/api-reference/">
+    
+    <meta name="author" content="VisoCon GmbH">
+    
+
+    <meta property="og:url" content="https://visocon.github.io/api/api-reference/">
+    <meta property="og:title" content="eyeson API documentation">
+    <meta property="og:image" content="https://visocon.github.io/api/images/logo.svg">
+    <meta name="apple-mobile-web-app-title" content="eyeson API documentation">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <link rel="shortcut icon" type="image/x-icon" href="https://visocon.github.io/api/images/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="https://visocon.github.io/api/images/favicon.ico">
+
+    <style>
+      @font-face {
+        font-family: 'Icon';
+        src: url('https://visocon.github.io/api/fonts/icon.eot');
+        src: url('https://visocon.github.io/api/fonts/icon.eot')
+               format('embedded-opentype'),
+             url('https://visocon.github.io/api/fonts/icon.woff')
+               format('woff'),
+             url('https://visocon.github.io/api/fonts/icon.ttf')
+               format('truetype'),
+             url('https://visocon.github.io/api/fonts/icon.svg')
+               format('svg');
+        font-weight: normal;
+        font-style: normal;
+      }
+    </style>
+
+    <link rel="stylesheet" href="https://visocon.github.io/api/stylesheets/application.css">
+    <link rel="stylesheet" href="https://visocon.github.io/api/stylesheets/temporary.css">
+    <link rel="stylesheet" href="https://visocon.github.io/api/stylesheets/palettes.css">
+    <link rel="stylesheet" href="https://visocon.github.io/api/stylesheets/highlight/highlight.css">
+
+    
+    
+    
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ubuntu:400,700|Ubuntu&#43;Mono">
+    <style>
+      body, input {
+        font-family: 'Ubuntu', Helvetica, Arial, sans-serif;
+      }
+      pre, code {
+        font-family: 'Ubuntu Mono', 'Courier New', 'Courier', monospace;
+      }
+    </style>
+
+    
+    <script src="https://visocon.github.io/api/javascripts/modernizr.js"></script>
+
+    
+
+  </head>
+  <body class="palette-primary-deep-purple palette-accent-teal">
+
+
+
+	
+	
+
+
+<div class="backdrop">
+	<div class="backdrop-paper"></div>
+</div>
+
+<input class="toggle" type="checkbox" id="toggle-drawer">
+<input class="toggle" type="checkbox" id="toggle-search">
+<label class="toggle-button overlay" for="toggle-drawer"></label>
+
+<header class="header">
+	<nav aria-label="Header">
+  <div class="bar default">
+    <div class="button button-menu" role="button" aria-label="Menu">
+      <label class="toggle-button icon icon-menu" for="toggle-drawer">
+        <span></span>
+      </label>
+    </div>
+    <div class="stretch">
+      <div class="title">
+        API Reference
+      </div>
+    </div>
+
+    
+    <div class="button button-twitter" role="button" aria-label="Twitter">
+       <a href="https://twitter.com/eyeson_team" title="@eyeson_team on Twitter" target="_blank" class="toggle-button icon icon-twitter"></a>
+    </div>
+    
+
+    
+    <div class="button button-github" role="button" aria-label="GitHub">
+      <a href="https://github.com/visocon" title="@visocon on GitHub" target="_blank" class="toggle-button icon icon-github"></a>
+    </div>
+    
+    
+        
+  </div>
+  <div class="bar search">
+    <div class="button button-close" role="button" aria-label="Close">
+      <label class="toggle-button icon icon-back" for="toggle-search"></label>
+    </div>
+    <div class="stretch">
+      <div class="field">
+        <input class="query" type="text" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck>
+      </div>
+    </div>
+    <div class="button button-reset" role="button" aria-label="Search">
+      <button class="toggle-button icon icon-close" id="reset-search"></button>
+    </div>
+  </div>
+</nav>
+</header>
+
+<main class="main">
+	<div class="drawer">
+		<nav aria-label="Navigation">
+  <a href="https://github.com/visocon/api" class="project">
+    <div class="banner">
+      
+        <div class="logo">
+          <img src="https://visocon.github.io/api/images/logo.svg">
+        </div>
+      
+      <div class="name">
+        <strong>eyeson API documentation <span class="version">1.0.0alpha</span></strong>
+        
+          <br>
+          visocon/api
+        
+      </div>
+    </div>
+  </a>
+
+  <div class="scrollable">
+    <div class="wrapper">
+      
+        <ul class="repo">
+          <li class="repo-download">
+            <a href="https://github.com/visocon/api/archive/master.zip" target="_blank" title="Download" data-action="download">
+              <i class="icon icon-download"></i> Download
+            </a>
+          </li>
+          <li class="repo-stars">
+            <a href="https://github.com/visocon/api/stargazers" target="_blank" title="Stargazers" data-action="star">
+              <i class="icon icon-star"></i> Stars
+              <span class="count">&ndash;</span>
+            </a>
+          </li>
+        </ul>
+        <hr>
+      
+
+      <div class="toc">
+        
+        <ul>
+          
+
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Getting started" href="https://visocon.github.io/api/getting-started/">
+	
+	Getting started
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a class="current" title="API Reference" href="https://visocon.github.io/api/api-reference/">
+	
+	API Reference
+</a>
+
+
+<ul id="scrollspy">
+</ul>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Websocket Events" href="https://visocon.github.io/api/websocket-events/">
+	
+	Websocket Events
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="eyeson API" href="https://visocon.github.io/api/">
+	
+	eyeson API
+</a>
+
+
+
+  
+</li>
+
+
+        </ul>
+        
+
+        
+        <hr>
+        <span class="section">The author</span>
+        
+        <ul>
+          
+          <li>
+            <a href="https://twitter.com/eyeson_team" target="_blank" title="@eyeson_team on Twitter">
+              @eyeson_team on Twitter
+            </a>
+          </li>
+          
+
+          
+          <li>
+            <a href="https://github.com/visocon" target="_blank" title="@visocon on GitHub">
+              @visocon on GitHub
+            </a>
+          </li>
+          
+
+          
+        </ul>
+        
+      </div>
+    </div>
+  </div>
+</nav>
+
+	</div>
+
+	<article class="article">
+		<div class="wrapper">
+			<h1>API Reference </h1>
+
+			
+
+<p>Video conferences are organized in eyeson rooms. You can control who will join
+a room by using a unique identifier. Every user will receive a link to the
+GUI containing a unique access key scoped to the room and user. This key grants
+access to the the eyeson room.</p>
+
+<p>Within an eyeson room, all features like broadcast, recording, layout,
+data and image injection be directly controlled.</p>
+
+<h2 id="authorization">Authorization</h2>
+
+<p>There are two levels of authorization: team-based via api-key and user-based
+temporary access-key. To create a room and to register webhooks (for any rooms)
+you have to provide a team-based authorization sending the API key in the HTTP
+header.</p>
+
+<pre><code class="language-plain">https://api.eyeson.team/&lt;path&gt;
+HEADERS:
+  - Authorization: &lt;YOUR_API_KEY&gt;
+</code></pre>
+
+<p>Any other communication with the API requires user-based authorization.
+Meaning: an active room and user identified by an <code>access_key</code>. The
+access key is provided by the resource endpoint, no additional headers needed.
+headers needed.</p>
+
+<h2 id="eyeson-room">eyeson Room</h2>
+
+<p>Any room can be created with a team-based API request, resulting in everything
+to be needed to join a eyeson video conference. Within the response the current
+state of a room can be seen on the ready states for user, room and the global
+ready state that combines these two.</p>
+
+<p>In the links section you can find a direct URL to the eyeson GUI. By using this
+no further communication with the API is required and your user is ready-to-go
+by using this link with any WebRTC capable user-agent like webbrowser Chrome
+or Firefox.</p>
+
+<p>The guest-token can be used to <strong>quick-join</strong> an eyeson room. Using the eyeson
+web GUI a quick-join URL can be generated using the following pattern:</p>
+
+<pre><code>https://app.eyeson.team/guest=&lt;guest_token&gt;
+</code></pre>
+
+<p>The user to join the room has to be provided. If someone already created and
+joined the room session, the user provided will join this existing room
+session.</p>
+
+<pre><code>POST /rooms # create room a new room or join an existing by id.
+  HEADERS Authorization
+  RESPONSES 201 CREATED, 400 BAD REQUEST
+GET  /rooms/:access_key # receive details of a persisted room.
+  RESPONSES 200 OK, 404 NOT FOUND
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>Parameters</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>id</td>
+<td>String (optional)</td>
+<td>If you want to get a single user or a handful of users into a specific meeting room, you can define an arbitrary id here. If kept empty, a random id will be returned.</td>
+</tr>
+
+<tr>
+<td>name</td>
+<td>String (optional)</td>
+<td>If you want to give the room a readable name.</td>
+</tr>
+
+<tr>
+<td>user[id]</td>
+<td>String (optional)</td>
+<td>You can supply a custom user id to identify the user in further REST requests without the need of remembering the eyeson user id e.g. your internal user id, an e-mail address, phone number, etc. If kept empty, a random id will be assigned.</td>
+</tr>
+
+<tr>
+<td>user[name]</td>
+<td>String (required)</td>
+<td>Display name of the user.</td>
+</tr>
+
+<tr>
+<td>user[avatar]</td>
+<td>URL (optional)</td>
+<td>Avatars will be displayed in the sidebar of our pre-defined user interface.</td>
+</tr>
+</tbody>
+</table>
+
+<p>EXAMPLE RESPONSE</p>
+
+<pre><code class="language-json">{
+  &quot;ready&quot;: false,
+  &quot;room&quot;: {
+    &quot;id&quot;:   &quot;596f5e442a3d24196f1b7d32&quot;,
+    &quot;name&quot;: &quot;eyeson room&quot;,
+    &quot;ready&quot;: false,
+    &quot;shutdown&quot;: false,
+    &quot;sip&quot;: {
+      &quot;uri&quot;: &quot;https://.../&quot;,
+      &quot;domain&quot;: &quot;example.eyeson.team&quot;,
+      &quot;authorizationUser&quot;: &quot;username&quot;,
+    },
+    &quot;guest_token&quot;: &quot;5971daf62a3d241b0d263ec6&quot;
+  },
+  &quot;team&quot;: {
+    &quot;name&quot;: &quot;My Company Ltd.&quot;
+  },
+  &quot;user&quot;: {
+    &quot;id&quot;: &quot;596f5e442a3d24196f1b7d32&quot;,
+    &quot;name&quot;: &quot;Jane Doe&quot;,
+    &quot;avatar&quot;: &quot;https://example.com/avatar.png&quot;,
+    &quot;guest&quot;: false,
+    &quot;ready&quot;: false,
+    &quot;sip&quot;: {
+      &quot;uri&quot;: &quot;https://.../&quot;,
+      &quot;domain&quot;: &quot;example.eyeson.team&quot;,
+      &quot;wsServers&quot;: [ &quot;...&quot; ],
+      &quot;instanceId&quot;: &quot;some-instance-id&quot;,
+      &quot;userAgentString&quot;: &quot;user-id&quot;,
+      &quot;authorizationUser&quot;: &quot;username&quot;,
+      &quot;displayName&quot;: &quot;mrs. doe&quot;,
+      &quot;stunServers&quot;: [ &quot;...&quot; ],
+      &quot;turnServers&quot;: [ &quot;...&quot; ],
+      &quot;registerExpires&quot;: &quot;...&quot;,
+      &quot;password&quot;: &quot;sip-password&quot;
+    },
+  },
+  &quot;links&quot;: {
+    &quot;gui&quot;: &quot;https://app.eyeson.team/?588a0d32f9c4860024f36f3&quot;,
+    &quot;self&quot;: &quot;https://api.eyeson.team/rooms&quot;,
+    &quot;websocket&quot;: &quot;https://api.eyeson.team/rt&quot;
+  }
+}
+</code></pre>
+
+<h2 id="user-and-guest-user">User and Guest User</h2>
+
+<pre><code>GET /rooms/:access_key/users/:identifier # Fetch user details.
+  RESPONSES 200 OK, 404 NOT FOUND
+</code></pre>
+
+<p>EXAMPLE RESPONSE</p>
+
+<pre><code class="language-json">{
+  &quot;id&quot;: &quot;596f5e442a3d24196f1b7d32&quot;,
+  &quot;name&quot;: &quot;Jane Doe&quot;,
+  &quot;avatar&quot;: &quot;https://example.com/avatar.png&quot;,
+  &quot;guest&quot;: false
+}
+</code></pre>
+
+<p>Using the guest token received from the room creation, any number of guest
+users can be created. This provides an option for you to offer a &ldquo;quick join&rdquo;
+method to a meeting.</p>
+
+<p>A guest user only has access to a running meeting session. Once a meeting
+ends, the guest user cannot join any future meetings in this room.</p>
+
+<pre><code>POST /guests/:guest_token # Create a guest user for a meeting.
+  RESPONSES 201 CREATED, 401 UNAUTHORIZED, 410 GONE
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>Parameters</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>id</td>
+<td>String (optional)</td>
+<td>User identifier</td>
+</tr>
+
+<tr>
+<td>name</td>
+<td>String (required)</td>
+<td>Users name to be displayed in participants list.</td>
+</tr>
+
+<tr>
+<td>avatar</td>
+<td>String (optional)</td>
+<td>HTTP URI to a user avatar.</td>
+</tr>
+</tbody>
+</table>
+
+<p>EXAMPLE RESPONSE</p>
+
+<pre><code class="language-json">{
+  &quot;ready&quot;: false,
+  &quot;room&quot;: {
+    &quot;id&quot;:   &quot;596f5e442a3d24196f1b7d32&quot;,
+    &quot;name&quot;: &quot;eyeson room&quot;,
+    &quot;ready&quot;: false,
+    &quot;shutdown&quot;: false,
+    &quot;sip&quot;: {
+      &quot;uri&quot;: &quot;https://.../&quot;,
+      &quot;domain&quot;: &quot;example.eyeson.team&quot;,
+      &quot;authorizationUser&quot;: &quot;username&quot;,
+    },
+    &quot;guest_token&quot;: &quot;5971daf62a3d241b0d263ec6&quot;
+  },
+  &quot;team&quot;: {
+    &quot;name&quot;: &quot;my own company&quot;
+  },
+  &quot;user&quot;: {
+    &quot;id&quot;: &quot;unique-user-id&quot;,
+    &quot;name&quot;: &quot;Some User&quot;,
+    &quot;avatar&quot;: &quot;https://example.com/avatar.png&quot;,
+    &quot;guest&quot;: false,
+    &quot;ready&quot;: false,
+    &quot;sip&quot;: {
+      &quot;uri&quot;: &quot;https://.../&quot;,
+      &quot;domain&quot;: &quot;example.eyeson.team&quot;,
+      &quot;wsServers&quot;: [ &quot;...&quot; ],
+      &quot;instanceId&quot;: &quot;instance-id&quot;,
+      &quot;userAgentString&quot;: &quot;user-id&quot;,
+      &quot;authorizationUser&quot;: &quot;username&quot;,
+      &quot;displayName&quot;: &quot;display name&quot;,
+      &quot;stunServers&quot;: [ &quot;...&quot; ],
+      &quot;turnServers&quot;: [ &quot;...&quot; ],
+      &quot;registerExpires&quot;: &quot;...&quot;,
+      &quot;password&quot;: &quot;sip-password&quot;
+    },
+  },
+  &quot;links&quot;: {
+    &quot;gui&quot;: &quot;https://app.eyeson.team/?588a0d32f9c4860024f36f3&quot;,
+    &quot;self&quot;: &quot;https://api.eyeson.team/rooms&quot;,
+    &quot;websocket&quot;: &quot;https://api.eyeson.team/rt&quot;
+  }
+}
+</code></pre>
+
+<h2 id="file-management">File Management</h2>
+
+<p>Documents like PDF slide presentations or images can be stored in eyeson
+service provided cloud storage. The files are available throughout the meeting.
+Uploaded PDF files are automatically converted to single images that can be
+used to present high resolution single slides.</p>
+
+<pre><code>GET    /rooms/:access_key/files
+  RESPONSES 200 OK
+</code></pre>
+
+<p>EXAMPLE RESPONSE</p>
+
+<pre><code class="language-json">{
+  files: [
+    {
+      &quot;id&quot;: &quot;596f5e442a3d24196f1b7d32&quot;,
+      &quot;name&quot;: &quot;most-awesome-presentation.pdf&quot;,
+      &quot;type&quot;: &quot;...&quot;,
+      &quot;converted&quot;: true,
+      &quot;conversion_progress&quot;: 1.0,
+      &quot;failed&quot;: false,
+      &quot;links&quot;: {
+        &quot;self&quot;: &quot;https://api.eyeson.team/rooms/&lt;access-key&gt;/files/&lt;file-id&gt;&quot;,
+        &quot;slides&quot;: [
+          &quot;https://some-cloud-storage.io/converted-file/page-01.png&quot;,
+          &quot;https://some-cloud-storage.io/converted-file/page-02.png&quot;,
+          // ...
+          &quot;https://some-cloud-storage.io/converted-file/page-99.png&quot;
+        ],
+        &quot;thumbnails&quot;: [
+          &quot;https://some-cloud-storage.io/converted-file/thumb-01.png&quot;,
+          &quot;https://some-cloud-storage.io/converted-file/thumb-02.png&quot;,
+          // ...
+          &quot;https://some-cloud-storage.io/converted-file/thumb-99.png&quot;
+        ],
+        &quot;download&quot;: &quot;https://some-cloud-storage.io/most-awesome-presentation.pdf&quot;
+      }
+    },
+    {
+      // ...
+    }
+  ]
+}
+</code></pre>
+
+<pre><code>POST   /rooms/:access_key/files # Document upload, requires file.
+  RESPONSES 201 CREATED, 400 BAD REQUEST
+GET /rooms/:access_key/files/:identifier # Fetch document.
+  RESPONSES 200 OK
+DELETE /rooms/:access_key/files/:identifier # Destroy document.
+  RESPONSES 200 OK
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>Parameters</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>file</td>
+<td>String (required)</td>
+<td>File upload parameter required at creation.</td>
+</tr>
+</tbody>
+</table>
+
+<p>EXAMPLE RESPONSE</p>
+
+<pre><code class="language-json">{
+  &quot;id&quot;: &quot;596f5e442a3d24196f1b7d32&quot;,
+  &quot;name&quot;: &quot;most-awesome-presentation.pdf&quot;,
+  &quot;type&quot;: &quot;...&quot;,
+  &quot;converted&quot;: true,
+  &quot;conversion_progress&quot;: 1.0,
+  &quot;failed&quot;: false,
+  &quot;links&quot;: {
+    &quot;self&quot;: &quot;https://api.eyeson.team/rooms/&lt;access-key&gt;/files/&lt;file-id&gt;&quot;,
+    &quot;slides&quot;: [
+      &quot;https://some-cloud-storage.io/converted-file/page-01.png&quot;,
+      &quot;https://some-cloud-storage.io/converted-file/page-02.png&quot;,
+      // ...
+      &quot;https://some-cloud-storage.io/converted-file/page-99.png&quot;
+    ],
+    &quot;thumbnails&quot;: [
+      &quot;https://some-cloud-storage.io/converted-file/thumb-01.png&quot;,
+      &quot;https://some-cloud-storage.io/converted-file/thumb-02.png&quot;,
+      // ...
+      &quot;https://some-cloud-storage.io/converted-file/thumb-99.png&quot;
+    ],
+    &quot;download&quot;: &quot;https://some-cloud-storage.io/most-awesome-presentation.pdf&quot;
+  }
+}
+</code></pre>
+
+<h2 id="messages">Messages</h2>
+
+<p>Broadcast data messages to all users of a meeting.</p>
+
+<pre><code>POST /rooms/:access_key/messages
+  RESPONSE 201 CREATED, 400 BAD REQUEST
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>Parameters</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>type</td>
+<td>String (required)</td>
+<td>Type description, e.g. &lsquo;chat&rsquo;.</td>
+</tr>
+
+<tr>
+<td>content</td>
+<td>String (required)</td>
+<td>Data content.</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="presentation">Presentation</h2>
+
+<p>The eyeson API offers presentation handling out of the box. Meaning it will
+automatically store the current presenter, the currently presented slide and
+switch the stream layout to accommodate the slide in full-size and the
+participants. This is especially helpful if you broadcast a stream (e.g. to
+YouTube, Facebook, etc.) and want to ensure that viewers receive any content
+presented. Participants of the eyeson GUI will additionally receive an image of
+the slide.</p>
+
+<pre><code>POST /rooms/:access_key/presentation
+  RESPONSES 201 CREATED, 400 BAD REQUEST
+PUT /rooms/:access_key/presentation
+  RESPONSES 200 OK, 404 NOT FOUND
+DELETE /rooms/:access_key/presentation
+  RESPONSES 200 OK
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>Parameters</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>slide</td>
+<td>String (required)</td>
+<td>URL to PNG image, to show in video stream.</td>
+</tr>
+</tbody>
+</table>
+
+<p>EXAMPLE RESPONSE</p>
+
+<pre><code class="language-json">{
+  &quot;slide&quot;: &quot;https://some-cloud-storage.io/converted-file/page-42.png&quot;,
+  &quot;room&quot;: {
+    &quot;id&quot;:   &quot;596f5e442a3d24196f1b7d32&quot;,
+    &quot;name&quot;: &quot;eyeson room&quot;,
+    &quot;ready&quot;: false,
+    &quot;shutdown&quot;: false,
+    &quot;sip&quot;: {
+      &quot;uri&quot;: &quot;https://.../&quot;,
+      &quot;domain&quot;: &quot;example.eyeson.team&quot;,
+      &quot;authorizationUser&quot;: &quot;username&quot;,
+    },
+    &quot;guest_token&quot;: &quot;5971daf62a3d241b0d263ec6&quot;
+  },
+  &quot;user&quot;: {
+    &quot;id&quot;: &quot;596f5e442a3d24196f1b7d32&quot;,
+    &quot;name&quot;: &quot;Jane Doe&quot;,
+    &quot;avatar&quot;: &quot;https://example.com/avatar.png&quot;,
+    &quot;guest&quot;: false
+  }
+}
+</code></pre>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>A presentation is locked to the user that created it. Any user can still stop
+a presentation but not switch to another slide.</p>
+</div>
+
+<h2 id="screen-capture">Screen capture</h2>
+
+<p>In order to provide screen capture presentations, the clients user agent
+requires an extension to be installed. The GUI has built in feature detection
+and will guide a participant through the installation.</p>
+
+<pre><code>POST /rooms/:access_key/presentation
+  RESPONSES 201 CREATED
+PUT /rooms/:access_key/presentation
+  RESPONSES 200 OK
+DELETE /rooms/:access_key/presentation
+  RESPONSES 200 OK
+</code></pre>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Screen capture presentation share the endpoint with slide-show presentations.
+Without providing a URL to a slide, obviously.</p>
+</div>
+
+<p>EXAMPLE RESPONSE</p>
+
+<pre><code class="language-json">{
+  &quot;slide&quot;: null,
+  &quot;room&quot;: {
+    &quot;id&quot;:   &quot;596f5e442a3d24196f1b7d32&quot;,
+    &quot;name&quot;: &quot;eyeson room&quot;,
+    &quot;ready&quot;: false,
+    &quot;shutdown&quot;: false,
+    &quot;sip&quot;: {
+      &quot;uri&quot;: &quot;https://.../&quot;,
+      &quot;domain&quot;: &quot;example.eyeson.team&quot;,
+      &quot;authorizationUser&quot;: &quot;username&quot;,
+    },
+    &quot;guest_token&quot;: &quot;5971daf62a3d241b0d263ec6&quot;
+  },
+  &quot;user&quot;: {
+    &quot;id&quot;: &quot;596f5e442a3d24196f1b7d32&quot;,
+    &quot;name&quot;: &quot;Jane Doe&quot;,
+    &quot;avatar&quot;: &quot;https://example.com/avatar.png&quot;,
+    &quot;guest&quot;: false
+  }
+}
+</code></pre>
+
+<h2 id="recording">Recording</h2>
+
+<p>Recordings are saved in eyesons cloud storage and can be downloaded from there.
+Direct URLs to downloads <em>expire</em>, so it&rsquo;s better store the recording identifier
+and fetch a valid resource link on demand.</p>
+
+<pre><code>POST /rooms/:access_key/recording
+  RESPONSES 201 CREATED, 400 BAD REQUEST
+DELETE /rooms/:access_key/recording
+  RESPONSES 200 OK
+</code></pre>
+
+<pre><code>GET /recordings/:identifier
+  RESPONSES 200 OK, 404 NOT FOUND
+</code></pre>
+
+<p>EXAMPLE RESPONSE</p>
+
+<pre><code class="language-json">{
+  &quot;id&quot;: &quot;596f5e442a3d24196f1b7d32&quot;,
+  &quot;created_at&quot;: &quot;TODO&quot;,
+  &quot;duration&quot;: 12345, // duration in seconds
+  &quot;links&quot;: {
+    &quot;self&quot;: &quot;https://api.eyeson.team/recordings/596f5e442a3d24196f1b7d32&quot;,
+    &quot;download&quot;: &quot;https://cloud-storage.eyeson.team/recordings/&lt;key&gt;.webm&quot;
+  },
+  &quot;user&quot;: {
+    &quot;id&quot;: &quot;596f5e442a3d24196f1b7d32&quot;,
+    &quot;name&quot;: &quot;Jane Doe&quot;,
+    &quot;avatar&quot;: &quot;https://example.com/avatar.png&quot;,
+    &quot;guest&quot;: false
+  },
+  &quot;room&quot;: {
+    &quot;id&quot;:   &quot;596f5e442a3d24196f1b7d32&quot;,
+    &quot;name&quot;: &quot;eyeson room&quot;,
+    &quot;ready&quot;: false,
+    &quot;shutdown&quot;: false,
+    &quot;sip&quot;: {
+      &quot;uri&quot;: &quot;https://.../&quot;,
+      &quot;domain&quot;: &quot;example.eyeson.team&quot;,
+      &quot;authorizationUser&quot;: &quot;username&quot;,
+    },
+    &quot;guest_token&quot;: &quot;5971daf62a3d241b0d263ec6&quot;
+  }
+}
+</code></pre>
+
+<h2 id="broadcast">Broadcast</h2>
+
+<p>To connect an eyeson room with a broadcast you have to provide a valid streaming
+URL. To receive one please follow the instructions from <a href="yt-streaming-api">YouTube</a>,
+<a href="fb-streaming-api">Facebook</a>, or other.</p>
+
+<pre><code>POST /rooms/:access_key/broadcasts
+  RESPONSES 201 CREATED, 400 BAD REQUEST
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>Parameters</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>platform</td>
+<td>String (required)</td>
+<td>Platform identifier (e.g. &lsquo;twitter&rsquo;).</td>
+</tr>
+
+<tr>
+<td>stream_url</td>
+<td>String (required)</td>
+<td>Streaming URL.</td>
+</tr>
+
+<tr>
+<td>player_url</td>
+<td>String (optional)</td>
+<td>Public URL to view the live video.</td>
+</tr>
+</tbody>
+</table>
+
+<pre><code>PUT /rooms/:access_key/broadcasts/:platform
+  RESPONSES 200 OK, 400 BAD REQUEST, 404 NOT FOUND
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>Parameters</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>platform</td>
+<td>String (required)</td>
+<td>Platform identifier (e.g. &lsquo;twitter&rsquo;).</td>
+</tr>
+
+<tr>
+<td>player_url</td>
+<td>String (required)</td>
+<td>Public URL to view the live video.</td>
+</tr>
+</tbody>
+</table>
+
+<pre><code>DELETE /rooms/:access_key/broadcasts/:platform
+  RESPONSES 200 OK, 400 BAD REQUEST
+DELETE /rooms/:access_key/broadcasts # delete all broadcasts
+  RESPONSES 200 OK, 400 BAD REQUEST, 404 NOT FOUND
+</code></pre>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You can use multiple platforms to broadcast to but there is a limitation of
+one stream per platform.</p>
+</div>
+
+<h2 id="content-integration-aka-layers">Content Integration aka Layers</h2>
+
+<p>Show any data content inside your video using the eyeson layer service. There
+are currently three ways to achieve this.</p>
+
+<p>To show simple text message inserts you can use the insert parameter. You&rsquo;d
+listen for tweets in a separate service and display them using the tweet senders
+avatar as an icon, name as title and the tweet as content.</p>
+
+<p>For more complex data generate an image and either upload the image or provide
+a public URL. For overlaying images use a transparent background.</p>
+
+<p>Any eyeson room video has a resolution of <strong>1280x960</strong> pixels. Ensure any file
+uploaded is an alpha interlaced PNG image with a corresponding resolution to
+avoid any distortions.</p>
+
+<pre><code>POST /rooms/:access_key/layers # insert image or text message
+  RESPONSES 201 CREATED, 400 BAD REQUEST
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>Parameters</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>file</td>
+<td>String (optional)</td>
+<td>File upload.</td>
+</tr>
+
+<tr>
+<td>url</td>
+<td>String (optional)</td>
+<td>File URL.</td>
+</tr>
+
+<tr>
+<td>insert[icon]</td>
+<td>String (optional)</td>
+<td>URL for an icon to show.</td>
+</tr>
+
+<tr>
+<td>insert[title]</td>
+<td>String (optional)</td>
+<td>Message title.</td>
+</tr>
+
+<tr>
+<td>insert[content]</td>
+<td>String (optional)</td>
+<td>Message content.</td>
+</tr>
+
+<tr>
+<td>z-index</td>
+<td>String (optional)</td>
+<td>Use -1 for background or 1 (default) for foreground position.</td>
+</tr>
+
+<tr>
+<td>layout</td>
+<td>String (optional)</td>
+<td>Layout mode either &lsquo;fixed&rsquo; or &lsquo;auto&rsquo; (default).</td>
+</tr>
+</tbody>
+</table>
+
+<pre><code>DELETE /rooms/:access_key/layers/:index # clear layer, index: -1 or 1
+  RESPONSES 200 OK, 400 BAD REQUEST
+</code></pre>
+
+<h2 id="register-webhooks">Register Webhooks</h2>
+
+<p>Register webhooks for any updates using one or multiple of the following
+resource types comma separated: user, document, recording, broadcast,
+room_instance, team or presentation.</p>
+
+<pre><code>webhooks POST /webhooks
+  HEADERS Authorization
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>Parameters</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>url</td>
+<td>String (required)</td>
+<td>Target URL.</td>
+</tr>
+
+<tr>
+<td>types</td>
+<td>String (required)</td>
+<td>Comma separated resource types.</td>
+</tr>
+</tbody>
+</table>
+
+<p>In order to get notified for new recordings in any room session, you can
+register a webhook upfront, using your target location and the webhook type
+<code>recording</code>. See the recording resource on details of the received json
+document.</p>
+
+
+			<aside class="copyright" role="note">
+				
+				&copy; 2017 VisoCon GmbH &ndash;
+				
+				Documentation built with
+				<a href="https://www.gohugo.io" target="_blank">Hugo</a>
+				using the
+				<a href="http://github.com/digitalcraftsman/hugo-material-docs" target="_blank">Material</a> theme.
+			</aside>
+
+			<footer class="footer">
+				
+
+<nav class="pagination" aria-label="Footer">
+  <div class="previous">
+  
+  </div>
+
+  <div class="next">
+  
+      <a href="https://visocon.github.io/api/websocket-events/" title="Websocket Events">
+        <span class="direction">
+          Next
+        </span>
+        <div class="page">
+          <div class="stretch">
+            <div class="title">
+              Websocket Events
+            </div>
+          </div>
+          <div class="button button-next" role="button" aria-label="Next">
+            <i class="icon icon-forward"></i>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+</nav>
+
+
+
+
+
+			</footer>
+		</div>
+	</article>
+
+	<div class="results" role="status" aria-live="polite">
+		<div class="scrollable">
+			<div class="wrapper">
+				<div class="meta"></div>
+				<div class="list"></div>
+			</div>
+		</div>
+	</div>
+</main>
+
+    <script>
+    
+      var base_url = 'https:\/\/visocon.github.io\/api\/';
+      var repo_id  = 'visocon\/api';
+    
+    </script>
+
+    <script src="https://visocon.github.io/api/javascripts/application.js"></script>
+    
+
+    <script>
+      /* Add headers to scrollspy */
+      var headers   = document.getElementsByTagName("h2");
+      var scrollspy = document.getElementById('scrollspy');
+
+      if(scrollspy) {
+        if(headers.length > 0) {
+          for(var i = 0; i < headers.length; i++) {
+            var li = document.createElement("li");
+            li.setAttribute("class", "anchor");
+
+            var a  = document.createElement("a");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", headers[i].innerHTML);
+            a.innerHTML = headers[i].innerHTML;
+
+            li.appendChild(a)
+            scrollspy.appendChild(li);
+          }
+        } else {
+          scrollspy.parentElement.removeChild(scrollspy)
+        }
+
+
+        /* Add permanent link next to the headers */
+        var headers = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+
+        for(var i = 0; i < headers.length; i++) {
+            var a = document.createElement("a");
+            a.setAttribute("class", "headerlink");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", "Permanent link")
+            a.innerHTML = "#";
+            headers[i].appendChild(a);
+        }
+      }
+    </script>
+
+    
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>
+

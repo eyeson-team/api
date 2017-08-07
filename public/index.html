@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+  
+  
+  
+  
+   <html class="no-js"> 
+
+  <head lang="en-us">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=10" />
+    <title>eyeson API documentation</title>
+    <meta name="generator" content="Hugo 0.25.1" />
+
+    
+    <meta name="description" content="eyeson API documentation">
+    
+    <link rel="canonical" href="https://visocon.github.io/api/">
+    
+    <meta name="author" content="VisoCon GmbH">
+    
+
+    <meta property="og:url" content="https://visocon.github.io/api/">
+    <meta property="og:title" content="eyeson API documentation">
+    <meta property="og:image" content="https://visocon.github.io/api/images/logo.svg">
+    <meta name="apple-mobile-web-app-title" content="eyeson API documentation">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <link rel="shortcut icon" type="image/x-icon" href="https://visocon.github.io/api/images/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="https://visocon.github.io/api/images/favicon.ico">
+
+    <style>
+      @font-face {
+        font-family: 'Icon';
+        src: url('https://visocon.github.io/api/fonts/icon.eot');
+        src: url('https://visocon.github.io/api/fonts/icon.eot')
+               format('embedded-opentype'),
+             url('https://visocon.github.io/api/fonts/icon.woff')
+               format('woff'),
+             url('https://visocon.github.io/api/fonts/icon.ttf')
+               format('truetype'),
+             url('https://visocon.github.io/api/fonts/icon.svg')
+               format('svg');
+        font-weight: normal;
+        font-style: normal;
+      }
+    </style>
+
+    <link rel="stylesheet" href="https://visocon.github.io/api/stylesheets/application.css">
+    <link rel="stylesheet" href="https://visocon.github.io/api/stylesheets/temporary.css">
+    <link rel="stylesheet" href="https://visocon.github.io/api/stylesheets/palettes.css">
+    <link rel="stylesheet" href="https://visocon.github.io/api/stylesheets/highlight/highlight.css">
+
+    
+    
+    
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ubuntu:400,700|Ubuntu&#43;Mono">
+    <style>
+      body, input {
+        font-family: 'Ubuntu', Helvetica, Arial, sans-serif;
+      }
+      pre, code {
+        font-family: 'Ubuntu Mono', 'Courier New', 'Courier', monospace;
+      }
+    </style>
+
+    
+    <script src="https://visocon.github.io/api/javascripts/modernizr.js"></script>
+
+    
+    <link href="https://visocon.github.io/api/index.xml" rel="alternate" type="application/rss+xml" title="eyeson API documentation" />
+    <link href="https://visocon.github.io/api/index.xml" rel="feed" type="application/rss+xml" title="eyeson API documentation" />
+    
+
+  </head>
+  <body class="palette-primary-deep-purple palette-accent-teal">
+
+
+
+	
+	
+
+
+<div class="backdrop">
+	<div class="backdrop-paper"></div>
+</div>
+
+<input class="toggle" type="checkbox" id="toggle-drawer">
+<input class="toggle" type="checkbox" id="toggle-search">
+<label class="toggle-button overlay" for="toggle-drawer"></label>
+
+<header class="header">
+	<nav aria-label="Header">
+  <div class="bar default">
+    <div class="button button-menu" role="button" aria-label="Menu">
+      <label class="toggle-button icon icon-menu" for="toggle-drawer">
+        <span></span>
+      </label>
+    </div>
+    <div class="stretch">
+      <div class="title">
+        eyeson API documentation
+      </div>
+    </div>
+
+    
+    <div class="button button-twitter" role="button" aria-label="Twitter">
+       <a href="https://twitter.com/eyeson_team" title="@eyeson_team on Twitter" target="_blank" class="toggle-button icon icon-twitter"></a>
+    </div>
+    
+
+    
+    <div class="button button-github" role="button" aria-label="GitHub">
+      <a href="https://github.com/visocon" title="@visocon on GitHub" target="_blank" class="toggle-button icon icon-github"></a>
+    </div>
+    
+    
+        
+  </div>
+  <div class="bar search">
+    <div class="button button-close" role="button" aria-label="Close">
+      <label class="toggle-button icon icon-back" for="toggle-search"></label>
+    </div>
+    <div class="stretch">
+      <div class="field">
+        <input class="query" type="text" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck>
+      </div>
+    </div>
+    <div class="button button-reset" role="button" aria-label="Search">
+      <button class="toggle-button icon icon-close" id="reset-search"></button>
+    </div>
+  </div>
+</nav>
+</header>
+
+<main class="main">
+	<div class="drawer">
+		<nav aria-label="Navigation">
+  <a href="https://github.com/visocon/api" class="project">
+    <div class="banner">
+      
+        <div class="logo">
+          <img src="https://visocon.github.io/api/images/logo.svg">
+        </div>
+      
+      <div class="name">
+        <strong>eyeson API documentation <span class="version">1.0.0alpha</span></strong>
+        
+          <br>
+          visocon/api
+        
+      </div>
+    </div>
+  </a>
+
+  <div class="scrollable">
+    <div class="wrapper">
+      
+        <ul class="repo">
+          <li class="repo-download">
+            <a href="https://github.com/visocon/api/archive/master.zip" target="_blank" title="Download" data-action="download">
+              <i class="icon icon-download"></i> Download
+            </a>
+          </li>
+          <li class="repo-stars">
+            <a href="https://github.com/visocon/api/stargazers" target="_blank" title="Stargazers" data-action="star">
+              <i class="icon icon-star"></i> Stars
+              <span class="count">&ndash;</span>
+            </a>
+          </li>
+        </ul>
+        <hr>
+      
+
+      <div class="toc">
+        
+        <ul>
+          
+
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Getting started" href="https://visocon.github.io/api/getting-started/">
+	
+	Getting started
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="API Reference" href="https://visocon.github.io/api/api-reference/">
+	
+	API Reference
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Websocket Events" href="https://visocon.github.io/api/websocket-events/">
+	
+	Websocket Events
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="eyeson API" href="https://visocon.github.io/api/">
+	
+	eyeson API
+</a>
+
+
+
+  
+</li>
+
+
+        </ul>
+        
+
+        
+        <hr>
+        <span class="section">The author</span>
+        
+        <ul>
+          
+          <li>
+            <a href="https://twitter.com/eyeson_team" target="_blank" title="@eyeson_team on Twitter">
+              @eyeson_team on Twitter
+            </a>
+          </li>
+          
+
+          
+          <li>
+            <a href="https://github.com/visocon" target="_blank" title="@visocon on GitHub">
+              @visocon on GitHub
+            </a>
+          </li>
+          
+
+          
+        </ul>
+        
+      </div>
+    </div>
+  </div>
+</nav>
+
+	</div>
+
+	<article class="article">
+		<div class="wrapper">
+			
+				<h1>eyeson API Documentation </h1>
+
+				<p>Integrate eyeson into your own apps with our API and SDK&rsquo;s.  The eyeson API is
+the foundation upon which all SDK&rsquo;s, frameworks, UI components and libraries
+are built. The eyeson API offers direct control of eyeson CLOUD MCU instances
+you can even compose video content in real-time.</p>
+
+<p>A good place to start is the <a href="getting-started/">Getting Started Guide</a> that
+will lead you through the basic concept and help you start your first video
+conference in a few simple steps.</p>
+
+<p>Further control over broadcastings, recordings, presentations, screencapturing,
+chats, layouts, image overlays, and others are documented in details in corresponding sections in the <a href="api-reference/">API References</a></p>
+
+<p>During an eyeson room meeting session real time events are transported via
+<a href="websocket-events/">Websocket events</a>.</p>
+
+			
+
+			<aside class="copyright" role="note">
+				
+				&copy; 2017 VisoCon GmbH &ndash;
+				
+				Documentation built with
+				<a href="https://www.gohugo.io" target="_blank">Hugo</a>
+				using the
+				<a href="http://github.com/digitalcraftsman/hugo-material-docs" target="_blank">Material</a> theme.
+			</aside>
+
+			<footer class="footer">
+				
+
+
+
+<nav class="pagination" aria-label="Footer">
+  <div class="previous">
+  </div>
+
+  
+  
+  <div class="next">
+      <a href="https://visocon.github.io/api/tags/" title="Tags">
+        <span class="direction">
+          Next
+        </span>
+        <div class="page">
+          <div class="stretch">
+            <div class="title">
+              Tags
+            </div>
+          </div>
+          <div class="button button-next" role="button" aria-label="Next">
+            <i class="icon icon-forward"></i>
+          </div>
+        </div>
+      </a>
+  </div>
+</nav>
+
+
+
+			</footer>
+		</div>
+	</article>
+
+	<div class="results" role="status" aria-live="polite">
+		<div class="scrollable">
+			<div class="wrapper">
+				<div class="meta"></div>
+				<div class="list"></div>
+			</div>
+		</div>
+	</div>
+</main>
+
+    <script>
+    
+      var base_url = 'https:\/\/visocon.github.io\/api\/';
+      var repo_id  = 'visocon\/api';
+    
+    </script>
+
+    <script src="https://visocon.github.io/api/javascripts/application.js"></script>
+    
+
+    <script>
+      /* Add headers to scrollspy */
+      var headers   = document.getElementsByTagName("h2");
+      var scrollspy = document.getElementById('scrollspy');
+
+      if(scrollspy) {
+        if(headers.length > 0) {
+          for(var i = 0; i < headers.length; i++) {
+            var li = document.createElement("li");
+            li.setAttribute("class", "anchor");
+
+            var a  = document.createElement("a");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", headers[i].innerHTML);
+            a.innerHTML = headers[i].innerHTML;
+
+            li.appendChild(a)
+            scrollspy.appendChild(li);
+          }
+        } else {
+          scrollspy.parentElement.removeChild(scrollspy)
+        }
+
+
+        /* Add permanent link next to the headers */
+        var headers = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+
+        for(var i = 0; i < headers.length; i++) {
+            var a = document.createElement("a");
+            a.setAttribute("class", "headerlink");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", "Permanent link")
+            a.innerHTML = "#";
+            headers[i].appendChild(a);
+        }
+      }
+    </script>
+
+    
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>
+
