@@ -50,7 +50,7 @@ Parameters   | Type              | Description
 user[name]   | String (required) | Display name of the user
 ...          | ...               | ...
 
-EXAMPLE RESPONSE:
+EXAMPLE RESPONSE
 ```json
 {
   links: {

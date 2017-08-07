@@ -70,7 +70,7 @@ user[id]     | String (optional) | You can supply a custom user id to identify t
 user[name]   | String (required) | Display name of the user.
 user[avatar] | URL (optional)    | Avatars will be displayed in the sidebar of our pre-defined user interface.
 
-EXAMPLE RESPONSE:
+EXAMPLE RESPONSE
 ```json
 {
   "ready": false,
@@ -124,7 +124,7 @@ GET /rooms/:access_key/users/:identifier # Fetch user details.
   RESPONSES 200 OK, 404 NOT FOUND
 ```
 
-EXAMPLE RESPONSE:
+EXAMPLE RESPONSE
 ```json
 {
   "id": "596f5e442a3d24196f1b7d32",
@@ -152,7 +152,7 @@ id           | String (optional) | User identifier
 name         | String (required) | Users name to be displayed in participants list.
 avatar       | String (optional) | HTTP URI to a user avatar.
 
-EXAMPLE RESPONSE:
+EXAMPLE RESPONSE
 ```json
 {
   "ready": false,
