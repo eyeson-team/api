@@ -7,6 +7,43 @@ draft: false
 The websocket connection endpoint is received in the response of the room
 creation.
 
-Events:
-  - Files Conversion Progress (0-1)
+## Uploaded File Conversion Progress
+
+Progress level is received as floating point number between `0.0` and `1.0`.
+
+```json
+{
+  "type": "files_update",
+  "files": [
+    {
+      "id": "59393f902a3d24150b2ae7bd",
+      "name": "presentation.pdf",
+      "type": "application/pdf",
+      "converted": false,
+      "conversion_progress": 0.42,
+      "failed": false,
+      "links": {
+        "self": "https://api.eyeson.team/files/59393f902a3d24150b2ae7bd",
+        "slides": [],
+        "thumbnails": [],
+        "download": ""
+      }
+    },
+    // ...
+  ]
+}
+```
+
+
+## Slide Update
+
+Receive a presentation slide URL. When a presentation stops an empty string is
+sent.
+
+```json
+{
+  "type": "slide",
+  "slide": "https://example.com/page-42.png"
+}
+```
 
