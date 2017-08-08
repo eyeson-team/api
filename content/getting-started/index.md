@@ -80,12 +80,12 @@ $ curl -X POST \
 The eyeson service provides an API for real-time data synchronization. The RT
 API is a modern WebSocket based API providing you with a real time stream of
 events and enabling you to build a powerful UI in combination with our
-JavaScript libraries, SDK's and REST API.
+JavaScript libraries, SDKs and REST API.
 
 ### Go Further with SDKs
 
 Test your integration by using the predefined eyeson UI. Build a totally
-customized UI and UX by using the SDK's. Integrate eyeson features in your own
+customized UI and UX by using the SDKs. Integrate eyeson features in your own
 mobile and web applications. Use additional eyeson cloud MCU features,
 available via the API.
 

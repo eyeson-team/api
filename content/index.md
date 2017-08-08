@@ -4,8 +4,8 @@ date: 2017-08-03T10:00:00+02:00
 type: index
 ---
 
-Integrate eyeson into your own apps with our API and SDK's.  The eyeson API is
-the foundation upon which all SDK's, frameworks, UI components and libraries
+Integrate eyeson into your own apps with our API and SDKs.  The eyeson API is
+the foundation upon which all SDKs, frameworks, UI components and libraries
 are built. The eyeson API offers direct control of eyeson CLOUD MCU instances
 you can even compose video content in real-time.
 
