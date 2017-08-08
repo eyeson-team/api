@@ -2,6 +2,7 @@
 title: "How to get started"
 date: 2017-08-03T11:23:37+02:00
 draft: false
+weight: 10
 ---
 
 To start a fully featured video conference all you have to do is send a single

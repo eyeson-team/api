@@ -1,7 +1,8 @@
 ---
 title: "eyeson API Documentation"
-date: 2017-08-03T10:00:00+02:00
+date: 2017-08-03T12:00:00+02:00
 type: index
+weight: 0
 ---
 
 Integrate eyeson into your own apps with our API and SDKs.  The eyeson API is

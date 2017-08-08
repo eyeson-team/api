@@ -2,6 +2,7 @@
 title: "API Reference"
 date: 2017-08-04T10:01:35+02:00
 draft: false
+weight: 20
 ---
 
 Video conferences are organized in eyeson rooms. You can control who will join
