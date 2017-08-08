@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>VisoCon GmbH</copyright>
-    <lastBuildDate>Fri, 04 Aug 2017 10:01:35 +0200</lastBuildDate>
+    <lastBuildDate>Thu, 03 Aug 2017 11:23:37 +0200</lastBuildDate>
     
 	<atom:link href="https://visocon.github.io/api/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>How to get started</title>
+      <link>https://visocon.github.io/api/getting-started/</link>
+      <pubDate>Thu, 03 Aug 2017 11:23:37 +0200</pubDate>
+      
+      <guid>https://visocon.github.io/api/getting-started/</guid>
+      <description>To start a fully featured video conference all you have to do is send a single request to the eyeson API. The eyeson services organize video conferences in rooms. After you create a room the API provides you with an URL you can use to send a user to the eyeson web GUI. The web GUI is hosted by the eyeson team and ensures regular updates with the latest features as well as a stable and well designed user experience.</description>
+    </item>
     
     <item>
       <title>API Reference</title>
@@ -35,18 +44,9 @@ Uploaded File Conversion Progress Progress level is received as floating point n
     </item>
     
     <item>
-      <title>How to get started</title>
-      <link>https://visocon.github.io/api/getting-started/</link>
-      <pubDate>Thu, 03 Aug 2017 11:23:37 +0200</pubDate>
-      
-      <guid>https://visocon.github.io/api/getting-started/</guid>
-      <description>To start a fully featured video conference all you have to do is send a single request to the eyeson API. The eyeson services organize video conferences in rooms. After you create a room the API provides you with an URL you can use to send a user to the eyeson web GUI. The web GUI is hosted by the eyeson team and ensures regular updates with the latest features as well as a stable and well designed user experience.</description>
-    </item>
-    
-    <item>
       <title>eyeson API Documentation</title>
       <link>https://visocon.github.io/api/</link>
-      <pubDate>Thu, 03 Aug 2017 10:00:00 +0200</pubDate>
+      <pubDate>Thu, 03 Aug 2017 12:00:00 +0200</pubDate>
       
       <guid>https://visocon.github.io/api/</guid>
       <description>Integrate eyeson into your own apps with our API and SDKs. The eyeson API is the foundation upon which all SDKs, frameworks, UI components and libraries are built. The eyeson API offers direct control of eyeson CLOUD MCU instances you can even compose video content in real-time.
