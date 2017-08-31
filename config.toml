@@ -24,15 +24,15 @@ googleAnalytics = ""
 	permalink = "#"
 
 	# Custom assets
-	custom_css = []
+	custom_css = ["eyeson.css"]
 	custom_js  = []
 
 	# Syntax highlighting theme
 	highlight_css  = ""
 
 	[params.palette]
-    	primary = "deep-purple"
-    	accent  = "teal"
+    	primary = "grey"
+    	accent  = "light-blue"
 
     [params.font]
     	text = "Ubuntu"
