@@ -527,8 +527,9 @@ DELETE /rooms/:access_key/layers/:index # clear layer, index: -1 or 1
 ## Register Webhooks
 
 Register webhooks for any updates using one or multiple of the following
-resource types comma separated: user, document, recording, broadcast,
-room\_instance, team or presentation.
+resource types comma separated: user\_update, document\_update,
+recording\_update, broadcast\_update, room\_instance\_update, team\_update or
+presentation\_update.
 
 ```
 webhooks POST /webhooks
@@ -542,7 +543,7 @@ types        | String (required) | Comma separated resource types.
 
 In order to get notified for new recordings in any room session, you can
 register a webhook upfront, using your target location and the webhook type
-`recording`. See the recording resource on details of the received json
+`recording_update`. See the recording resource on details of the received json
 document.
 
 [chrome-browser]: https://www.google.com/chrome/index.html "Google Chrome Webbrowser"
