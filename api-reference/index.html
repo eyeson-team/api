@@ -993,8 +993,9 @@ avoid any distortions.</p>
 <h2 id="register-webhooks">Register Webhooks</h2>
 
 <p>Register webhooks for any updates using one or multiple of the following
-resource types comma separated: user, document, recording, broadcast,
-room_instance, team or presentation.</p>
+resource types comma separated: user_update, document_update,
+recording_update, broadcast_update, room_instance_update, team_update or
+presentation_update.</p>
 
 <pre><code>webhooks POST /webhooks
   HEADERS Authorization
@@ -1026,7 +1027,7 @@ room_instance, team or presentation.</p>
 
 <p>In order to get notified for new recordings in any room session, you can
 register a webhook upfront, using your target location and the webhook type
-<code>recording</code>. See the recording resource on details of the received json
+<code>recording_update</code>. See the recording resource on details of the received json
 document.</p>
 
 
