@@ -1,0 +1,13 @@
+image: visocon/hugo
+
+before_script:
+  - hugo version
+
+pages:
+  script:
+    - hugo
+  artifacts:
+    paths:
+      - public
+  only:
+    - master
