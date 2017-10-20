@@ -1,7 +1,8 @@
 image: publysher/hugo
 
 before_script:
-  - make setup
+  - git submodule
+  - git submodule update
 
 pages:
   script:
