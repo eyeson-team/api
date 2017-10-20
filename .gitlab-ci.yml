@@ -1,13 +1,16 @@
-image: visocon/hugo
-
-before_script:
-  - hugo version
+image: publysher/hugo
 
 pages:
   script:
-    - hugo
+  - hugo
   artifacts:
     paths:
-      - public
+    - public
   only:
-    - master
+  - master
+  
+test:
+  script:
+  - hugo
+  except:
+  - master
