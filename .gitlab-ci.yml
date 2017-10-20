@@ -1,5 +1,8 @@
 image: publysher/hugo
 
+before_script:
+  - make setup
+
 pages:
   script:
   - hugo
