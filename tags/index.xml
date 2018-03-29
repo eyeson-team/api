@@ -2,13 +2,13 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on eyeson API documentation</title>
-    <link>https://visocon.github.io/api/tags/</link>
+    <link>https://eyeson-team.github.io/api/tags/</link>
     <description>Recent content in Tags on eyeson API documentation</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <copyright>VisoCon GmbH</copyright>
+    <copyright>eyeson GmbH</copyright>
     
-	<atom:link href="https://visocon.github.io/api/tags/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://eyeson-team.github.io/api/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
   </channel>

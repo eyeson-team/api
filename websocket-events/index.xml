@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Websocket-events on eyeson API documentation</title>
-    <link>https://visocon.github.io/api/websocket-events/</link>
+    <link>https://eyeson-team.github.io/api/websocket-events/</link>
     <description>Recent content in Websocket-events on eyeson API documentation</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <copyright>VisoCon GmbH</copyright>
+    <copyright>eyeson GmbH</copyright>
     <lastBuildDate>Fri, 04 Aug 2017 10:01:35 +0200</lastBuildDate>
     
-	<atom:link href="https://visocon.github.io/api/websocket-events/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://eyeson-team.github.io/api/websocket-events/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Websocket Events</title>
-      <link>https://visocon.github.io/api/websocket-events/</link>
+      <link>https://eyeson-team.github.io/api/websocket-events/</link>
       <pubDate>Fri, 04 Aug 2017 10:01:35 +0200</pubDate>
       
-      <guid>https://visocon.github.io/api/websocket-events/</guid>
+      <guid>https://eyeson-team.github.io/api/websocket-events/</guid>
       <description>The websocket connection endpoint is received in the response of the room creation.
 Uploaded File Conversion Progress Progress level is received as floating point number between 0.0 and 1.0.
 { &amp;quot;type&amp;quot;: &amp;quot;files_update&amp;quot;, &amp;quot;files&amp;quot;: [ { &amp;quot;id&amp;quot;: &amp;quot;59393f902a3d24150b2ae7bd&amp;quot;, &amp;quot;name&amp;quot;: &amp;quot;presentation.pdf&amp;quot;, &amp;quot;type&amp;quot;: &amp;quot;application/pdf&amp;quot;, &amp;quot;converted&amp;quot;: false, &amp;quot;conversion_progress&amp;quot;: 0.42, &amp;quot;failed&amp;quot;: false, &amp;quot;links&amp;quot;: { &amp;quot;self&amp;quot;: &amp;quot;https://api.eyeson.team/files/59393f902a3d24150b2ae7bd&amp;quot;, &amp;quot;slides&amp;quot;: [], &amp;quot;thumbnails&amp;quot;: [], &amp;quot;download&amp;quot;: &amp;quot;&amp;quot; } }, // ... ] }  Slide Update Receive a presentation slide URL.</description>
