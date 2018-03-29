@@ -1,5 +1,3 @@
-<p align="center"><img src="eyeson.png" width="360"></p>
-
 # eyeson API Documentation
 
 Documentation for [eyeson room](https://www.eyeson.team) API, hosted on GitHub
