@@ -1,10 +1,11 @@
+<p align="center"><img src="eyeson.png" width="360"></p>
 
 # eyeson API Documentation
 
 Documentation for [eyeson room](https://www.eyeson.team) API, hosted on GitHub
-pages at [visocon.github.io/api](https://visocon.github.io/api).
+pages at [eyeson-team.github.io/api](https://eyeson-team.github.io/api).
 
-## Usage
+## Build Documentation
 
 ```sh
 $ make watch # start static site generator dev server
