@@ -6,7 +6,7 @@ weight: 30
 ---
 
 The websocket connection endpoint is received in the response of the room
-creation.
+creation. Provide the `access_key` in order to authenticate the user.
 
 ## Uploaded File Conversion Progress
 
