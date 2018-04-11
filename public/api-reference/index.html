@@ -994,7 +994,7 @@ avoid any distortions.</p>
 
 <p>Register webhooks for any updates using one or multiple of the following
 resource types comma separated: user_update, document_update,
-recording_update, broadcast_update, room_instance_update, team_update or
+recording_update, broadcast_update, room_update, team_update or
 presentation_update.</p>
 
 <pre><code>webhooks POST /webhooks
@@ -1029,6 +1029,10 @@ presentation_update.</p>
 register a webhook upfront, using your target location and the webhook type
 <code>recording_update</code>. See the recording resource on details of the received json
 document.</p>
+
+<p>If you want to build up a meeting history in your application, register a
+webhook for <code>room_update</code>. This will provide you with starting and end time
+(<code>started_at</code>, <code>ended_at</code> in UTC) and participants.</p>
 
 
 			<aside class="copyright" role="note">
