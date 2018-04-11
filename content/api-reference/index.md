@@ -528,7 +528,7 @@ DELETE /rooms/:access_key/layers/:index # clear layer, index: -1 or 1
 
 Register webhooks for any updates using one or multiple of the following
 resource types comma separated: user\_update, document\_update,
-recording\_update, broadcast\_update, room\_instance\_update, team\_update or
+recording\_update, broadcast\_update, room\_update, team\_update or
 presentation\_update.
 
 ```
@@ -545,6 +545,10 @@ In order to get notified for new recordings in any room session, you can
 register a webhook upfront, using your target location and the webhook type
 `recording_update`. See the recording resource on details of the received json
 document.
+
+If you want to build up a meeting history in your application, register a
+webhook for `room_update`. This will provide you with starting and end time
+(`started_at`, `ended_at` in UTC) and participants.
 
 [chrome-browser]: https://www.google.com/chrome/index.html "Google Chrome Webbrowser"
 [firefox-browser]: https://www.mozilla.org/firefox/ "Mozilla Firefox Webbrowser"
