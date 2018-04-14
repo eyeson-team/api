@@ -552,8 +552,8 @@ register a webhook upfront, using your target location and the webhook type
 document.
 
 If you want to build up a meeting history in your application, register a
-webhook for `room_update`. This will provide you with starting and end time
-(`started_at`, `ended_at` in UTC) and participants.
+webhook for `room_update` and track when receiving a room update where
+`shutdown` attribute is `true`.
 
 [chrome-browser]: https://www.google.com/chrome/index.html "Google Chrome Webbrowser"
 [firefox-browser]: https://www.mozilla.org/firefox/ "Mozilla Firefox Webbrowser"
