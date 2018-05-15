@@ -862,6 +862,10 @@ DELETE /rooms/:access_key/recording
 }
 </code></pre>
 
+<pre><code>DELETE /recordings/:identifier
+  RESPONSES 200 OK, 404 NOT FOUND
+</code></pre>
+
 <h2 id="broadcast">Broadcast</h2>
 
 <p>To connect an eyeson room with a broadcast you have to provide a valid streaming
@@ -1061,8 +1065,8 @@ register a webhook upfront, using your target location and the webhook type
 document.</p>
 
 <p>If you want to build up a meeting history in your application, register a
-webhook for <code>room_update</code>. This will provide you with starting and end time
-(<code>started_at</code>, <code>ended_at</code> in UTC) and participants.</p>
+webhook for <code>room_update</code> and track when receiving a room update where
+<code>shutdown</code> attribute is <code>true</code>.</p>
 
 
 			<aside class="copyright" role="note">
