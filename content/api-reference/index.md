@@ -454,6 +454,11 @@ EXAMPLE RESPONSE
 }
 ```
 
+```
+DELETE /recordings/:identifier
+  RESPONSES 200 OK, 404 NOT FOUND
+```
+
 ## Broadcast
 
 To connect an eyeson room with a broadcast you have to provide a valid streaming
