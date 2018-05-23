@@ -72,6 +72,7 @@ user[name]                    | String (required)  | Display name of the user.
 user[avatar]                  | URL (optional)     | Avatars will be displayed in the sidebar of our pre-defined user interface.
 options[show\_names]          | Boolean (optional) | Show display names in video. Default: true
 options[show\_label]          | Boolean (optional) | Show eyeson logos in GUI. Default: true
+options[exit\_url]            | String (optional)  | Exit destination, URL for exit button in GUI
 options[recording\_available] | Boolean (optional) | Allow recordings. Default: true
 options[broadcast\_available] | Boolean (optional) | Allow broadcasting. Default: true
 options[layout\_available]    | Boolean (optional) | Allow layout updates. Default: true
