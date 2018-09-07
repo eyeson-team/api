@@ -15,8 +15,20 @@ given the choice to join the meeting via mobile applications too.
 
 ## Get Your Api Key
 
-Please [contact us](https://eyeson.team/developers/#contact-me) to receive your
-personal API key for your implementation.
+Before you can create your first custom eyeson video conference you have to
+generate a new api key.
+
+Sign in at [eyeson Accounts](https://accounts.eyeson.team/), switch to
+the [projects section](https://accounts.eyeson.team/projects), describe your
+project in a few sentences and request your api key. Soon you will receive an
+email to confirm the key generation. By proceeding you are ready to use
+eyeson with your very personal api key.
+
+The api is free to use and does not require any payment method to be stored and
+does not cause costs. However, please note that the free service has a
+monthly limit in terms of usage. If this limit is reached you will not be able
+to use your key until the upcoming month anymore. For sure you can request an
+upgrade to a paid plan anytime.
 
 ## Access the API
 
