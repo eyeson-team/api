@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>eyeson API documentation</title>
+    <title>eyeson API Documentation on eyeson API documentation</title>
     <link>https://eyeson-team.github.io/api/</link>
-    <description>Recent content on eyeson API documentation</description>
+    <description>Recent content in eyeson API Documentation on eyeson API documentation</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <copyright>eyeson GmbH</copyright>
-    <lastBuildDate>Thu, 03 Aug 2017 11:23:37 +0200</lastBuildDate>
+    <lastBuildDate>Thu, 03 Aug 2017 12:00:00 +0200</lastBuildDate>
     
 	<atom:link href="https://eyeson-team.github.io/api/index.xml" rel="self" type="application/rss+xml" />
     
@@ -41,16 +40,6 @@ Authorization There are two levels of authorization: team-based via api-key and 
       <description>The websocket connection endpoint is received in the response of the room creation. Provide the access_key in order to authenticate the user.
 Uploaded File Conversion Progress Progress level is received as floating point number between 0.0 and 1.0.
 { &amp;quot;type&amp;quot;: &amp;quot;files_update&amp;quot;, &amp;quot;files&amp;quot;: [ { &amp;quot;id&amp;quot;: &amp;quot;59393f902a3d24150b2ae7bd&amp;quot;, &amp;quot;name&amp;quot;: &amp;quot;presentation.pdf&amp;quot;, &amp;quot;type&amp;quot;: &amp;quot;application/pdf&amp;quot;, &amp;quot;converted&amp;quot;: false, &amp;quot;conversion_progress&amp;quot;: 0.42, &amp;quot;failed&amp;quot;: false, &amp;quot;links&amp;quot;: { &amp;quot;self&amp;quot;: &amp;quot;https://api.eyeson.team/files/59393f902a3d24150b2ae7bd&amp;quot;, &amp;quot;slides&amp;quot;: [], &amp;quot;thumbnails&amp;quot;: [], &amp;quot;download&amp;quot;: &amp;quot;&amp;quot; } }, // .</description>
-    </item>
-    
-    <item>
-      <title>eyeson API Documentation</title>
-      <link>https://eyeson-team.github.io/api/</link>
-      <pubDate>Thu, 03 Aug 2017 12:00:00 +0200</pubDate>
-      
-      <guid>https://eyeson-team.github.io/api/</guid>
-      <description>Integrate eyeson into your own apps with our API and SDKs. The eyeson API is the foundation upon which all SDKs, frameworks, UI components and libraries are built. The eyeson API offers direct control of eyeson CLOUD MCU instances you can even compose video content in real-time.
-A good place to start is the Getting Started Guide that will lead you through the basic concept and help you start your first video conference in a few simple steps.</description>
     </item>
     
   </channel>
