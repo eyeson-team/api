@@ -77,6 +77,7 @@ options[exit\_url]             | String (optional)        | Exit destination, UR
 options[recording\_available]  | Boolean (optional)       | Allow recordings. Default: true
 options[broadcast\_available]  | Boolean (optional)       | Allow broadcasting. Default: true
 options[layout\_available]     | Boolean (optional)       | Allow layout updates. Default: true
+options[sfu\_mode]             | Boolean (optional)       | Set a desired sfu mode. Possible values are: 'disabled', 'screencast' or 'ptp'. To either disable the feature, limit it to screencasts or even enable it for conferences with only 2 participants. Default: screencast
 
 EXAMPLE RESPONSE
 ```json
