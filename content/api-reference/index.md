@@ -5,7 +5,7 @@ draft: false
 weight: 20
 ---
 
-Video conferences are organized in eyeson rooms. You can control who will join
+Video calls are organized in eyeson rooms. You can control who will join
 a room by using a unique identifier. Every user will receive a link to the
 GUI containing a unique access key scoped to the room and user. This key grants
 access to the the eyeson room.
@@ -34,7 +34,7 @@ headers needed.
 ## eyeson Room
 
 Any room can be created with a team-based API request, resulting in everything
-to be needed to join a eyeson video conference. Within the response the current
+to be needed to join a eyeson video calls. Within the response the current
 state of a room can be seen on the ready states for user, room and the global
 ready state that combines these two.
 
@@ -77,7 +77,7 @@ options[exit\_url]             | String (optional)        | Exit destination, UR
 options[recording\_available]  | Boolean (optional)       | Allow recordings. Default: true
 options[broadcast\_available]  | Boolean (optional)       | Allow broadcasting. Default: true
 options[layout\_available]     | Boolean (optional)       | Allow layout updates. Default: true
-options[sfu\_mode]             | Boolean (optional)       | Set a desired sfu mode. Possible values are: 'disabled', 'screencast' or 'ptp'. To either disable the feature, limit it to screencasts or even enable it for conferences with only 2 participants. Default: screencast
+options[sfu\_mode]             | Boolean (optional)       | Set a desired sfu mode. Possible values are: 'disabled', 'screencast' or 'ptp'. To either disable the feature, limit it to screencasts or enable it for meetings with only 2 participants. Default: 'ptp'
 
 EXAMPLE RESPONSE
 ```json

@@ -12,7 +12,7 @@ you can even compose video content in real-time.
 
 A good place to start is the [Getting Started Guide](getting-started/) that
 will lead you through the basic concept and help you start your first video
-conference in a few simple steps.
+call in a few simple steps.
 
 Further control over broadcastings, recordings, presentations, screencapturing,
 chats, layouts, image overlays, and others are documented in details in corresponding sections in the [API References](api-reference/)
