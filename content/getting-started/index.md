@@ -5,8 +5,8 @@ draft: false
 weight: 10
 ---
 
-To start a fully featured video conference all you have to do is send a single
-request to the eyeson API. The eyeson services organize video conferences in
+To start a fully featured video call all you have to do is send a single
+request to the eyeson API. The eyeson services organize video calls in
 rooms. After you create a room the API provides you with an URL you can use to
 send a user to the eyeson web GUI. The web GUI is hosted by the eyeson team and
 ensures regular updates with the latest features as well as a stable and well
@@ -15,7 +15,7 @@ given the choice to join the meeting via mobile applications too.
 
 ## Get Your Api Key
 
-Before you can create your first custom eyeson video conference you have to
+Before you can create your first custom eyeson video calls you have to
 generate a new api key.
 
 Sign in at [eyeson Accounts](https://accounts.eyeson.team/), switch to
@@ -108,7 +108,7 @@ Our REST API allows you to build your individual video communication solutions.
 
 Inject live data sources into the MCU (live video, play video file, static
 image, static text). Specify layers and positions and sizes for live data
-source injection. Use predeﬁned video conference layouts. Enable or disable
+source injection. Use predeﬁned video call layouts. Enable or disable
 video for participants connected to MCU. Add or remove audio and video sources
 (moderator features). Show selected sources in fullscreen mode on the MCU.
 Connect external video sources like IP CAMS. Connect the MCU to CDN networks
