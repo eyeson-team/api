@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=10" />
     <title>API Reference - eyeson API documentation</title>
-    <meta name="generator" content="Hugo 0.49" />
+    <meta name="generator" content="Hugo 0.37.1" />
 
     
     <meta name="description" content="eyeson API documentation">
@@ -144,7 +144,7 @@
         </div>
       
       <div class="name">
-        <strong>eyeson API documentation <span class="version">1.0.2</span></strong>
+        <strong>eyeson API documentation <span class="version">1.0.3</span></strong>
         
           <br>
           eyeson-team/api
@@ -294,7 +294,7 @@
 
 			
 
-<p>Video conferences are organized in eyeson rooms. You can control who will join
+<p>Video calls are organized in eyeson rooms. You can control who will join
 a room by using a unique identifier. Every user will receive a link to the
 GUI containing a unique access key scoped to the room and user. This key grants
 access to the the eyeson room.</p>
@@ -322,7 +322,7 @@ headers needed.</p>
 <h2 id="eyeson-room">eyeson Room</h2>
 
 <p>Any room can be created with a team-based API request, resulting in everything
-to be needed to join a eyeson video conference. Within the response the current
+to be needed to join a eyeson video calls. Within the response the current
 state of a room can be seen on the ready states for user, room and the global
 ready state that combines these two.</p>
 
@@ -432,8 +432,8 @@ GET  /rooms/:access_key # receive details of a persisted room.
 
 <tr>
 <td>options[sfu_mode]</td>
-<td>Boolean (optional)</td>
-<td>Set a desired sfu mode. Possible values are: &lsquo;disabled&rsquo;, &lsquo;screencast&rsquo; or &lsquo;ptp&rsquo;. To either disable the feature, limit it to screencasts or even enable it for conferences with only 2 participants. Default: screencast</td>
+<td>String (optional)</td>
+<td>Set a desired sfu mode. Possible values are: &lsquo;disabled&rsquo;, &lsquo;screencast&rsquo; or &lsquo;ptp&rsquo;. To either disable the feature, limit it to screencasts or enable it for meetings with only 2 participants. Default: &lsquo;ptp&rsquo;</td>
 </tr>
 </tbody>
 </table>
@@ -980,6 +980,10 @@ a public URL. For overlaying images use a transparent background.</p>
 uploaded is an alpha interlaced PNG image with a corresponding resolution to
 avoid any distortions.</p>
 
+<p>When using layers you might want to disable the <a href="https://webrtcglossary.com/sfu/" title="Selective Forwarding Unit">SFU</a> mode that in
+default <a href="#eyeson-room">room configuration</a> will transport individual streams
+for single and two participants and not show layer media.</p>
+
 <pre><code>POST /rooms/:access_key/layers # insert image or text message
   RESPONSES 201 CREATED, 400 BAD REQUEST
 </code></pre>
@@ -1089,7 +1093,7 @@ webhook for <code>room_update</code> and track when receiving a room update wher
 
 			<aside class="copyright" role="note">
 				
-				&copy; 2018 eyeson GmbH &ndash;
+				&copy; 2019 eyeson GmbH &ndash;
 				
 				Documentation built with
 				<a href="https://www.gohugo.io" target="_blank">Hugo</a>
