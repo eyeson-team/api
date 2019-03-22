@@ -17,7 +17,7 @@
       <pubDate>Thu, 03 Aug 2017 11:23:37 +0200</pubDate>
       
       <guid>https://eyeson-team.github.io/api/getting-started/</guid>
-      <description>To start a fully featured video conference all you have to do is send a single request to the eyeson API. The eyeson services organize video conferences in rooms. After you create a room the API provides you with an URL you can use to send a user to the eyeson web GUI. The web GUI is hosted by the eyeson team and ensures regular updates with the latest features as well as a stable and well designed user experience.</description>
+      <description>To start a fully featured video call all you have to do is send a single request to the eyeson API. The eyeson services organize video calls in rooms. After you create a room the API provides you with an URL you can use to send a user to the eyeson web GUI. The web GUI is hosted by the eyeson team and ensures regular updates with the latest features as well as a stable and well designed user experience.</description>
     </item>
     
     <item>
@@ -26,7 +26,7 @@
       <pubDate>Fri, 04 Aug 2017 10:01:35 +0200</pubDate>
       
       <guid>https://eyeson-team.github.io/api/api-reference/</guid>
-      <description>Video conferences are organized in eyeson rooms. You can control who will join a room by using a unique identifier. Every user will receive a link to the GUI containing a unique access key scoped to the room and user. This key grants access to the the eyeson room.
+      <description>Video calls are organized in eyeson rooms. You can control who will join a room by using a unique identifier. Every user will receive a link to the GUI containing a unique access key scoped to the room and user. This key grants access to the the eyeson room.
 Within an eyeson room, all features like broadcast, recording, layout, data and image injection be directly controlled.
 Authorization There are two levels of authorization: team-based via api-key and user-based temporary access-key.</description>
     </item>

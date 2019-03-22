@@ -77,7 +77,7 @@ options[exit\_url]             | String (optional)        | Exit destination, UR
 options[recording\_available]  | Boolean (optional)       | Allow recordings. Default: true
 options[broadcast\_available]  | Boolean (optional)       | Allow broadcasting. Default: true
 options[layout\_available]     | Boolean (optional)       | Allow layout updates. Default: true
-options[sfu\_mode]             | Boolean (optional)       | Set a desired sfu mode. Possible values are: 'disabled', 'screencast' or 'ptp'. To either disable the feature, limit it to screencasts or enable it for meetings with only 2 participants. Default: 'ptp'
+options[sfu\_mode]             | String (optional)        | Set a desired sfu mode. Possible values are: 'disabled', 'screencast' or 'ptp'. To either disable the feature, limit it to screencasts or enable it for meetings with only 2 participants. Default: 'ptp'
 
 EXAMPLE RESPONSE
 ```json
@@ -517,6 +517,10 @@ Any eyeson room video has a resolution of **1280x960** pixels. Ensure any file
 uploaded is an alpha interlaced PNG image with a corresponding resolution to
 avoid any distortions.
 
+When using layers you might want to disable the [SFU] mode that in
+default [room configuration](#eyeson-room) will transport individual streams
+for single and two participants and not show layer media.
+
 ```
 POST /rooms/:access_key/layers # insert image or text message
   RESPONSES 201 CREATED, 400 BAD REQUEST
@@ -567,3 +571,4 @@ webhook for `room_update` and track when receiving a room update where
 [firefox-browser]: https://www.mozilla.org/firefox/ "Mozilla Firefox Webbrowser"
 [yt-streaming-api]: https://developers.google.com/youtube/v3/live/getting-started " YouTube Live Streaming API Overview"
 [fb-streaming-api]: https://developers.facebook.com/docs/videos/live-video "Live Video on Facebook"
+[SFU]: https://webrtcglossary.com/sfu/ "Selective Forwarding Unit"
