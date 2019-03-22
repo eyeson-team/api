@@ -528,7 +528,7 @@ POST /rooms/:access_key/layers # insert image or text message
 
 Parameters      | Type              | Description
 --------------- | ----------------- | ------------
-file            | String (optional) | File upload.
+file            | File (optional)   | File upload.
 url             | String (optional) | File URL.
 insert[icon]    | String (optional) | URL for an icon to show.
 insert[title]   | String (optional) | Message title.
