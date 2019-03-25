@@ -144,7 +144,7 @@
         </div>
       
       <div class="name">
-        <strong>eyeson API documentation <span class="version">1.0.3</span></strong>
+        <strong>eyeson API documentation <span class="version">1.0.4</span></strong>
         
           <br>
           eyeson-team/api
@@ -655,7 +655,7 @@ DELETE /rooms/:access_key/files/:identifier # Destroy document.
 <tbody>
 <tr>
 <td>file</td>
-<td>String (required)</td>
+<td>File (required)</td>
 <td>File upload parameter required at creation.</td>
 </tr>
 </tbody>
@@ -887,8 +887,8 @@ DELETE /rooms/:access_key/recording
 <h2 id="broadcast">Broadcast</h2>
 
 <p>To connect an eyeson room with a broadcast you have to provide a valid streaming
-URL. To receive one please follow the instructions from <a href="yt-streaming-api">YouTube</a>,
-<a href="fb-streaming-api">Facebook</a>, or other.</p>
+URL. To receive one please follow the instructions from <a href="https://developers.google.com/youtube/v3/live/getting-started" title="YouTube Live Streaming API Overview">YouTube</a>,
+<a href="https://developers.facebook.com/docs/live-video-api" title="Live Video on Facebook">Facebook</a>, or other.</p>
 
 <pre><code>POST /rooms/:access_key/broadcasts
   RESPONSES 201 CREATED, 400 BAD REQUEST
@@ -907,7 +907,7 @@ URL. To receive one please follow the instructions from <a href="yt-streaming-ap
 <tr>
 <td>platform</td>
 <td>String (required)</td>
-<td>Platform identifier (e.g. &lsquo;twitter&rsquo;).</td>
+<td>Platform identifier (e.g. &lsquo;youtube&rsquo;, &lsquo;facebook&rsquo;, &lsquo;twitter&rsquo;).</td>
 </tr>
 
 <tr>
