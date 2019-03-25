@@ -266,7 +266,7 @@ DELETE /rooms/:access_key/files/:identifier # Destroy document.
 
 Parameters   | Type              | Description
 ------------ | ----------------- | ------------
-file         | String (required) | File upload parameter required at creation.
+file         | File (required)   | File upload parameter required at creation.
 
 EXAMPLE RESPONSE
 ```json
