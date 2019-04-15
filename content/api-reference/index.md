@@ -501,6 +501,31 @@ You can use multiple platforms to broadcast to but there is a limitation of
 one stream per platform.
 {{< /note >}}
 
+## Layout
+
+The participants will be presented in a equally distributed tiled video screen
+where eyeson takes care to always update the stream layout depending on the
+number of users. However in some cases you might want to assign specific users
+to a video positions. You can do this by sending the specified podium user-ids
+as a list, or switch back to auto layout any time.
+
+```
+POST /rooms/:access_key/layout
+  RESPONSES 200 OK, 400 BAD REQUEST
+```
+
+Parameters  | Type              | Description
+----------- | ----------------- | ------------
+layout      | String (optional) | Value 'auto' or 'custom'.
+users       | String (optional) | List of podium user\_ids or an empty string for an empty space.
+show\_names | String (optional) | Public URL to view the live video.
+
+{{< note title="Note" >}}
+Layouts are not available when using the [SFU] mode, so ensure to set the
+[room configuration](#eyeson-room) properly or ensure to have more than
+two participants.
+{{< /note >}}
+
 ## Content Integration aka Layers
 
 Show any data content inside your video using the eyeson layer service. There
