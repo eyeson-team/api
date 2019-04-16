@@ -503,11 +503,15 @@ one stream per platform.
 
 ## Layout
 
-The participants will be presented in a equally distributed tiled video screen
-where eyeson takes care to always update the stream layout depending on the
-number of users. However in some cases you might want to assign specific users
-to a video positions. You can do this by sending the specified podium user-ids
-as a list, or switch back to auto layout any time.
+The meeting participants will be presented in an equally distributed tiled
+video layout where eyeson takes care to always update the stream depending on
+the number of users. However in some cases you might want to assign specific
+users to a video positions. You can do this by sending the specified podium
+user-ids as a list, or switch back to auto layout any time.
+
+Layouts are not available when using the [SFU] mode, so ensure to set the
+[room configuration](#eyeson-room) properly or ensure to have more than
+two participants.
 
 ```
 POST /rooms/:access_key/layout
@@ -517,14 +521,18 @@ POST /rooms/:access_key/layout
 Parameters  | Type              | Description
 ----------- | ----------------- | ------------
 layout      | String (optional) | Value 'auto' or 'custom'.
-users       | String (optional) | List of podium user\_ids or an empty string for an empty space.
+users       | String (optional) | List of podium user\_ids or an empty string for an empty spot.
 show\_names | String (optional) | Public URL to view the live video.
 
-{{< note title="Note" >}}
-Layouts are not available when using the [SFU] mode, so ensure to set the
-[room configuration](#eyeson-room) properly or ensure to have more than
-two participants.
-{{< /note >}}
+
+```sh
+$ curl -X POST \
+  -d "user[]=USER_ID_A" \
+  -d "user[]=USER_ID_B" \
+  -d "user[]=USER_ID_C" \
+  -d "user[]=USER_ID_D" \
+  "https://api.eyeson.team/rooms/ACCESS_KEY/layout"
+```
 
 ## Content Integration aka Layers
 
