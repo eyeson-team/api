@@ -527,10 +527,10 @@ show\_names | String (optional) | Public URL to view the live video.
 
 ```sh
 $ curl -X POST \
-  -d "user[]=USER_ID_A" \
-  -d "user[]=USER_ID_B" \
-  -d "user[]=USER_ID_C" \
-  -d "user[]=USER_ID_D" \
+  -d "users[]=USER_ID_A" \
+  -d "users[]=USER_ID_B" \
+  -d "users[]=USER_ID_C" \
+  -d "users[]=USER_ID_D" \
   "https://api.eyeson.team/rooms/ACCESS_KEY/layout"
 ```
 
