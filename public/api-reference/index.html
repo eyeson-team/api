@@ -964,6 +964,60 @@ DELETE /rooms/:access_key/broadcasts # delete all broadcasts
 one stream per platform.</p>
 </div>
 
+<h2 id="layout">Layout</h2>
+
+<p>The meeting participants will be presented in an equally distributed tiled
+video layout where eyeson takes care to always update the stream depending on
+the number of users. However in some cases you might want to assign specific
+users to a video positions. You can do this by sending the specified podium
+user-ids as a list, or switch back to auto layout any time.</p>
+
+<p>Layouts are not available when using the <a href="https://webrtcglossary.com/sfu/" title="Selective Forwarding Unit">SFU</a> mode, so ensure to set the
+<a href="#eyeson-room">room configuration</a> properly or ensure to have more than
+two participants.</p>
+
+<pre><code>POST /rooms/:access_key/layout
+  RESPONSES 200 OK, 400 BAD REQUEST
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>Parameters</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>layout</td>
+<td>String (optional)</td>
+<td>Value &lsquo;auto&rsquo; or &lsquo;custom&rsquo;.</td>
+</tr>
+
+<tr>
+<td>users</td>
+<td>String (optional)</td>
+<td>List of podium user_ids or an empty string for an empty spot.</td>
+</tr>
+
+<tr>
+<td>show_names</td>
+<td>String (optional)</td>
+<td>Public URL to view the live video.</td>
+</tr>
+</tbody>
+</table>
+
+<pre><code class="language-sh">$ curl -X POST \
+  -d &quot;user[]=USER_ID_A&quot; \
+  -d &quot;user[]=USER_ID_B&quot; \
+  -d &quot;user[]=USER_ID_C&quot; \
+  -d &quot;user[]=USER_ID_D&quot; \
+  &quot;https://api.eyeson.team/rooms/ACCESS_KEY/layout&quot;
+</code></pre>
+
 <h2 id="content-integration-aka-layers">Content Integration aka Layers</h2>
 
 <p>Show any data content inside your video using the eyeson layer service. There
