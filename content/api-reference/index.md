@@ -61,6 +61,9 @@ POST /rooms # create room a new room or join an existing by id.
   RESPONSES 201 CREATED, 400 BAD REQUEST
 GET  /rooms/:access_key # receive details of a persisted room.
   RESPONSES 200 OK, 404 NOT FOUND
+DELETE /rooms/:identifier # force to stop a running meeting
+  HEADERS Authorization
+  RESPONSES 204 NO CONTENT, 404 NOT FOUND, 400 BAD REQUEST
 ```
 
 Parameters                     | Type                     | Description
