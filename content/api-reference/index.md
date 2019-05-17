@@ -85,6 +85,7 @@ options[sfu\_mode]             | String (optional)        | Set a desired sfu mo
 EXAMPLE RESPONSE
 ```json
 {
+  "access_key": "5cd3f7dce1382379a013d874",
   "ready": false,
   "room": {
     "id":   "596f5e442a3d24196f1b7d32",
