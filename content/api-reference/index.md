@@ -81,6 +81,7 @@ options[recording\_available]  | Boolean (optional)       | Allow recordings. De
 options[broadcast\_available]  | Boolean (optional)       | Allow broadcasting. Default: true
 options[layout\_available]     | Boolean (optional)       | Allow layout updates. Default: true
 options[sfu\_mode]             | String (optional)        | Set a desired sfu mode. Possible values are: 'disabled', 'screencast' or 'ptp'. To either disable the feature, limit it to screencasts or enable it for meetings with only 2 participants. Default: 'ptp'
+options[custom\_fields]\[logo\] | String (optional) | URL to custom logo.
 
 EXAMPLE RESPONSE
 ```json
