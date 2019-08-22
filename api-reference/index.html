@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=10" />
     <title>API Reference - eyeson API documentation</title>
-    <meta name="generator" content="Hugo 0.55.6" />
+    <meta name="generator" content="Hugo 0.53" />
 
     
     <meta name="description" content="eyeson API documentation">
@@ -599,106 +599,6 @@ ends, the guest user cannot join any future meetings in this room.</p>
 }
 </code></pre>
 
-<h2 id="file-management">File Management</h2>
-
-<p>Documents like PDF slide presentations or images can be stored in eyeson
-service provided cloud storage. The files are available throughout the meeting.
-Uploaded PDF files are automatically converted to single images that can be
-used to present high resolution single slides.</p>
-
-<pre><code>GET    /rooms/:access_key/files
-  RESPONSES 200 OK
-</code></pre>
-
-<p>EXAMPLE RESPONSE</p>
-
-<pre><code class="language-json">{
-  files: [
-    {
-      &quot;id&quot;: &quot;596f5e442a3d24196f1b7d32&quot;,
-      &quot;name&quot;: &quot;most-awesome-presentation.pdf&quot;,
-      &quot;type&quot;: &quot;...&quot;,
-      &quot;converted&quot;: true,
-      &quot;conversion_progress&quot;: 1.0,
-      &quot;failed&quot;: false,
-      &quot;links&quot;: {
-        &quot;self&quot;: &quot;https://api.eyeson.team/rooms/&lt;access-key&gt;/files/&lt;file-id&gt;&quot;,
-        &quot;slides&quot;: [
-          &quot;https://some-cloud-storage.io/converted-file/page-01.png&quot;,
-          &quot;https://some-cloud-storage.io/converted-file/page-02.png&quot;,
-          // ...
-          &quot;https://some-cloud-storage.io/converted-file/page-99.png&quot;
-        ],
-        &quot;thumbnails&quot;: [
-          &quot;https://some-cloud-storage.io/converted-file/thumb-01.png&quot;,
-          &quot;https://some-cloud-storage.io/converted-file/thumb-02.png&quot;,
-          // ...
-          &quot;https://some-cloud-storage.io/converted-file/thumb-99.png&quot;
-        ],
-        &quot;download&quot;: &quot;https://some-cloud-storage.io/most-awesome-presentation.pdf&quot;
-      }
-    },
-    {
-      // ...
-    }
-  ]
-}
-</code></pre>
-
-<pre><code>POST   /rooms/:access_key/files # Document upload, requires file.
-  RESPONSES 201 CREATED, 400 BAD REQUEST
-GET /rooms/:access_key/files/:identifier # Fetch document.
-  RESPONSES 200 OK
-DELETE /rooms/:access_key/files/:identifier # Destroy document.
-  RESPONSES 200 OK
-</code></pre>
-
-<table>
-<thead>
-<tr>
-<th>Parameters</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td>file</td>
-<td>File (required)</td>
-<td>File upload parameter required at creation.</td>
-</tr>
-</tbody>
-</table>
-
-<p>EXAMPLE RESPONSE</p>
-
-<pre><code class="language-json">{
-  &quot;id&quot;: &quot;596f5e442a3d24196f1b7d32&quot;,
-  &quot;name&quot;: &quot;most-awesome-presentation.pdf&quot;,
-  &quot;type&quot;: &quot;...&quot;,
-  &quot;converted&quot;: true,
-  &quot;conversion_progress&quot;: 1.0,
-  &quot;failed&quot;: false,
-  &quot;links&quot;: {
-    &quot;self&quot;: &quot;https://api.eyeson.team/rooms/&lt;access-key&gt;/files/&lt;file-id&gt;&quot;,
-    &quot;slides&quot;: [
-      &quot;https://some-cloud-storage.io/converted-file/page-01.png&quot;,
-      &quot;https://some-cloud-storage.io/converted-file/page-02.png&quot;,
-      // ...
-      &quot;https://some-cloud-storage.io/converted-file/page-99.png&quot;
-    ],
-    &quot;thumbnails&quot;: [
-      &quot;https://some-cloud-storage.io/converted-file/thumb-01.png&quot;,
-      &quot;https://some-cloud-storage.io/converted-file/thumb-02.png&quot;,
-      // ...
-      &quot;https://some-cloud-storage.io/converted-file/thumb-99.png&quot;
-    ],
-    &quot;download&quot;: &quot;https://some-cloud-storage.io/most-awesome-presentation.pdf&quot;
-  }
-}
-</code></pre>
-
 <h2 id="messages">Messages</h2>
 
 <p>Broadcast data messages to all users of a meeting.</p>
@@ -1171,7 +1071,7 @@ webhook for <code>room_update</code> and track when receiving a room update wher
 <nav class="pagination" aria-label="Footer">
   <div class="previous">
   
-      <a href="https://eyeson-team.github.io/api/websocket-events/" title="Websocket Events">
+      <a href="https://eyeson-team.github.io/api/getting-started/" title="How to get started">
         <span class="direction">
           Previous
         </span>
@@ -1181,7 +1081,7 @@ webhook for <code>room_update</code> and track when receiving a room update wher
           </div>
           <div class="stretch">
             <div class="title">
-              Websocket Events
+              How to get started
             </div>
           </div>
         </div>
@@ -1191,14 +1091,14 @@ webhook for <code>room_update</code> and track when receiving a room update wher
 
   <div class="next">
   
-      <a href="https://eyeson-team.github.io/api/getting-started/" title="How to get started">
+      <a href="https://eyeson-team.github.io/api/websocket-events/" title="Websocket Events">
         <span class="direction">
           Next
         </span>
         <div class="page">
           <div class="stretch">
             <div class="title">
-              How to get started
+              Websocket Events
             </div>
           </div>
           <div class="button button-next" role="button" aria-label="Next">
