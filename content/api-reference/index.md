@@ -79,6 +79,7 @@ options[show\_label]           | Boolean (optional)       | Show eyeson logos in
 options[exit\_url]             | String (optional)        | Exit destination, URL for exit button in GUI
 options[recording\_available]  | Boolean (optional)       | Allow recordings. Default: true
 options[broadcast\_available]  | Boolean (optional)       | Allow broadcasting. Default: true
+options[reaction\_available]   | Boolean (optional)       | Show gif media inserts in GUI. Default: true
 options[layout\_available]     | Boolean (optional)       | Allow layout updates. Default: true
 options[sfu\_mode]             | String (optional)        | Set a desired sfu mode. Possible values are: 'disabled', 'screencast' or 'ptp'. To either disable the feature, limit it to screencasts or enable it for meetings with only 2 participants. Default: 'ptp'
 options[custom\_fields]\[logo\] | String (optional) | URL to custom logo.
