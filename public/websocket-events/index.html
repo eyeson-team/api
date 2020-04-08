@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=10" />
     <title>Websocket Events - eyeson API documentation</title>
-    <meta name="generator" content="Hugo 0.53" />
+    <meta name="generator" content="Hugo 0.59.1" />
 
     
     <meta name="description" content="eyeson API documentation">
@@ -292,52 +292,13 @@
 		<div class="wrapper">
 			<h1>Websocket Events </h1>
 
-			
-
-<p>The websocket connection endpoint is received in the response of the room
+			<p>The websocket connection endpoint is received in the response of the room
 creation. Provide the <code>access_key</code> in order to authenticate the user.</p>
-
-<h2 id="uploaded-file-conversion-progress">Uploaded File Conversion Progress</h2>
-
-<p>Progress level is received as floating point number between <code>0.0</code> and <code>1.0</code>.</p>
-
-<pre><code class="language-json">{
-  &quot;type&quot;: &quot;files_update&quot;,
-  &quot;files&quot;: [
-    {
-      &quot;id&quot;: &quot;59393f902a3d24150b2ae7bd&quot;,
-      &quot;name&quot;: &quot;presentation.pdf&quot;,
-      &quot;type&quot;: &quot;application/pdf&quot;,
-      &quot;converted&quot;: false,
-      &quot;conversion_progress&quot;: 0.42,
-      &quot;failed&quot;: false,
-      &quot;links&quot;: {
-        &quot;self&quot;: &quot;https://api.eyeson.team/files/59393f902a3d24150b2ae7bd&quot;,
-        &quot;slides&quot;: [],
-        &quot;thumbnails&quot;: [],
-        &quot;download&quot;: &quot;&quot;
-      }
-    },
-    // ...
-  ]
-}
-</code></pre>
-
-<h2 id="slide-update">Slide Update</h2>
-
-<p>Receive a presentation slide URL. When a presentation stops an empty string is
-sent.</p>
-
-<pre><code class="language-json">{
-  &quot;type&quot;: &quot;slide&quot;,
-  &quot;slide&quot;: &quot;https://example.com/page-42.png&quot;
-}
-</code></pre>
 
 
 			<aside class="copyright" role="note">
 				
-				&copy; 2019 eyeson GmbH &ndash;
+				&copy; 2020 eyeson GmbH &ndash;
 				
 				Documentation built with
 				<a href="https://www.gohugo.io" target="_blank">Hugo</a>
@@ -351,25 +312,25 @@ sent.</p>
 <nav class="pagination" aria-label="Footer">
   <div class="previous">
   
+  </div>
+
+  <div class="next">
+  
       <a href="https://eyeson-team.github.io/api/api-reference/" title="API Reference">
         <span class="direction">
-          Previous
+          Next
         </span>
         <div class="page">
-          <div class="button button-previous" role="button" aria-label="Previous">
-            <i class="icon icon-back"></i>
-          </div>
           <div class="stretch">
             <div class="title">
               API Reference
             </div>
           </div>
+          <div class="button button-next" role="button" aria-label="Next">
+            <i class="icon icon-forward"></i>
+          </div>
         </div>
       </a>
-  
-  </div>
-
-  <div class="next">
   
   </div>
 </nav>
