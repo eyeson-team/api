@@ -283,9 +283,8 @@ DELETE /recordings/:identifier
 
 ## Broadcast
 
-To connect an eyeson room with a broadcast you have to provide a valid streaming
-URL. To receive one please follow the instructions from [YouTube][yt-streaming-api],
-[Facebook][fb-streaming-api], or other.
+To connect an eyeson room with a broadcast you have to provide a valid
+streaming RTMP url.
 
 ```
 POST /rooms/:access_key/broadcasts
@@ -294,7 +293,7 @@ POST /rooms/:access_key/broadcasts
 
 Parameters   | Type              | Description
 ------------ | ----------------- | ------------
-platform     | String (required) | Platform identifier (e.g. 'youtube', 'facebook', 'twitter').
+platform     | String (required) | Platform identifier ('generic', 'youtube', 'facebook').
 stream\_url  | String (required) | Streaming URL.
 player\_url  | String (optional) | Public URL to view the live video.
 
@@ -421,6 +420,4 @@ webhook for `room_update` and track when receiving a room update where
 
 [chrome-browser]: https://www.google.com/chrome/index.html "Google Chrome Webbrowser"
 [firefox-browser]: https://www.mozilla.org/firefox/ "Mozilla Firefox Webbrowser"
-[yt-streaming-api]: https://developers.google.com/youtube/v3/live/getting-started "YouTube Live Streaming API Overview"
-[fb-streaming-api]: https://developers.facebook.com/docs/live-video-api "Live Video on Facebook"
 [SFU]: https://webrtcglossary.com/sfu/ "Selective Forwarding Unit"
