@@ -396,10 +396,11 @@ DELETE /rooms/:access_key/layers/:index # clear layer, index: -1 or 1
 
 ## Register Webhooks
 
-Register webhooks for any updates using one or multiple of the following
-resource types comma separated: user\_update, document\_update,
-recording\_update, broadcast\_update, room\_update, team\_update or
-presentation\_update.
+Register a webhook for any updates using one or multiple of the following
+resource types comma separated: recording\_update, room\_update. Note that you
+can register a single webhook, use the received response type to detect its
+purpose. The webhook endpoint on your server requires to accept an HTTPS POST
+request, the body of the request is provided in JSON format.
 
 ```
 webhooks POST /webhooks
@@ -411,14 +412,74 @@ Parameters   | Type              | Description
 url          | String (required) | Target URL.
 types        | String (required) | Comma separated resource types.
 
+```
+GET /webhooks
+  HEADERS Authorization
+  RESPONSES 200 OK
+```
+
+EXAMPLE RESPONSE
+```json
+{
+  "id": "596f5e442a3d24196f1b7d32",
+  "url": "https://eyeson.com/webhook",
+  "types": "room_update",
+}
+```
+
+```
+DELETE /webhooks/:id
+  HEADERS Authorization
+  RESPONSES 204 OK, 400 BAD REQUEST
+```
+
 In order to get notified for new recordings in any room session, you can
 register a webhook upfront, using your target location and the webhook type
 `recording_update`. See the recording resource on details of the received json
 document.
 
+EXAMPLE
+```json
+{
+  "type": "recording_update",
+  "recording": {
+    "id": "...",
+    "created_at:": 1591700000,
+    "duration:": 60,
+    "links:": {
+      "self": "https://...",
+      "download": "https://..."
+    },
+    "user": {
+      "id": "...",
+      "name": "...",
+      "avatar": "..."
+    },
+    "room": {
+      "id": "...",
+      "name": "...",
+      "started_at": "...",
+    }
+  }
+}
+```
+
 If you want to build up a meeting history in your application, register a
 webhook for `room_update` and track when receiving a room update where
 `shutdown` attribute is `true`.
+
+EXAMPLE
+```json
+{
+  "type": "room_update",
+  "room": {
+    "id": "...",
+    "name": "...",
+    "started_at": "...",
+    "shutdown": true
+  }
+}
+```
 
 [chrome-browser]: https://www.google.com/chrome/index.html "Google Chrome Webbrowser"
 [firefox-browser]: https://www.mozilla.org/firefox/ "Mozilla Firefox Webbrowser"
