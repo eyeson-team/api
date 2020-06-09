@@ -456,6 +456,12 @@ DELETE /rooms/:identifier # force to stop a running meeting
 <td>String (optional)</td>
 <td>URL to custom logo.</td>
 </tr>
+
+<tr>
+<td>options[custom_fields][hide_chat]</td>
+<td>Boolean (optional)</td>
+<td>Hide chat in GUI. Default: false</td>
+</tr>
 </tbody>
 </table>
 
@@ -911,10 +917,11 @@ for single and two participants and not show layer media.</p>
 
 <h2 id="register-webhooks">Register Webhooks</h2>
 
-<p>Register webhooks for any updates using one or multiple of the following
-resource types comma separated: user_update, document_update,
-recording_update, broadcast_update, room_update, team_update or
-presentation_update.</p>
+<p>Register a webhook for any updates using one or multiple of the following
+resource types comma separated: recording_update, room_update. Note that you
+can register a single webhook, use the received response type to detect its
+purpose. The webhook endpoint on your server requires to accept an HTTPS POST
+request, the body of the request is provided in JSON format.</p>
 
 <pre><code>webhooks POST /webhooks
   HEADERS Authorization
@@ -944,14 +951,72 @@ presentation_update.</p>
 </tbody>
 </table>
 
+<pre><code>GET /webhooks
+  HEADERS Authorization
+  RESPONSES 200 OK
+</code></pre>
+
+<p>EXAMPLE RESPONSE</p>
+
+<pre><code class="language-json">{
+  &quot;id&quot;: &quot;596f5e442a3d24196f1b7d32&quot;,
+  &quot;url&quot;: &quot;https://eyeson.com/webhook&quot;,
+  &quot;types&quot;: &quot;room_update&quot;,
+}
+</code></pre>
+
+<pre><code>DELETE /webhooks/:id
+  HEADERS Authorization
+  RESPONSES 204 OK, 400 BAD REQUEST
+</code></pre>
+
 <p>In order to get notified for new recordings in any room session, you can
 register a webhook upfront, using your target location and the webhook type
 <code>recording_update</code>. See the recording resource on details of the received json
 document.</p>
 
+<p>EXAMPLE</p>
+
+<pre><code class="language-json">{
+  &quot;type&quot;: &quot;recording_update&quot;,
+  &quot;recording&quot;: {
+    &quot;id&quot;: &quot;...&quot;,
+    &quot;created_at:&quot;: 1591700000,
+    &quot;duration:&quot;: 60,
+    &quot;links:&quot;: {
+      &quot;self&quot;: &quot;https://...&quot;,
+      &quot;download&quot;: &quot;https://...&quot;
+    },
+    &quot;user&quot;: {
+      &quot;id&quot;: &quot;...&quot;,
+      &quot;name&quot;: &quot;...&quot;,
+      &quot;avatar&quot;: &quot;...&quot;
+    },
+    &quot;room&quot;: {
+      &quot;id&quot;: &quot;...&quot;,
+      &quot;name&quot;: &quot;...&quot;,
+      &quot;started_at&quot;: &quot;...&quot;,
+    }
+  }
+}
+</code></pre>
+
 <p>If you want to build up a meeting history in your application, register a
 webhook for <code>room_update</code> and track when receiving a room update where
 <code>shutdown</code> attribute is <code>true</code>.</p>
+
+<p>EXAMPLE</p>
+
+<pre><code class="language-json">{
+  &quot;type&quot;: &quot;room_update&quot;,
+  &quot;room&quot;: {
+    &quot;id&quot;: &quot;...&quot;,
+    &quot;name&quot;: &quot;...&quot;,
+    &quot;started_at&quot;: &quot;...&quot;,
+    &quot;shutdown&quot;: true
+  }
+}
+</code></pre>
 
 
 			<aside class="copyright" role="note">
