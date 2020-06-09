@@ -66,24 +66,25 @@ DELETE /rooms/:identifier # force to stop a running meeting
   RESPONSES 204 NO CONTENT, 404 NOT FOUND, 400 BAD REQUEST
 ```
 
-Parameters                       | Type                     | Description
-------------------------------   | ------------------------ | ------------
-id                               | String (optional)        | If you want to get a single user or a handful of users into a specific meeting room, you can define an arbitrary id here. If kept empty, a random id will be returned.
-name                             | String (optional)        | If you want to give the room a readable name.
-user[id]                         | String (optional)        | You can supply a custom user id to identify the user in further REST requests without the need of remembering the eyeson user id e.g. your internal user id, an e-mail address, phone number, etc. If kept empty, a random id will be assigned.
-user[name]                       | String (required)        | Display name of the user.
-user[avatar]                     | URL (optional)           | Avatars will be displayed in the sidebar of our pre-defined user interface.
-user[custom\_fields]\[locale\]   | Language Code (optional) | User preferred language code (en, de).
-options[show\_names]             | Boolean (optional)       | Show display names in video. Default: true
-options[show\_label]             | Boolean (optional)       | Show eyeson logos in GUI. Default: true
-options[exit\_url]               | String (optional)        | Exit destination, URL for exit button in GUI
-options[recording\_available]    | Boolean (optional)       | Allow recordings. Default: true
-options[broadcast\_available]    | Boolean (optional)       | Allow broadcasting. Default: true
-options[reaction\_available]     | Boolean (optional)       | Show gif media inserts in GUI. Default: true
-options[layout\_available]       | Boolean (optional)       | Allow layout updates. Default: true
-options[guest\_token\_available] | Boolean (optional)       | Provide guest token. Default: true
-options[sfu\_mode]               | String (optional)        | Set a desired sfu mode. Possible values are: 'disabled', 'screencast' or 'ptp'. To either disable the feature, limit it to screencasts or enable it for meetings with only 2 participants. Default: 'ptp'
-options[custom\_fields]\[logo\]  | String (optional)        | URL to custom logo.
+Parameters                           | Type                     | Description
+------------------------------------ | ------------------------ | ------------
+id                                   | String (optional)        | If you want to get a single user or a handful of users into a specific meeting room, you can define an arbitrary id here. If kept empty, a random id will be returned.
+name                                 | String (optional)        | If you want to give the room a readable name.
+user[id]                             | String (optional)        | You can supply a custom user id to identify the user in further REST requests without the need of remembering the eyeson user id e.g. your internal user id, an e-mail address, phone number, etc. If kept empty, a random id will be assigned.
+user[name]                           | String (required)        | Display name of the user.
+user[avatar]                         | URL (optional)           | Avatars will be displayed in the sidebar of our pre-defined user interface.
+user[custom\_fields]\[locale\]       | Language Code (optional) | User preferred language code (en, de).
+options[show\_names]                 | Boolean (optional)       | Show display names in video. Default: true
+options[show\_label]                 | Boolean (optional)       | Show eyeson logos in GUI. Default: true
+options[exit\_url]                   | String (optional)        | Exit destination, URL for exit button in GUI
+options[recording\_available]        | Boolean (optional)       | Allow recordings. Default: true
+options[broadcast\_available]        | Boolean (optional)       | Allow broadcasting. Default: true
+options[reaction\_available]         | Boolean (optional)       | Show gif media inserts in GUI. Default: true
+options[layout\_available]           | Boolean (optional)       | Allow layout updates. Default: true
+options[guest\_token\_available]     | Boolean (optional)       | Provide guest token. Default: true
+options[sfu\_mode]                   | String (optional)        | Set a desired sfu mode. Possible values are: 'disabled', 'screencast' or 'ptp'. To either disable the feature, limit it to screencasts or enable it for meetings with only 2 participants. Default: 'ptp'
+options[custom\_fields]\[logo\]      | String (optional)        | URL to custom logo.
+options[custom\_fields]\[hide_chat\] | Boolean (optional)       | Hide chat in GUI. Default: false
 
 EXAMPLE RESPONSE
 ```json
