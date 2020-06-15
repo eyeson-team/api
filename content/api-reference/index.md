@@ -390,6 +390,12 @@ insert[content] | String (optional) | Message content.
 z-index         | String (optional) | Use -1 for background or 1 (default) for foreground position.
 layout          | String (optional) | Layout mode either 'fixed' or 'auto' (default).
 
+```sh
+$ curl -X POST \
+  -d "url=https://eyeson-team.github.io/api/images/eyeson-overlay.png" \
+  "https://api.eyeson.team/rooms/${ACCESS_KEY}/layers"
+```
+
 ```
 DELETE /rooms/:access_key/layers/:index # clear layer, index: -1 or 1
   RESPONSES 200 OK, 400 BAD REQUEST
