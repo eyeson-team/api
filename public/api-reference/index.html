@@ -911,6 +911,11 @@ for single and two participants and not show layer media.</p>
 </tbody>
 </table>
 
+<pre><code class="language-sh">$ curl -X POST \
+  -d &quot;url=https://eyeson-team.github.io/api/images/eyeson-overlay.png&quot; \
+  &quot;https://api.eyeson.team/rooms/${ACCESS_KEY}/layers&quot;
+</code></pre>
+
 <pre><code>DELETE /rooms/:access_key/layers/:index # clear layer, index: -1 or 1
   RESPONSES 200 OK, 400 BAD REQUEST
 </code></pre>
