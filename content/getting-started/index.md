@@ -64,7 +64,7 @@ user[name]   | String (required) | Display name of the user
 ...          | ...               | ...
 
 EXAMPLE RESPONSE
-```json
+```
 {
   links: {
     gui: "https://app.eyeson.team/?588a0d32f9c4860024f36f3",
@@ -81,7 +81,7 @@ EXAMPLE RESPONSE
 Redirect your client to the URL given in the `links.gui` attribute, to use
 with the eyeson pre-defined user interface.
 
-```sh
+```
 $ curl -X POST \
   -H "Authorization: YOUR_API_KEY" \
   -d "user[name]=Bob" \

@@ -20,7 +20,7 @@ temporary access-key. To create a room and to register webhooks (for any rooms)
 you have to provide a team-based authorization sending the API key in the HTTP
 header.
 
-```plain
+```
 https://api.eyeson.team/<path>
 HEADERS:
   - Authorization: <YOUR_API_KEY>
@@ -89,7 +89,7 @@ options[custom\_fields]\[logo\]      | String (optional)        | URL to custom 
 options[custom\_fields]\[hide_chat\] | Boolean (optional)       | Hide chat in GUI. Default: false
 
 EXAMPLE RESPONSE
-```json
+```
 {
   "access_key": "5cd3f7dce1382379a013d874",
   "ready": false,
@@ -144,7 +144,7 @@ GET /rooms/:access_key/users/:identifier # Fetch user details.
 ```
 
 EXAMPLE RESPONSE
-```json
+```
 {
   "id": "596f5e442a3d24196f1b7d32",
   "name": "Jane Doe",
@@ -172,7 +172,7 @@ name         | String (required) | Users name to be displayed in participants li
 avatar       | String (optional) | HTTP URI to a user avatar.
 
 EXAMPLE RESPONSE
-```json
+```
 {
   "ready": false,
   "room": {
@@ -251,7 +251,7 @@ GET /recordings/:identifier
 ```
 
 EXAMPLE RESPONSE
-```json
+```
 {
   "id": "596f5e442a3d24196f1b7d32",
   "created_at": "TODO",
@@ -428,7 +428,7 @@ GET /webhooks
 ```
 
 EXAMPLE RESPONSE
-```json
+```
 {
   "id": "596f5e442a3d24196f1b7d32",
   "url": "https://eyeson.com/webhook",
@@ -444,11 +444,11 @@ DELETE /webhooks/:id
 
 In order to get notified for new recordings in any room session, you can
 register a webhook upfront, using your target location and the webhook type
-`recording_update`. See the recording resource on details of the received json
+`recording_update`. See the recording resource on details of the received JSON
 document.
 
 EXAMPLE
-```json
+```
 {
   "type": "recording_update",
   "recording": {
@@ -478,7 +478,7 @@ webhook for `room_update` and track when receiving a room update where
 `shutdown` attribute is `true`.
 
 EXAMPLE
-```json
+```
 {
   "type": "room_update",
   "room": {
