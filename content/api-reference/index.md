@@ -82,6 +82,8 @@ options[broadcast\_available]        | Boolean (optional)       | Allow broadcas
 options[reaction\_available]         | Boolean (optional)       | Show gif media inserts in GUI. Default: true
 options[layout\_available]           | Boolean (optional)       | Allow layout updates. Default: true
 options[guest\_token\_available]     | Boolean (optional)       | Provide guest token. Default: true
+options[lock\_available]             | Boolean (optional)       | Enable meeting lock. Default: false
+options[kick\_available]             | Boolean (optional)       | Allow participant kick. Default: true
 options[sfu\_mode]                   | String (optional)        | Set a desired sfu mode. Possible values are: 'disabled', 'screencast' or 'ptp'. To either disable the feature, limit it to screencasts or enable it for meetings with only 2 participants. Default: 'ptp'
 options[custom\_fields]\[logo\]      | String (optional)        | URL to custom logo.
 options[custom\_fields]\[hide_chat\] | Boolean (optional)       | Hide chat in GUI. Default: false
