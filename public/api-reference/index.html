@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=10" />
     <title>API Reference - eyeson API documentation</title>
-    <meta name="generator" content="Hugo 0.59.1" />
+    <meta name="generator" content="Hugo 0.69.0" />
 
     
     <meta name="description" content="eyeson API documentation">
@@ -292,55 +292,39 @@
 		<div class="wrapper">
 			<h1>API Reference </h1>
 
-			
-
-<p>Video calls are organized in eyeson rooms. You can control who will join
+			<p>Video calls are organized in eyeson rooms. You can control who will join
 a room by using a unique identifier. Every user will receive a link to the
 GUI containing a unique access key scoped to the room and user. This key grants
 access to the the eyeson room.</p>
-
 <p>Within an eyeson room, all features like broadcast, recording, layout,
 data and image injection be directly controlled.</p>
-
 <h2 id="authorization">Authorization</h2>
-
 <p>There are two levels of authorization: team-based via api-key and user-based
 temporary access-key. To create a room and to register webhooks (for any rooms)
 you have to provide a team-based authorization sending the API key in the HTTP
 header.</p>
-
-<pre><code class="language-plain">https://api.eyeson.team/&lt;path&gt;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plain" data-lang="plain">https://api.eyeson.team/&lt;path&gt;
 HEADERS:
   - Authorization: &lt;YOUR_API_KEY&gt;
-</code></pre>
-
-<p>Any other communication with the API requires user-based authorization.
+</code></pre></div><p>Any other communication with the API requires user-based authorization.
 Meaning: an active room and user identified by an <code>access_key</code>. The
 access key is provided by the resource endpoint, no additional headers needed.
 headers needed.</p>
-
 <h2 id="eyeson-room">eyeson Room</h2>
-
 <p>Any room can be created with a team-based API request, resulting in everything
 to be needed to join a eyeson video calls. Within the response the current
 state of a room can be seen on the ready states for user, room and the global
 ready state that combines these two.</p>
-
 <p>In the links section you can find a direct URL to the eyeson GUI. By using this
 no further communication with the API is required and your user is ready-to-go
 by using this link with any WebRTC capable user-agent like webbrowser Chrome
 or Firefox.</p>
-
 <p>The guest-token can be used to <strong>quick-join</strong> an eyeson room. Using the eyeson
 web GUI a quick-join URL can be generated using the following pattern:</p>
-
 <pre><code>https://app.eyeson.team/guest=&lt;guest_token&gt;
-</code></pre>
-
-<p>The user to join the room has to be provided. If someone already created and
+</code></pre><p>The user to join the room has to be provided. If someone already created and
 joined the room session, the user provided will join this existing room
 session.</p>
-
 <pre><code>POST /rooms # create room a new room or join an existing by id.
   HEADERS Authorization
   RESPONSES 201 CREATED, 400 BAD REQUEST
@@ -349,9 +333,7 @@ GET  /rooms/:access_key # receive details of a persisted room.
 DELETE /rooms/:identifier # force to stop a running meeting
   HEADERS Authorization
   RESPONSES 204 NO CONTENT, 404 NOT FOUND, 400 BAD REQUEST
-</code></pre>
-
-<table>
+</code></pre><table>
 <thead>
 <tr>
 <th>Parameters</th>
@@ -359,104 +341,97 @@ DELETE /rooms/:identifier # force to stop a running meeting
 <th>Description</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td>id</td>
 <td>String (optional)</td>
 <td>If you want to get a single user or a handful of users into a specific meeting room, you can define an arbitrary id here. If kept empty, a random id will be returned.</td>
 </tr>
-
 <tr>
 <td>name</td>
 <td>String (optional)</td>
 <td>If you want to give the room a readable name.</td>
 </tr>
-
 <tr>
 <td>user[id]</td>
 <td>String (optional)</td>
 <td>You can supply a custom user id to identify the user in further REST requests without the need of remembering the eyeson user id e.g. your internal user id, an e-mail address, phone number, etc. If kept empty, a random id will be assigned.</td>
 </tr>
-
 <tr>
 <td>user[name]</td>
 <td>String (required)</td>
 <td>Display name of the user.</td>
 </tr>
-
 <tr>
 <td>user[avatar]</td>
 <td>URL (optional)</td>
 <td>Avatars will be displayed in the sidebar of our pre-defined user interface.</td>
 </tr>
-
 <tr>
 <td>user[custom_fields][locale]</td>
 <td>Language Code (optional)</td>
 <td>User preferred language code (en, de).</td>
 </tr>
-
 <tr>
 <td>options[show_names]</td>
 <td>Boolean (optional)</td>
 <td>Show display names in video. Default: true</td>
 </tr>
-
 <tr>
 <td>options[show_label]</td>
 <td>Boolean (optional)</td>
 <td>Show eyeson logos in GUI. Default: true</td>
 </tr>
-
 <tr>
 <td>options[exit_url]</td>
 <td>String (optional)</td>
 <td>Exit destination, URL for exit button in GUI</td>
 </tr>
-
 <tr>
 <td>options[recording_available]</td>
 <td>Boolean (optional)</td>
 <td>Allow recordings. Default: true</td>
 </tr>
-
 <tr>
 <td>options[broadcast_available]</td>
 <td>Boolean (optional)</td>
 <td>Allow broadcasting. Default: true</td>
 </tr>
-
 <tr>
 <td>options[reaction_available]</td>
 <td>Boolean (optional)</td>
 <td>Show gif media inserts in GUI. Default: true</td>
 </tr>
-
 <tr>
 <td>options[layout_available]</td>
 <td>Boolean (optional)</td>
 <td>Allow layout updates. Default: true</td>
 </tr>
-
 <tr>
 <td>options[guest_token_available]</td>
 <td>Boolean (optional)</td>
 <td>Provide guest token. Default: true</td>
 </tr>
-
+<tr>
+<td>options[lock_available]</td>
+<td>Boolean (optional)</td>
+<td>Enable meeting lock. Default: false</td>
+</tr>
+<tr>
+<td>options[kick_available]</td>
+<td>Boolean (optional)</td>
+<td>Allow participant kick. Default: true</td>
+</tr>
 <tr>
 <td>options[sfu_mode]</td>
 <td>String (optional)</td>
 <td>Set a desired sfu mode. Possible values are: &lsquo;disabled&rsquo;, &lsquo;screencast&rsquo; or &lsquo;ptp&rsquo;. To either disable the feature, limit it to screencasts or enable it for meetings with only 2 participants. Default: &lsquo;ptp&rsquo;</td>
 </tr>
-
 <tr>
 <td>options[custom_fields][logo]</td>
 <td>String (optional)</td>
 <td>URL to custom logo.</td>
 </tr>
-
 <tr>
 <td>options[custom_fields][hide_chat]</td>
 <td>Boolean (optional)</td>
@@ -464,83 +439,69 @@ DELETE /rooms/:identifier # force to stop a running meeting
 </tr>
 </tbody>
 </table>
-
 <p>EXAMPLE RESPONSE</p>
-
-<pre><code class="language-json">{
-  &quot;access_key&quot;: &quot;5cd3f7dce1382379a013d874&quot;,
-  &quot;ready&quot;: false,
-  &quot;room&quot;: {
-    &quot;id&quot;:   &quot;596f5e442a3d24196f1b7d32&quot;,
-    &quot;name&quot;: &quot;eyeson room&quot;,
-    &quot;ready&quot;: false,
-    &quot;shutdown&quot;: false,
-    &quot;sip&quot;: {
-      &quot;uri&quot;: &quot;https://.../&quot;,
-      &quot;domain&quot;: &quot;example.eyeson.team&quot;,
-      &quot;authorizationUser&quot;: &quot;username&quot;,
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+  <span style="color:#f92672">&#34;access_key&#34;</span>: <span style="color:#e6db74">&#34;5cd3f7dce1382379a013d874&#34;</span>,
+  <span style="color:#f92672">&#34;ready&#34;</span>: <span style="color:#66d9ef">false</span>,
+  <span style="color:#f92672">&#34;room&#34;</span>: {
+    <span style="color:#f92672">&#34;id&#34;</span>:   <span style="color:#e6db74">&#34;596f5e442a3d24196f1b7d32&#34;</span>,
+    <span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;eyeson room&#34;</span>,
+    <span style="color:#f92672">&#34;ready&#34;</span>: <span style="color:#66d9ef">false</span>,
+    <span style="color:#f92672">&#34;shutdown&#34;</span>: <span style="color:#66d9ef">false</span>,
+    <span style="color:#f92672">&#34;sip&#34;</span>: {
+      <span style="color:#f92672">&#34;uri&#34;</span>: <span style="color:#e6db74">&#34;https://.../&#34;</span>,
+      <span style="color:#f92672">&#34;domain&#34;</span>: <span style="color:#e6db74">&#34;example.eyeson.team&#34;</span>,
+      <span style="color:#f92672">&#34;authorizationUser&#34;</span>: <span style="color:#e6db74">&#34;username&#34;</span>,
     },
-    &quot;guest_token&quot;: &quot;5971daf62a3d241b0d263ec6&quot;
+    <span style="color:#f92672">&#34;guest_token&#34;</span>: <span style="color:#e6db74">&#34;5971daf62a3d241b0d263ec6&#34;</span>
   },
-  &quot;team&quot;: {
-    &quot;name&quot;: &quot;My Company Ltd.&quot;
+  <span style="color:#f92672">&#34;team&#34;</span>: {
+    <span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;My Company Ltd.&#34;</span>
   },
-  &quot;user&quot;: {
-    &quot;id&quot;: &quot;596f5e442a3d24196f1b7d32&quot;,
-    &quot;name&quot;: &quot;Jane Doe&quot;,
-    &quot;avatar&quot;: &quot;https://example.com/avatar.png&quot;,
-    &quot;guest&quot;: false,
-    &quot;ready&quot;: false,
-    &quot;sip&quot;: {
-      &quot;uri&quot;: &quot;https://.../&quot;,
-      &quot;domain&quot;: &quot;example.eyeson.team&quot;,
-      &quot;wsServers&quot;: [ &quot;...&quot; ],
-      &quot;instanceId&quot;: &quot;some-instance-id&quot;,
-      &quot;userAgentString&quot;: &quot;user-id&quot;,
-      &quot;authorizationUser&quot;: &quot;username&quot;,
-      &quot;displayName&quot;: &quot;mrs. doe&quot;,
-      &quot;stunServers&quot;: [ &quot;...&quot; ],
-      &quot;turnServers&quot;: [ &quot;...&quot; ],
-      &quot;registerExpires&quot;: &quot;...&quot;,
-      &quot;password&quot;: &quot;sip-password&quot;
+  <span style="color:#f92672">&#34;user&#34;</span>: {
+    <span style="color:#f92672">&#34;id&#34;</span>: <span style="color:#e6db74">&#34;596f5e442a3d24196f1b7d32&#34;</span>,
+    <span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;Jane Doe&#34;</span>,
+    <span style="color:#f92672">&#34;avatar&#34;</span>: <span style="color:#e6db74">&#34;https://example.com/avatar.png&#34;</span>,
+    <span style="color:#f92672">&#34;guest&#34;</span>: <span style="color:#66d9ef">false</span>,
+    <span style="color:#f92672">&#34;ready&#34;</span>: <span style="color:#66d9ef">false</span>,
+    <span style="color:#f92672">&#34;sip&#34;</span>: {
+      <span style="color:#f92672">&#34;uri&#34;</span>: <span style="color:#e6db74">&#34;https://.../&#34;</span>,
+      <span style="color:#f92672">&#34;domain&#34;</span>: <span style="color:#e6db74">&#34;example.eyeson.team&#34;</span>,
+      <span style="color:#f92672">&#34;wsServers&#34;</span>: [ <span style="color:#e6db74">&#34;...&#34;</span> ],
+      <span style="color:#f92672">&#34;instanceId&#34;</span>: <span style="color:#e6db74">&#34;some-instance-id&#34;</span>,
+      <span style="color:#f92672">&#34;userAgentString&#34;</span>: <span style="color:#e6db74">&#34;user-id&#34;</span>,
+      <span style="color:#f92672">&#34;authorizationUser&#34;</span>: <span style="color:#e6db74">&#34;username&#34;</span>,
+      <span style="color:#f92672">&#34;displayName&#34;</span>: <span style="color:#e6db74">&#34;mrs. doe&#34;</span>,
+      <span style="color:#f92672">&#34;stunServers&#34;</span>: [ <span style="color:#e6db74">&#34;...&#34;</span> ],
+      <span style="color:#f92672">&#34;turnServers&#34;</span>: [ <span style="color:#e6db74">&#34;...&#34;</span> ],
+      <span style="color:#f92672">&#34;registerExpires&#34;</span>: <span style="color:#e6db74">&#34;...&#34;</span>,
+      <span style="color:#f92672">&#34;password&#34;</span>: <span style="color:#e6db74">&#34;sip-password&#34;</span>
     },
   },
-  &quot;links&quot;: {
-    &quot;gui&quot;: &quot;https://app.eyeson.team/?588a0d32f9c4860024f36f3&quot;,
-    &quot;self&quot;: &quot;https://api.eyeson.team/rooms&quot;,
-    &quot;websocket&quot;: &quot;https://api.eyeson.team/rt&quot;
+  <span style="color:#f92672">&#34;links&#34;</span>: {
+    <span style="color:#f92672">&#34;gui&#34;</span>: <span style="color:#e6db74">&#34;https://app.eyeson.team/?588a0d32f9c4860024f36f3&#34;</span>,
+    <span style="color:#f92672">&#34;self&#34;</span>: <span style="color:#e6db74">&#34;https://api.eyeson.team/rooms&#34;</span>,
+    <span style="color:#f92672">&#34;websocket&#34;</span>: <span style="color:#e6db74">&#34;https://api.eyeson.team/rt&#34;</span>
   }
 }
-</code></pre>
-
-<h2 id="user-and-guest-user">User and Guest User</h2>
-
+</code></pre></div><h2 id="user-and-guest-user">User and Guest User</h2>
 <pre><code>GET /rooms/:access_key/users/:identifier # Fetch user details.
   RESPONSES 200 OK, 404 NOT FOUND
-</code></pre>
-
-<p>EXAMPLE RESPONSE</p>
-
-<pre><code class="language-json">{
-  &quot;id&quot;: &quot;596f5e442a3d24196f1b7d32&quot;,
-  &quot;name&quot;: &quot;Jane Doe&quot;,
-  &quot;avatar&quot;: &quot;https://example.com/avatar.png&quot;,
-  &quot;guest&quot;: false
+</code></pre><p>EXAMPLE RESPONSE</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+  <span style="color:#f92672">&#34;id&#34;</span>: <span style="color:#e6db74">&#34;596f5e442a3d24196f1b7d32&#34;</span>,
+  <span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;Jane Doe&#34;</span>,
+  <span style="color:#f92672">&#34;avatar&#34;</span>: <span style="color:#e6db74">&#34;https://example.com/avatar.png&#34;</span>,
+  <span style="color:#f92672">&#34;guest&#34;</span>: <span style="color:#66d9ef">false</span>
 }
-</code></pre>
-
-<p>Using the guest token received from the room creation, any number of guest
+</code></pre></div><p>Using the guest token received from the room creation, any number of guest
 users can be created. This provides an option for you to offer a &ldquo;quick join&rdquo;
 method to a meeting.</p>
-
 <p>A guest user only has access to a running meeting session. Once a meeting
 ends, the guest user cannot join any future meetings in this room.</p>
-
 <pre><code>POST /guests/:guest_token # Create a guest user for a meeting.
   RESPONSES 201 CREATED, 401 UNAUTHORIZED, 410 GONE
-</code></pre>
-
-<table>
+</code></pre><table>
 <thead>
 <tr>
 <th>Parameters</th>
@@ -548,20 +509,17 @@ ends, the guest user cannot join any future meetings in this room.</p>
 <th>Description</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td>id</td>
 <td>String (optional)</td>
 <td>User identifier</td>
 </tr>
-
 <tr>
 <td>name</td>
 <td>String (required)</td>
 <td>Users name to be displayed in participants list.</td>
 </tr>
-
 <tr>
 <td>avatar</td>
 <td>String (optional)</td>
@@ -569,63 +527,55 @@ ends, the guest user cannot join any future meetings in this room.</p>
 </tr>
 </tbody>
 </table>
-
 <p>EXAMPLE RESPONSE</p>
-
-<pre><code class="language-json">{
-  &quot;ready&quot;: false,
-  &quot;room&quot;: {
-    &quot;id&quot;:   &quot;596f5e442a3d24196f1b7d32&quot;,
-    &quot;name&quot;: &quot;eyeson room&quot;,
-    &quot;ready&quot;: false,
-    &quot;shutdown&quot;: false,
-    &quot;sip&quot;: {
-      &quot;uri&quot;: &quot;https://.../&quot;,
-      &quot;domain&quot;: &quot;example.eyeson.team&quot;,
-      &quot;authorizationUser&quot;: &quot;username&quot;,
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+  <span style="color:#f92672">&#34;ready&#34;</span>: <span style="color:#66d9ef">false</span>,
+  <span style="color:#f92672">&#34;room&#34;</span>: {
+    <span style="color:#f92672">&#34;id&#34;</span>:   <span style="color:#e6db74">&#34;596f5e442a3d24196f1b7d32&#34;</span>,
+    <span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;eyeson room&#34;</span>,
+    <span style="color:#f92672">&#34;ready&#34;</span>: <span style="color:#66d9ef">false</span>,
+    <span style="color:#f92672">&#34;shutdown&#34;</span>: <span style="color:#66d9ef">false</span>,
+    <span style="color:#f92672">&#34;sip&#34;</span>: {
+      <span style="color:#f92672">&#34;uri&#34;</span>: <span style="color:#e6db74">&#34;https://.../&#34;</span>,
+      <span style="color:#f92672">&#34;domain&#34;</span>: <span style="color:#e6db74">&#34;example.eyeson.team&#34;</span>,
+      <span style="color:#f92672">&#34;authorizationUser&#34;</span>: <span style="color:#e6db74">&#34;username&#34;</span>,
     },
-    &quot;guest_token&quot;: &quot;5971daf62a3d241b0d263ec6&quot;
+    <span style="color:#f92672">&#34;guest_token&#34;</span>: <span style="color:#e6db74">&#34;5971daf62a3d241b0d263ec6&#34;</span>
   },
-  &quot;team&quot;: {
-    &quot;name&quot;: &quot;my own company&quot;
+  <span style="color:#f92672">&#34;team&#34;</span>: {
+    <span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;my own company&#34;</span>
   },
-  &quot;user&quot;: {
-    &quot;id&quot;: &quot;unique-user-id&quot;,
-    &quot;name&quot;: &quot;Some User&quot;,
-    &quot;avatar&quot;: &quot;https://example.com/avatar.png&quot;,
-    &quot;guest&quot;: false,
-    &quot;ready&quot;: false,
-    &quot;sip&quot;: {
-      &quot;uri&quot;: &quot;https://.../&quot;,
-      &quot;domain&quot;: &quot;example.eyeson.team&quot;,
-      &quot;wsServers&quot;: [ &quot;...&quot; ],
-      &quot;instanceId&quot;: &quot;instance-id&quot;,
-      &quot;userAgentString&quot;: &quot;user-id&quot;,
-      &quot;authorizationUser&quot;: &quot;username&quot;,
-      &quot;displayName&quot;: &quot;display name&quot;,
-      &quot;stunServers&quot;: [ &quot;...&quot; ],
-      &quot;turnServers&quot;: [ &quot;...&quot; ],
-      &quot;registerExpires&quot;: &quot;...&quot;,
-      &quot;password&quot;: &quot;sip-password&quot;
+  <span style="color:#f92672">&#34;user&#34;</span>: {
+    <span style="color:#f92672">&#34;id&#34;</span>: <span style="color:#e6db74">&#34;unique-user-id&#34;</span>,
+    <span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;Some User&#34;</span>,
+    <span style="color:#f92672">&#34;avatar&#34;</span>: <span style="color:#e6db74">&#34;https://example.com/avatar.png&#34;</span>,
+    <span style="color:#f92672">&#34;guest&#34;</span>: <span style="color:#66d9ef">false</span>,
+    <span style="color:#f92672">&#34;ready&#34;</span>: <span style="color:#66d9ef">false</span>,
+    <span style="color:#f92672">&#34;sip&#34;</span>: {
+      <span style="color:#f92672">&#34;uri&#34;</span>: <span style="color:#e6db74">&#34;https://.../&#34;</span>,
+      <span style="color:#f92672">&#34;domain&#34;</span>: <span style="color:#e6db74">&#34;example.eyeson.team&#34;</span>,
+      <span style="color:#f92672">&#34;wsServers&#34;</span>: [ <span style="color:#e6db74">&#34;...&#34;</span> ],
+      <span style="color:#f92672">&#34;instanceId&#34;</span>: <span style="color:#e6db74">&#34;instance-id&#34;</span>,
+      <span style="color:#f92672">&#34;userAgentString&#34;</span>: <span style="color:#e6db74">&#34;user-id&#34;</span>,
+      <span style="color:#f92672">&#34;authorizationUser&#34;</span>: <span style="color:#e6db74">&#34;username&#34;</span>,
+      <span style="color:#f92672">&#34;displayName&#34;</span>: <span style="color:#e6db74">&#34;display name&#34;</span>,
+      <span style="color:#f92672">&#34;stunServers&#34;</span>: [ <span style="color:#e6db74">&#34;...&#34;</span> ],
+      <span style="color:#f92672">&#34;turnServers&#34;</span>: [ <span style="color:#e6db74">&#34;...&#34;</span> ],
+      <span style="color:#f92672">&#34;registerExpires&#34;</span>: <span style="color:#e6db74">&#34;...&#34;</span>,
+      <span style="color:#f92672">&#34;password&#34;</span>: <span style="color:#e6db74">&#34;sip-password&#34;</span>
     },
   },
-  &quot;links&quot;: {
-    &quot;gui&quot;: &quot;https://app.eyeson.team/?588a0d32f9c4860024f36f3&quot;,
-    &quot;self&quot;: &quot;https://api.eyeson.team/rooms&quot;,
-    &quot;websocket&quot;: &quot;https://api.eyeson.team/rt&quot;
+  <span style="color:#f92672">&#34;links&#34;</span>: {
+    <span style="color:#f92672">&#34;gui&#34;</span>: <span style="color:#e6db74">&#34;https://app.eyeson.team/?588a0d32f9c4860024f36f3&#34;</span>,
+    <span style="color:#f92672">&#34;self&#34;</span>: <span style="color:#e6db74">&#34;https://api.eyeson.team/rooms&#34;</span>,
+    <span style="color:#f92672">&#34;websocket&#34;</span>: <span style="color:#e6db74">&#34;https://api.eyeson.team/rt&#34;</span>
   }
 }
-</code></pre>
-
-<h2 id="messages">Messages</h2>
-
+</code></pre></div><h2 id="messages">Messages</h2>
 <p>Broadcast data messages to all users of a meeting.</p>
-
 <pre><code>POST /rooms/:access_key/messages
   RESPONSE 201 CREATED, 400 BAD REQUEST
-</code></pre>
-
-<table>
+</code></pre><table>
 <thead>
 <tr>
 <th>Parameters</th>
@@ -633,14 +583,12 @@ ends, the guest user cannot join any future meetings in this room.</p>
 <th>Description</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td>type</td>
 <td>String (required)</td>
 <td>Type description, e.g. &lsquo;chat&rsquo;.</td>
 </tr>
-
 <tr>
 <td>content</td>
 <td>String (required)</td>
@@ -648,68 +596,52 @@ ends, the guest user cannot join any future meetings in this room.</p>
 </tr>
 </tbody>
 </table>
-
 <h2 id="recording">Recording</h2>
-
 <p>Recordings are saved in eyesons cloud storage and can be downloaded from there.
 Direct URLs to downloads <em>expire</em>, so it&rsquo;s better store the recording identifier
 and fetch a valid resource link on demand.</p>
-
 <pre><code>POST /rooms/:access_key/recording
   RESPONSES 201 CREATED, 400 BAD REQUEST
 DELETE /rooms/:access_key/recording
   RESPONSES 200 OK
-</code></pre>
-
-<pre><code>GET /recordings/:identifier
+</code></pre><pre><code>GET /recordings/:identifier
   RESPONSES 200 OK, 404 NOT FOUND
-</code></pre>
-
-<p>EXAMPLE RESPONSE</p>
-
-<pre><code class="language-json">{
-  &quot;id&quot;: &quot;596f5e442a3d24196f1b7d32&quot;,
-  &quot;created_at&quot;: &quot;TODO&quot;,
-  &quot;duration&quot;: 12345, // duration in seconds
-  &quot;links&quot;: {
-    &quot;self&quot;: &quot;https://api.eyeson.team/recordings/596f5e442a3d24196f1b7d32&quot;,
-    &quot;download&quot;: &quot;https://cloud-storage.eyeson.team/recordings/&lt;key&gt;.webm&quot;
+</code></pre><p>EXAMPLE RESPONSE</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+  <span style="color:#f92672">&#34;id&#34;</span>: <span style="color:#e6db74">&#34;596f5e442a3d24196f1b7d32&#34;</span>,
+  <span style="color:#f92672">&#34;created_at&#34;</span>: <span style="color:#e6db74">&#34;TODO&#34;</span>,
+  <span style="color:#f92672">&#34;duration&#34;</span>: <span style="color:#ae81ff">12345</span>, <span style="color:#960050;background-color:#1e0010">//</span> <span style="color:#960050;background-color:#1e0010">duration</span> <span style="color:#960050;background-color:#1e0010">in</span> <span style="color:#960050;background-color:#1e0010">seconds</span>
+  <span style="color:#f92672">&#34;links&#34;</span>: {
+    <span style="color:#f92672">&#34;self&#34;</span>: <span style="color:#e6db74">&#34;https://api.eyeson.team/recordings/596f5e442a3d24196f1b7d32&#34;</span>,
+    <span style="color:#f92672">&#34;download&#34;</span>: <span style="color:#e6db74">&#34;https://cloud-storage.eyeson.team/recordings/&lt;key&gt;.webm&#34;</span>
   },
-  &quot;user&quot;: {
-    &quot;id&quot;: &quot;596f5e442a3d24196f1b7d32&quot;,
-    &quot;name&quot;: &quot;Jane Doe&quot;,
-    &quot;avatar&quot;: &quot;https://example.com/avatar.png&quot;,
-    &quot;guest&quot;: false
+  <span style="color:#f92672">&#34;user&#34;</span>: {
+    <span style="color:#f92672">&#34;id&#34;</span>: <span style="color:#e6db74">&#34;596f5e442a3d24196f1b7d32&#34;</span>,
+    <span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;Jane Doe&#34;</span>,
+    <span style="color:#f92672">&#34;avatar&#34;</span>: <span style="color:#e6db74">&#34;https://example.com/avatar.png&#34;</span>,
+    <span style="color:#f92672">&#34;guest&#34;</span>: <span style="color:#66d9ef">false</span>
   },
-  &quot;room&quot;: {
-    &quot;id&quot;:   &quot;596f5e442a3d24196f1b7d32&quot;,
-    &quot;name&quot;: &quot;eyeson room&quot;,
-    &quot;ready&quot;: false,
-    &quot;shutdown&quot;: false,
-    &quot;sip&quot;: {
-      &quot;uri&quot;: &quot;https://.../&quot;,
-      &quot;domain&quot;: &quot;example.eyeson.team&quot;,
-      &quot;authorizationUser&quot;: &quot;username&quot;,
+  <span style="color:#f92672">&#34;room&#34;</span>: {
+    <span style="color:#f92672">&#34;id&#34;</span>:   <span style="color:#e6db74">&#34;596f5e442a3d24196f1b7d32&#34;</span>,
+    <span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;eyeson room&#34;</span>,
+    <span style="color:#f92672">&#34;ready&#34;</span>: <span style="color:#66d9ef">false</span>,
+    <span style="color:#f92672">&#34;shutdown&#34;</span>: <span style="color:#66d9ef">false</span>,
+    <span style="color:#f92672">&#34;sip&#34;</span>: {
+      <span style="color:#f92672">&#34;uri&#34;</span>: <span style="color:#e6db74">&#34;https://.../&#34;</span>,
+      <span style="color:#f92672">&#34;domain&#34;</span>: <span style="color:#e6db74">&#34;example.eyeson.team&#34;</span>,
+      <span style="color:#f92672">&#34;authorizationUser&#34;</span>: <span style="color:#e6db74">&#34;username&#34;</span>,
     },
-    &quot;guest_token&quot;: &quot;5971daf62a3d241b0d263ec6&quot;
+    <span style="color:#f92672">&#34;guest_token&#34;</span>: <span style="color:#e6db74">&#34;5971daf62a3d241b0d263ec6&#34;</span>
   }
 }
-</code></pre>
-
-<pre><code>DELETE /recordings/:identifier
+</code></pre></div><pre><code>DELETE /recordings/:identifier
   RESPONSES 200 OK, 404 NOT FOUND
-</code></pre>
-
-<h2 id="broadcast">Broadcast</h2>
-
+</code></pre><h2 id="broadcast">Broadcast</h2>
 <p>To connect an eyeson room with a broadcast you have to provide a valid
 streaming RTMP url.</p>
-
 <pre><code>POST /rooms/:access_key/broadcasts
   RESPONSES 201 CREATED, 400 BAD REQUEST
-</code></pre>
-
-<table>
+</code></pre><table>
 <thead>
 <tr>
 <th>Parameters</th>
@@ -717,20 +649,17 @@ streaming RTMP url.</p>
 <th>Description</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td>platform</td>
 <td>String (required)</td>
 <td>Platform identifier (&lsquo;generic&rsquo;, &lsquo;youtube&rsquo;, &lsquo;facebook&rsquo;).</td>
 </tr>
-
 <tr>
 <td>stream_url</td>
 <td>String (required)</td>
 <td>Streaming URL.</td>
 </tr>
-
 <tr>
 <td>player_url</td>
 <td>String (optional)</td>
@@ -738,12 +667,9 @@ streaming RTMP url.</p>
 </tr>
 </tbody>
 </table>
-
 <pre><code>PUT /rooms/:access_key/broadcasts/:platform
   RESPONSES 200 OK, 400 BAD REQUEST, 404 NOT FOUND
-</code></pre>
-
-<table>
+</code></pre><table>
 <thead>
 <tr>
 <th>Parameters</th>
@@ -751,14 +677,12 @@ streaming RTMP url.</p>
 <th>Description</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td>platform</td>
 <td>String (required)</td>
 <td>Platform identifier (e.g. &lsquo;twitter&rsquo;).</td>
 </tr>
-
 <tr>
 <td>player_url</td>
 <td>String (required)</td>
@@ -766,36 +690,27 @@ streaming RTMP url.</p>
 </tr>
 </tbody>
 </table>
-
 <pre><code>DELETE /rooms/:access_key/broadcasts/:platform
   RESPONSES 200 OK, 400 BAD REQUEST
 DELETE /rooms/:access_key/broadcasts # delete all broadcasts
   RESPONSES 200 OK, 400 BAD REQUEST, 404 NOT FOUND
-</code></pre>
-
-<div class="admonition note">
+</code></pre><div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>You can use multiple platforms to broadcast to but there is a limitation of
 one stream per platform.</p>
 </div>
-
 <h2 id="layout">Layout</h2>
-
 <p>The meeting participants will be presented in an equally distributed tiled
 video layout where eyeson takes care to always update the stream depending on
 the number of users. However in some cases you might want to assign specific
 users to a video positions. You can do this by sending the specified podium
 user-ids as a list, or switch back to auto layout any time.</p>
-
 <p>Layouts are not available when using the <a href="https://webrtcglossary.com/sfu/" title="Selective Forwarding Unit">SFU</a> mode, so ensure to set the
 <a href="#eyeson-room">room configuration</a> properly or ensure to have more than
 two participants.</p>
-
 <pre><code>POST /rooms/:access_key/layout
   RESPONSES 200 OK, 400 BAD REQUEST
-</code></pre>
-
-<table>
+</code></pre><table>
 <thead>
 <tr>
 <th>Parameters</th>
@@ -803,20 +718,17 @@ two participants.</p>
 <th>Description</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td>layout</td>
 <td>String (optional)</td>
 <td>Value &lsquo;auto&rsquo; or &lsquo;custom&rsquo;.</td>
 </tr>
-
 <tr>
 <td>users</td>
 <td>String (optional)</td>
 <td>List of podium user_ids or an empty string for an empty spot.</td>
 </tr>
-
 <tr>
 <td>show_names</td>
 <td>String (optional)</td>
@@ -824,40 +736,29 @@ two participants.</p>
 </tr>
 </tbody>
 </table>
-
-<pre><code class="language-sh">$ curl -X POST \
-  -d &quot;users[]=USER_ID_A&quot; \
-  -d &quot;users[]=USER_ID_B&quot; \
-  -d &quot;users[]=USER_ID_C&quot; \
-  -d &quot;users[]=USER_ID_D&quot; \
-  &quot;https://api.eyeson.team/rooms/ACCESS_KEY/layout&quot;
-</code></pre>
-
-<h2 id="content-integration-aka-layers">Content Integration aka Layers</h2>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ curl -X POST <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  -d <span style="color:#e6db74">&#34;users[]=USER_ID_A&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  -d <span style="color:#e6db74">&#34;users[]=USER_ID_B&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  -d <span style="color:#e6db74">&#34;users[]=USER_ID_C&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  -d <span style="color:#e6db74">&#34;users[]=USER_ID_D&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  <span style="color:#e6db74">&#34;https://api.eyeson.team/rooms/ACCESS_KEY/layout&#34;</span>
+</code></pre></div><h2 id="content-integration-aka-layers">Content Integration aka Layers</h2>
 <p>Show any data content inside your video using the eyeson layer service. There
 are currently three ways to achieve this.</p>
-
 <p>To show simple text message inserts you can use the insert parameter. You&rsquo;d
 listen for tweets in a separate service and display them using the tweet senders
 avatar as an icon, name as title and the tweet as content.</p>
-
 <p>For more complex data generate an image and either upload the image or provide
 a public URL. For overlaying images use a transparent background.</p>
-
 <p>Any eyeson room video has a resolution of <strong>1280x960</strong> pixels. Ensure any file
 uploaded is an alpha interlaced PNG image with a corresponding resolution to
 avoid any distortions.</p>
-
 <p>When using layers you might want to disable the <a href="https://webrtcglossary.com/sfu/" title="Selective Forwarding Unit">SFU</a> mode that in
 default <a href="#eyeson-room">room configuration</a> will transport individual streams
 for single and two participants and not show layer media.</p>
-
 <pre><code>POST /rooms/:access_key/layers # insert image or text message
   RESPONSES 201 CREATED, 400 BAD REQUEST
-</code></pre>
-
-<table>
+</code></pre><table>
 <thead>
 <tr>
 <th>Parameters</th>
@@ -865,44 +766,37 @@ for single and two participants and not show layer media.</p>
 <th>Description</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td>file</td>
 <td>File (optional)</td>
 <td>File upload.</td>
 </tr>
-
 <tr>
 <td>url</td>
 <td>String (optional)</td>
 <td>File URL.</td>
 </tr>
-
 <tr>
 <td>insert[icon]</td>
 <td>String (optional)</td>
 <td>URL for an icon to show.</td>
 </tr>
-
 <tr>
 <td>insert[title]</td>
 <td>String (optional)</td>
 <td>Message title.</td>
 </tr>
-
 <tr>
 <td>insert[content]</td>
 <td>String (optional)</td>
 <td>Message content.</td>
 </tr>
-
 <tr>
 <td>z-index</td>
 <td>String (optional)</td>
 <td>Use -1 for background or 1 (default) for foreground position.</td>
 </tr>
-
 <tr>
 <td>layout</td>
 <td>String (optional)</td>
@@ -910,29 +804,20 @@ for single and two participants and not show layer media.</p>
 </tr>
 </tbody>
 </table>
-
-<pre><code class="language-sh">$ curl -X POST \
-  -d &quot;url=https://eyeson-team.github.io/api/images/eyeson-overlay.png&quot; \
-  &quot;https://api.eyeson.team/rooms/${ACCESS_KEY}/layers&quot;
-</code></pre>
-
-<pre><code>DELETE /rooms/:access_key/layers/:index # clear layer, index: -1 or 1
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ curl -X POST <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  -d <span style="color:#e6db74">&#34;url=https://eyeson-team.github.io/api/images/eyeson-overlay.png&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  <span style="color:#e6db74">&#34;https://api.eyeson.team/rooms/</span><span style="color:#e6db74">${</span>ACCESS_KEY<span style="color:#e6db74">}</span><span style="color:#e6db74">/layers&#34;</span>
+</code></pre></div><pre><code>DELETE /rooms/:access_key/layers/:index # clear layer, index: -1 or 1
   RESPONSES 200 OK, 400 BAD REQUEST
-</code></pre>
-
-<h2 id="register-webhooks">Register Webhooks</h2>
-
+</code></pre><h2 id="register-webhooks">Register Webhooks</h2>
 <p>Register a webhook for any updates using one or multiple of the following
 resource types comma separated: recording_update, room_update. Note that you
 can register a single webhook, use the received response type to detect its
 purpose. The webhook endpoint on your server requires to accept an HTTPS POST
 request, the body of the request is provided in JSON format.</p>
-
 <pre><code>webhooks POST /webhooks
   HEADERS Authorization
-</code></pre>
-
-<table>
+</code></pre><table>
 <thead>
 <tr>
 <th>Parameters</th>
@@ -940,14 +825,12 @@ request, the body of the request is provided in JSON format.</p>
 <th>Description</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td>url</td>
 <td>String (required)</td>
 <td>Target URL.</td>
 </tr>
-
 <tr>
 <td>types</td>
 <td>String (required)</td>
@@ -955,74 +838,59 @@ request, the body of the request is provided in JSON format.</p>
 </tr>
 </tbody>
 </table>
-
 <pre><code>GET /webhooks
   HEADERS Authorization
   RESPONSES 200 OK
-</code></pre>
-
-<p>EXAMPLE RESPONSE</p>
-
-<pre><code class="language-json">{
-  &quot;id&quot;: &quot;596f5e442a3d24196f1b7d32&quot;,
-  &quot;url&quot;: &quot;https://eyeson.com/webhook&quot;,
-  &quot;types&quot;: &quot;room_update&quot;,
+</code></pre><p>EXAMPLE RESPONSE</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+  <span style="color:#f92672">&#34;id&#34;</span>: <span style="color:#e6db74">&#34;596f5e442a3d24196f1b7d32&#34;</span>,
+  <span style="color:#f92672">&#34;url&#34;</span>: <span style="color:#e6db74">&#34;https://eyeson.com/webhook&#34;</span>,
+  <span style="color:#f92672">&#34;types&#34;</span>: <span style="color:#e6db74">&#34;room_update&#34;</span>,
 }
-</code></pre>
-
-<pre><code>DELETE /webhooks/:id
+</code></pre></div><pre><code>DELETE /webhooks/:id
   HEADERS Authorization
   RESPONSES 204 OK, 400 BAD REQUEST
-</code></pre>
-
-<p>In order to get notified for new recordings in any room session, you can
+</code></pre><p>In order to get notified for new recordings in any room session, you can
 register a webhook upfront, using your target location and the webhook type
 <code>recording_update</code>. See the recording resource on details of the received json
 document.</p>
-
 <p>EXAMPLE</p>
-
-<pre><code class="language-json">{
-  &quot;type&quot;: &quot;recording_update&quot;,
-  &quot;recording&quot;: {
-    &quot;id&quot;: &quot;...&quot;,
-    &quot;created_at:&quot;: 1591700000,
-    &quot;duration:&quot;: 60,
-    &quot;links:&quot;: {
-      &quot;self&quot;: &quot;https://...&quot;,
-      &quot;download&quot;: &quot;https://...&quot;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+  <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;recording_update&#34;</span>,
+  <span style="color:#f92672">&#34;recording&#34;</span>: {
+    <span style="color:#f92672">&#34;id&#34;</span>: <span style="color:#e6db74">&#34;...&#34;</span>,
+    <span style="color:#f92672">&#34;created_at:&#34;</span>: <span style="color:#ae81ff">1591700000</span>,
+    <span style="color:#f92672">&#34;duration:&#34;</span>: <span style="color:#ae81ff">60</span>,
+    <span style="color:#f92672">&#34;links:&#34;</span>: {
+      <span style="color:#f92672">&#34;self&#34;</span>: <span style="color:#e6db74">&#34;https://...&#34;</span>,
+      <span style="color:#f92672">&#34;download&#34;</span>: <span style="color:#e6db74">&#34;https://...&#34;</span>
     },
-    &quot;user&quot;: {
-      &quot;id&quot;: &quot;...&quot;,
-      &quot;name&quot;: &quot;...&quot;,
-      &quot;avatar&quot;: &quot;...&quot;
+    <span style="color:#f92672">&#34;user&#34;</span>: {
+      <span style="color:#f92672">&#34;id&#34;</span>: <span style="color:#e6db74">&#34;...&#34;</span>,
+      <span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;...&#34;</span>,
+      <span style="color:#f92672">&#34;avatar&#34;</span>: <span style="color:#e6db74">&#34;...&#34;</span>
     },
-    &quot;room&quot;: {
-      &quot;id&quot;: &quot;...&quot;,
-      &quot;name&quot;: &quot;...&quot;,
-      &quot;started_at&quot;: &quot;...&quot;,
+    <span style="color:#f92672">&#34;room&#34;</span>: {
+      <span style="color:#f92672">&#34;id&#34;</span>: <span style="color:#e6db74">&#34;...&#34;</span>,
+      <span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;...&#34;</span>,
+      <span style="color:#f92672">&#34;started_at&#34;</span>: <span style="color:#e6db74">&#34;...&#34;</span>,
     }
   }
 }
-</code></pre>
-
-<p>If you want to build up a meeting history in your application, register a
+</code></pre></div><p>If you want to build up a meeting history in your application, register a
 webhook for <code>room_update</code> and track when receiving a room update where
 <code>shutdown</code> attribute is <code>true</code>.</p>
-
 <p>EXAMPLE</p>
-
-<pre><code class="language-json">{
-  &quot;type&quot;: &quot;room_update&quot;,
-  &quot;room&quot;: {
-    &quot;id&quot;: &quot;...&quot;,
-    &quot;name&quot;: &quot;...&quot;,
-    &quot;started_at&quot;: &quot;...&quot;,
-    &quot;shutdown&quot;: true
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+  <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;room_update&#34;</span>,
+  <span style="color:#f92672">&#34;room&#34;</span>: {
+    <span style="color:#f92672">&#34;id&#34;</span>: <span style="color:#e6db74">&#34;...&#34;</span>,
+    <span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;...&#34;</span>,
+    <span style="color:#f92672">&#34;started_at&#34;</span>: <span style="color:#e6db74">&#34;...&#34;</span>,
+    <span style="color:#f92672">&#34;shutdown&#34;</span>: <span style="color:#66d9ef">true</span>
   }
 }
-</code></pre>
-
+</code></pre></div>
 
 			<aside class="copyright" role="note">
 				
