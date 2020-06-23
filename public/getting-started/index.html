@@ -353,24 +353,24 @@ Secure WebSocket protocols.</p>
 </tbody>
 </table>
 <p>EXAMPLE RESPONSE</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
-  <span style="color:#960050;background-color:#1e0010">links:</span> <span style="color:#960050;background-color:#1e0010">{</span>
-    <span style="color:#960050;background-color:#1e0010">gui:</span> <span style="color:#f92672">&#34;https://app.eyeson.team/?588a0d32f9c4860024f36f3&#34;</span>,
-    <span style="color:#960050;background-color:#1e0010">self:</span> <span style="color:#f92672">&#34;...&#34;</span>,
-    <span style="color:#960050;background-color:#1e0010">websocket:</span> <span style="color:#f92672">&#34;...&#34;</span>
-  }<span style="color:#960050;background-color:#1e0010">,</span>
-  <span style="color:#960050;background-color:#1e0010">ready:</span> <span style="color:#66d9ef">false</span><span style="color:#960050;background-color:#1e0010">,</span>
-  <span style="color:#960050;background-color:#1e0010">room:</span> { <span style="color:#960050;background-color:#1e0010">...</span> }<span style="color:#960050;background-color:#1e0010">,</span>
-  <span style="color:#960050;background-color:#1e0010">team:</span> { <span style="color:#960050;background-color:#1e0010">...</span> }<span style="color:#960050;background-color:#1e0010">,</span>
-  <span style="color:#960050;background-color:#1e0010">user:</span> { <span style="color:#960050;background-color:#1e0010">...</span> }
-<span style="color:#960050;background-color:#1e0010">}</span>
-</code></pre></div><p>Redirect your client to the URL given in the <code>links.gui</code> attribute, to use
+<pre><code>{
+  links: {
+    gui: &quot;https://app.eyeson.team/?588a0d32f9c4860024f36f3&quot;,
+    self: &quot;...&quot;,
+    websocket: &quot;...&quot;
+  },
+  ready: false,
+  room: { ... },
+  team: { ... },
+  user: { ... }
+}
+</code></pre><p>Redirect your client to the URL given in the <code>links.gui</code> attribute, to use
 with the eyeson pre-defined user interface.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ curl -X POST <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>  -H <span style="color:#e6db74">&#34;Authorization: YOUR_API_KEY&#34;</span> <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>  -d <span style="color:#e6db74">&#34;user[name]=Bob&#34;</span> <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>  <span style="color:#e6db74">&#34;https://api.eyeson.team/rooms&#34;</span>
-</code></pre></div><h2 id="next-steps">Next Steps</h2>
+<pre><code>$ curl -X POST \
+  -H &quot;Authorization: YOUR_API_KEY&quot; \
+  -d &quot;user[name]=Bob&quot; \
+  &quot;https://api.eyeson.team/rooms&quot;
+</code></pre><h2 id="next-steps">Next Steps</h2>
 <p>The eyeson service provides an API for real-time data synchronization. The RT
 API is a modern WebSocket based API providing you with a real time stream of
 events and enabling you to build a powerful UI in combination with our
