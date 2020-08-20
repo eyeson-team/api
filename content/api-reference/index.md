@@ -421,6 +421,9 @@ Parameters   | Type              | Description
 url          | String (required) | Target URL.
 types        | String (required) | Comma separated resource types.
 
+Check the current registered webhook as well as the last sent message timestamp
+and response code.
+
 ```
 GET /webhooks
   HEADERS Authorization
@@ -433,6 +436,8 @@ EXAMPLE RESPONSE
   "id": "596f5e442a3d24196f1b7d32",
   "url": "https://eyeson.com/webhook",
   "types": "room_update",
+  "last_request_sent_at":"2020-08-20T11:00:57.117+00:00",
+  "last_response_code":"204"
 }
 ```
 
