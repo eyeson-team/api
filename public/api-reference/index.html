@@ -838,6 +838,8 @@ request, the body of the request is provided in JSON format.</p>
 </tr>
 </tbody>
 </table>
+<p>Check the current registered webhook as well as the last sent message timestamp
+and response code.</p>
 <pre><code>GET /webhooks
   HEADERS Authorization
   RESPONSES 200 OK
@@ -846,6 +848,8 @@ request, the body of the request is provided in JSON format.</p>
   &quot;id&quot;: &quot;596f5e442a3d24196f1b7d32&quot;,
   &quot;url&quot;: &quot;https://eyeson.com/webhook&quot;,
   &quot;types&quot;: &quot;room_update&quot;,
+  &quot;last_request_sent_at&quot;:&quot;2020-08-20T11:00:57.117+00:00&quot;,
+  &quot;last_response_code&quot;:&quot;204&quot;
 }
 </code></pre><pre><code>DELETE /webhooks/:id
   HEADERS Authorization
