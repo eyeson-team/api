@@ -403,6 +403,28 @@ DELETE /rooms/:access_key/layers/:index # clear layer, index: -1 or 1
   RESPONSES 200 OK, 400 BAD REQUEST
 ```
 
+Besides image data you can playback videos. We currently limit it to media
+files in MP4 format that have to be available through a public URL. Note that
+we do not provide any kind of upload service for this feature.
+
+```
+POST /rooms/:access_key/playbacks # play a video
+  RESPONSES 201 CREATED, 400 BAD REQUEST
+```
+
+Parameters               | Type              | Description
+------------------------ | ----------------- | ------------
+playback[audio]          | Boolean           | Play audio (default: false)
+playback[play_id]        | String            | Choose an identifier, e.g. current timestamp
+playback[replacement_id] | String            | User-id of the participants video to be replaced
+playback[url]            | String            | Hosted MP4 video file
+playback[name]           | String            | Custom readable name for identification
+
+The video will replace the current stream of a specific user. For sure you can
+use the layout to set this user to fullscreen during the video playback and
+switch back afterwards using the layout feature. As with layers ensure you
+disable SFU mode.
+
 ## Register Webhooks
 
 Register a webhook for any updates using one or multiple of the following
