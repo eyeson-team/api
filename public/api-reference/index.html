@@ -809,7 +809,52 @@ for single and two participants and not show layer media.</p>
 </span><span style="color:#ae81ff"></span>  <span style="color:#e6db74">&#34;https://api.eyeson.team/rooms/</span><span style="color:#e6db74">${</span>ACCESS_KEY<span style="color:#e6db74">}</span><span style="color:#e6db74">/layers&#34;</span>
 </code></pre></div><pre><code>DELETE /rooms/:access_key/layers/:index # clear layer, index: -1 or 1
   RESPONSES 200 OK, 400 BAD REQUEST
-</code></pre><h2 id="register-webhooks">Register Webhooks</h2>
+</code></pre><p>Besides image data you can playback videos. We currently limit it to media
+files in MP4 format that have to be available through a public URL. Note that
+we do not provide any kind of upload service for this feature.</p>
+<pre><code>POST /rooms/:access_key/playbacks # play a video
+  RESPONSES 201 CREATED, 400 BAD REQUEST
+</code></pre><table>
+<thead>
+<tr>
+<th>Parameters</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>playback[audio]</td>
+<td>Boolean</td>
+<td>Play audio (default: false)</td>
+</tr>
+<tr>
+<td>playback[play_id]</td>
+<td>String</td>
+<td>Choose an identifier, e.g. current timestamp</td>
+</tr>
+<tr>
+<td>playback[replacement_id]</td>
+<td>String</td>
+<td>User-id of the participants video to be replaced</td>
+</tr>
+<tr>
+<td>playback[url]</td>
+<td>String</td>
+<td>Hosted MP4 video file</td>
+</tr>
+<tr>
+<td>playback[name]</td>
+<td>String</td>
+<td>Custom readable name for identification</td>
+</tr>
+</tbody>
+</table>
+<p>The video will replace the current stream of a specific user. For sure you can
+use the layout to set this user to fullscreen during the video playback and
+switch back afterwards using the layout feature. As with layers ensure you
+disable SFU mode.</p>
+<h2 id="register-webhooks">Register Webhooks</h2>
 <p>Register a webhook for any updates using one or multiple of the following
 resource types comma separated: recording_update, room_update. Note that you
 can register a single webhook, use the received response type to detect its
