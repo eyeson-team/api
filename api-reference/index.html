@@ -368,11 +368,6 @@ DELETE /rooms/:identifier # force to stop a running meeting
 <td>Avatars will be displayed in the sidebar of our pre-defined user interface.</td>
 </tr>
 <tr>
-<td>user[custom_fields][locale]</td>
-<td>Language Code (optional)</td>
-<td>User preferred language code (en, de).</td>
-</tr>
-<tr>
 <td>options[show_names]</td>
 <td>Boolean (optional)</td>
 <td>Show display names in video. Default: true</td>
@@ -426,6 +421,11 @@ DELETE /rooms/:identifier # force to stop a running meeting
 <td>options[sfu_mode]</td>
 <td>String (optional)</td>
 <td>Set a desired sfu mode. Possible values are: &lsquo;disabled&rsquo;, &lsquo;screencast&rsquo; or &lsquo;ptp&rsquo;. To either disable the feature, limit it to screencasts or enable it for meetings with only 2 participants. Default: &lsquo;ptp&rsquo;</td>
+</tr>
+<tr>
+<td>options[custom_fields][locale]</td>
+<td>Language Code (optional)</td>
+<td>User preferred language code (en, de, fr).</td>
 </tr>
 <tr>
 <td>options[custom_fields][logo]</td>
