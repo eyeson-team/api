@@ -859,7 +859,9 @@ disable SFU mode.</p>
 resource types comma separated: recording_update, room_update. Note that you
 can register a single webhook, use the received response type to detect its
 purpose. The webhook endpoint on your server requires to accept an HTTPS POST
-request, the body of the request is provided in JSON format.</p>
+request, the body of the request is provided in JSON format.
+You can verify your requests using a SHA256 HMAC on the request body using your
+API key, the corresponding hash is sent within header <code>X-Eyeson-Signature</code>.</p>
 <pre><code>webhooks POST /webhooks
   HEADERS Authorization
 </code></pre><table>
