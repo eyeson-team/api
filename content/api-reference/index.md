@@ -432,6 +432,8 @@ resource types comma separated: recording\_update, room\_update. Note that you
 can register a single webhook, use the received response type to detect its
 purpose. The webhook endpoint on your server requires to accept an HTTPS POST
 request, the body of the request is provided in JSON format.
+You can verify your requests using a SHA256 HMAC on the request body using your
+API key, the corresponding hash is sent within header `X-Eyeson-Signature`.
 
 ```
 webhooks POST /webhooks
