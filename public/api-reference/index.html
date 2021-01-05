@@ -662,7 +662,7 @@ streaming RTMP url.</p>
 </tr>
 </tbody>
 </table>
-<pre><code>PUT /rooms/:access_key/broadcasts/:platform
+<pre><code>PUT /rooms/:access_key/broadcasts/generic
   RESPONSES 200 OK, 400 BAD REQUEST, 404 NOT FOUND
 </code></pre><table>
 <thead>
@@ -674,27 +674,15 @@ streaming RTMP url.</p>
 </thead>
 <tbody>
 <tr>
-<td>platform</td>
-<td>String (required)</td>
-<td>Platform identifier (e.g. &lsquo;twitter&rsquo;).</td>
-</tr>
-<tr>
 <td>player_url</td>
 <td>String (required)</td>
 <td>Public URL to view the live video.</td>
 </tr>
 </tbody>
 </table>
-<pre><code>DELETE /rooms/:access_key/broadcasts/:platform
-  RESPONSES 200 OK, 400 BAD REQUEST
-DELETE /rooms/:access_key/broadcasts # delete all broadcasts
+<pre><code>DELETE /rooms/:access_key/broadcasts # stop broadcast
   RESPONSES 200 OK, 400 BAD REQUEST, 404 NOT FOUND
-</code></pre><div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>You can use multiple platforms to broadcast to but there is a limitation of
-one stream per platform.</p>
-</div>
-<h2 id="layout">Layout</h2>
+</code></pre><h2 id="layout">Layout</h2>
 <p>The meeting participants will be presented in an equally distributed tiled
 video layout where eyeson takes care to always update the stream depending on
 the number of users. However in some cases you might want to assign specific
