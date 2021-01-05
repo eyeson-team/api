@@ -302,26 +302,18 @@ stream\_url  | String (required) | Streaming URL.
 player\_url  | String (optional) | Public URL to view the live video.
 
 ```
-PUT /rooms/:access_key/broadcasts/:platform
+PUT /rooms/:access_key/broadcasts/generic
   RESPONSES 200 OK, 400 BAD REQUEST, 404 NOT FOUND
 ```
 
 Parameters   | Type              | Description
 ------------ | ----------------- | ------------
-platform     | String (required) | Platform identifier (e.g. 'twitter').
 player\_url  | String (required) | Public URL to view the live video.
 
 ```
-DELETE /rooms/:access_key/broadcasts/:platform
-  RESPONSES 200 OK, 400 BAD REQUEST
-DELETE /rooms/:access_key/broadcasts # delete all broadcasts
+DELETE /rooms/:access_key/broadcasts # stop broadcast
   RESPONSES 200 OK, 400 BAD REQUEST, 404 NOT FOUND
 ```
-
-{{< note title="Note" >}}
-You can use multiple platforms to broadcast to but there is a limitation of
-one stream per platform.
-{{< /note >}}
 
 ## Layout
 
