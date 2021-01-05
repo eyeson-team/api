@@ -298,7 +298,6 @@ POST /rooms/:access_key/broadcasts
 
 Parameters   | Type              | Description
 ------------ | ----------------- | ------------
-platform     | String (required) | Platform identifier ('generic', 'youtube', 'facebook').
 stream\_url  | String (required) | Streaming URL.
 player\_url  | String (optional) | Public URL to view the live video.
 
