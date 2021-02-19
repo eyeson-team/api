@@ -1,6 +1,6 @@
 # eyeson API Documentation
 
-Documentation for [eyeson room](https://www.eyeson.team) API, hosted on GitHub
+Documentation for [eyeson room](https://eyeson-team.github.io/api) API, hosted on GitHub
 pages at [eyeson-team.github.io/api](https://eyeson-team.github.io/api).
 
 ## Build Documentation
