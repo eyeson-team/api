@@ -27,9 +27,12 @@ HEADERS:
 ```
 
 Any other communication with the API requires user-based authorization.
-Meaning: an active room and user identified by an `access_key`. The
-access key is provided by the resource endpoint, no additional headers needed.
-headers needed.
+Meaning: an active room and user identified by an `access_key`. The access key
+is provided by the resource endpoint, no additional headers are needed.
+
+An expired access key - meeting has been shutdown - will result in a HTTP
+response code of `410 GONE` for any request that uses the access key for
+authorization.
 
 ## eyeson Room
 
@@ -60,7 +63,7 @@ POST /rooms # create room a new room or join an existing by id.
   HEADERS Authorization
   RESPONSES 201 CREATED, 400 BAD REQUEST
 GET  /rooms/:access_key # receive details of a persisted room.
-  RESPONSES 200 OK, 404 NOT FOUND
+  RESPONSES 200 OK, 404 NOT FOUND, 410 GONE
 DELETE /rooms/:identifier # force to stop a running meeting
   HEADERS Authorization
   RESPONSES 204 NO CONTENT, 404 NOT FOUND, 400 BAD REQUEST
@@ -140,7 +143,7 @@ EXAMPLE RESPONSE
 
 ```
 GET /rooms/:access_key/users/:identifier # Fetch user details.
-  RESPONSES 200 OK, 404 NOT FOUND
+  RESPONSES 200 OK, 404 NOT FOUND, 410 GONE
 ```
 
 EXAMPLE RESPONSE
@@ -162,7 +165,7 @@ ends, the guest user cannot join any future meetings in this room.
 
 ```
 POST /guests/:guest_token # Create a guest user for a meeting.
-  RESPONSES 201 CREATED, 401 UNAUTHORIZED, 410 GONE
+  RESPONSES 201 CREATED, 401 UNAUTHORIZED
 ```
 
 Parameters   | Type              | Description
@@ -224,7 +227,7 @@ Broadcast data messages to all users of a meeting.
 
 ```
 POST /rooms/:access_key/messages
-  RESPONSE 201 CREATED, 400 BAD REQUEST
+  RESPONSE 201 CREATED, 400 BAD REQUEST, 410 GONE
 ```
 
 Parameters   | Type              | Description
@@ -240,9 +243,9 @@ and fetch a valid resource link on demand.
 
 ```
 POST /rooms/:access_key/recording
-  RESPONSES 201 CREATED, 400 BAD REQUEST
+  RESPONSES 201 CREATED, 400 BAD REQUEST, 410 GONE
 DELETE /rooms/:access_key/recording
-  RESPONSES 200 OK
+  RESPONSES 200 OK, 410 GONE
 ```
 
 ```
@@ -293,7 +296,7 @@ streaming RTMP url.
 
 ```
 POST /rooms/:access_key/broadcasts
-  RESPONSES 201 CREATED, 400 BAD REQUEST
+  RESPONSES 201 CREATED, 400 BAD REQUEST, 410 GONE
 ```
 
 Parameters   | Type              | Description
@@ -303,7 +306,7 @@ player\_url  | String (optional) | Public URL to view the live video.
 
 ```
 PUT /rooms/:access_key/broadcasts/generic
-  RESPONSES 200 OK, 400 BAD REQUEST, 404 NOT FOUND
+  RESPONSES 200 OK, 400 BAD REQUEST, 404 NOT FOUND, 410 GONE
 ```
 
 Parameters   | Type              | Description
@@ -312,7 +315,7 @@ player\_url  | String (required) | Public URL to view the live video.
 
 ```
 DELETE /rooms/:access_key/broadcasts # stop broadcast
-  RESPONSES 200 OK, 400 BAD REQUEST, 404 NOT FOUND
+  RESPONSES 200 OK, 400 BAD REQUEST, 404 NOT FOUND, 410 GONE
 ```
 
 ## Layout
@@ -329,7 +332,7 @@ two participants.
 
 ```
 POST /rooms/:access_key/layout
-  RESPONSES 200 OK, 400 BAD REQUEST
+  RESPONSES 200 OK, 400 BAD REQUEST, 410 GONE
 ```
 
 Parameters  | Type              | Description
@@ -370,7 +373,7 @@ for single and two participants and not show layer media.
 
 ```
 POST /rooms/:access_key/layers # insert image or text message
-  RESPONSES 201 CREATED, 400 BAD REQUEST
+  RESPONSES 201 CREATED, 400 BAD REQUEST, 410 GONE
 ```
 
 Parameters      | Type              | Description
@@ -391,7 +394,7 @@ $ curl -X POST \
 
 ```
 DELETE /rooms/:access_key/layers/:index # clear layer, index: -1 or 1
-  RESPONSES 200 OK, 400 BAD REQUEST
+  RESPONSES 200 OK, 400 BAD REQUEST, 410 GONE
 ```
 
 Besides image data you can playback videos. We currently limit it to media
@@ -400,7 +403,7 @@ we do not provide any kind of upload service for this feature.
 
 ```
 POST /rooms/:access_key/playbacks # play a video
-  RESPONSES 201 CREATED, 400 BAD REQUEST
+  RESPONSES 201 CREATED, 400 BAD REQUEST, 410 GONE
 ```
 
 Parameters               | Type              | Description
