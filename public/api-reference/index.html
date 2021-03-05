@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=10" />
     <title>API Reference - eyeson API documentation</title>
-    <meta name="generator" content="Hugo 0.75.1" />
+    <meta name="generator" content="Hugo 0.80.0" />
 
     
     <meta name="description" content="eyeson API documentation">
@@ -307,9 +307,11 @@ header.</p>
 HEADERS:
   - Authorization: &lt;YOUR_API_KEY&gt;
 </code></pre><p>Any other communication with the API requires user-based authorization.
-Meaning: an active room and user identified by an <code>access_key</code>. The
-access key is provided by the resource endpoint, no additional headers needed.
-headers needed.</p>
+Meaning: an active room and user identified by an <code>access_key</code>. The access key
+is provided by the resource endpoint, no additional headers are needed.</p>
+<p>An expired access key - meeting has been shutdown - will result in a HTTP
+response code of <code>410 GONE</code> for any request that uses the access key for
+authorization.</p>
 <h2 id="eyeson-room">eyeson Room</h2>
 <p>Any room can be created with a team-based API request, resulting in everything
 to be needed to join a eyeson video calls. Within the response the current
@@ -329,7 +331,7 @@ session.</p>
   HEADERS Authorization
   RESPONSES 201 CREATED, 400 BAD REQUEST
 GET  /rooms/:access_key # receive details of a persisted room.
-  RESPONSES 200 OK, 404 NOT FOUND
+  RESPONSES 200 OK, 404 NOT FOUND, 410 GONE
 DELETE /rooms/:identifier # force to stop a running meeting
   HEADERS Authorization
   RESPONSES 204 NO CONTENT, 404 NOT FOUND, 400 BAD REQUEST
@@ -486,7 +488,7 @@ DELETE /rooms/:identifier # force to stop a running meeting
 }
 </code></pre><h2 id="user-and-guest-user">User and Guest User</h2>
 <pre><code>GET /rooms/:access_key/users/:identifier # Fetch user details.
-  RESPONSES 200 OK, 404 NOT FOUND
+  RESPONSES 200 OK, 404 NOT FOUND, 410 GONE
 </code></pre><p>EXAMPLE RESPONSE</p>
 <pre><code>{
   &quot;id&quot;: &quot;596f5e442a3d24196f1b7d32&quot;,
@@ -500,7 +502,7 @@ method to a meeting.</p>
 <p>A guest user only has access to a running meeting session. Once a meeting
 ends, the guest user cannot join any future meetings in this room.</p>
 <pre><code>POST /guests/:guest_token # Create a guest user for a meeting.
-  RESPONSES 201 CREATED, 401 UNAUTHORIZED, 410 GONE
+  RESPONSES 201 CREATED, 401 UNAUTHORIZED
 </code></pre><table>
 <thead>
 <tr>
@@ -574,7 +576,7 @@ ends, the guest user cannot join any future meetings in this room.</p>
 </code></pre><h2 id="messages">Messages</h2>
 <p>Broadcast data messages to all users of a meeting.</p>
 <pre><code>POST /rooms/:access_key/messages
-  RESPONSE 201 CREATED, 400 BAD REQUEST
+  RESPONSE 201 CREATED, 400 BAD REQUEST, 410 GONE
 </code></pre><table>
 <thead>
 <tr>
@@ -601,9 +603,9 @@ ends, the guest user cannot join any future meetings in this room.</p>
 Direct URLs to downloads <em>expire</em>, so it&rsquo;s better store the recording identifier
 and fetch a valid resource link on demand.</p>
 <pre><code>POST /rooms/:access_key/recording
-  RESPONSES 201 CREATED, 400 BAD REQUEST
+  RESPONSES 201 CREATED, 400 BAD REQUEST, 410 GONE
 DELETE /rooms/:access_key/recording
-  RESPONSES 200 OK
+  RESPONSES 200 OK, 410 GONE
 </code></pre><pre><code>GET /recordings/:identifier
   RESPONSES 200 OK, 404 NOT FOUND
 </code></pre><p>EXAMPLE RESPONSE</p>
@@ -640,7 +642,7 @@ DELETE /rooms/:access_key/recording
 <p>To connect an eyeson room with a broadcast you have to provide a valid
 streaming RTMP url.</p>
 <pre><code>POST /rooms/:access_key/broadcasts
-  RESPONSES 201 CREATED, 400 BAD REQUEST
+  RESPONSES 201 CREATED, 400 BAD REQUEST, 410 GONE
 </code></pre><table>
 <thead>
 <tr>
@@ -663,7 +665,7 @@ streaming RTMP url.</p>
 </tbody>
 </table>
 <pre><code>PUT /rooms/:access_key/broadcasts/generic
-  RESPONSES 200 OK, 400 BAD REQUEST, 404 NOT FOUND
+  RESPONSES 200 OK, 400 BAD REQUEST, 404 NOT FOUND, 410 GONE
 </code></pre><table>
 <thead>
 <tr>
@@ -681,7 +683,7 @@ streaming RTMP url.</p>
 </tbody>
 </table>
 <pre><code>DELETE /rooms/:access_key/broadcasts # stop broadcast
-  RESPONSES 200 OK, 400 BAD REQUEST, 404 NOT FOUND
+  RESPONSES 200 OK, 400 BAD REQUEST, 404 NOT FOUND, 410 GONE
 </code></pre><h2 id="layout">Layout</h2>
 <p>The meeting participants will be presented in an equally distributed tiled
 video layout where eyeson takes care to always update the stream depending on
@@ -692,7 +694,7 @@ user-ids as a list, or switch back to auto layout any time.</p>
 <a href="#eyeson-room">room configuration</a> properly or ensure to have more than
 two participants.</p>
 <pre><code>POST /rooms/:access_key/layout
-  RESPONSES 200 OK, 400 BAD REQUEST
+  RESPONSES 200 OK, 400 BAD REQUEST, 410 GONE
 </code></pre><table>
 <thead>
 <tr>
@@ -740,7 +742,7 @@ avoid any distortions.</p>
 default <a href="#eyeson-room">room configuration</a> will transport individual streams
 for single and two participants and not show layer media.</p>
 <pre><code>POST /rooms/:access_key/layers # insert image or text message
-  RESPONSES 201 CREATED, 400 BAD REQUEST
+  RESPONSES 201 CREATED, 400 BAD REQUEST, 410 GONE
 </code></pre><table>
 <thead>
 <tr>
@@ -791,12 +793,12 @@ for single and two participants and not show layer media.</p>
 </span><span style="color:#ae81ff"></span>  -d <span style="color:#e6db74">&#34;url=https://eyeson-team.github.io/api/images/eyeson-overlay.png&#34;</span> <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>  <span style="color:#e6db74">&#34;https://api.eyeson.team/rooms/</span><span style="color:#e6db74">${</span>ACCESS_KEY<span style="color:#e6db74">}</span><span style="color:#e6db74">/layers&#34;</span>
 </code></pre></div><pre><code>DELETE /rooms/:access_key/layers/:index # clear layer, index: -1 or 1
-  RESPONSES 200 OK, 400 BAD REQUEST
+  RESPONSES 200 OK, 400 BAD REQUEST, 410 GONE
 </code></pre><p>Besides image data you can playback videos. We currently limit it to media
 files in MP4 format that have to be available through a public URL. Note that
 we do not provide any kind of upload service for this feature.</p>
 <pre><code>POST /rooms/:access_key/playbacks # play a video
-  RESPONSES 201 CREATED, 400 BAD REQUEST
+  RESPONSES 201 CREATED, 400 BAD REQUEST, 410 GONE
 </code></pre><table>
 <thead>
 <tr>
