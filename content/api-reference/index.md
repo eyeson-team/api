@@ -323,23 +323,34 @@ DELETE /rooms/:access_key/broadcasts # stop broadcast
 The meeting participants will be presented in an equally distributed tiled
 video layout where eyeson takes care to always update the stream depending on
 the number of users. However in some cases you might want to assign specific
-users to a video positions. You can do this by sending the specified podium
-user-ids as a list, or switch back to auto layout any time.
+users to a video position. To switch back to auto layout you can send
+layout `auto` with no further options.
 
-Layouts are not available when using the [SFU] mode, so ensure to set the
-[room configuration](#eyeson-room) properly or ensure to have more than
-two participants.
+The custom eyeson podium layout can be set to one, two, four or nine
+participants. This is controlled by the `users` parameter: Provide a user
+identifier and the specific user will be placed on this position. Use an empty
+string `""` to assign no-participant and keep a spot free. This free spots will
+be filled if you choose the `auto` layout. Additionally you can choose to
+activate voice detection that will replace the spots with participants that
+have said something recently. If you choose layout `custom` the free spots will
+not be filled and you can use them to show some background using the [media
+inject](#content-integration-aka-layers) feature.
+
+Note that layouts are not available when using the [SFU] mode, so set the [room
+configuration](#eyeson-room) properly or take care to have more than two
+participants.
 
 ```
 POST /rooms/:access_key/layout
   RESPONSES 200 OK, 400 BAD REQUEST, 410 GONE
 ```
 
-Parameters  | Type              | Description
------------ | ----------------- | ------------
-layout      | String (optional) | Value 'auto' or 'custom'.
-users       | String (optional) | List of podium user\_ids or an empty string for an empty spot.
-show\_names | String (optional) | Public URL to view the live video.
+Parameters        | Type               | Description
+-----------       | -----------------  | ------------
+layout            | String (optional)  | Value 'auto' or 'custom'.
+users             | List (optional)    | List of podium user\_ids or an empty string for an empty spot.
+voice\_activation | Boolean (optional) | Fill empty spots by voice detected activation.
+show\_names       | Boolean (optional) | Public URL to view the live video.
 
 
 ```sh
