@@ -688,11 +688,20 @@ streaming RTMP url.</p>
 <p>The meeting participants will be presented in an equally distributed tiled
 video layout where eyeson takes care to always update the stream depending on
 the number of users. However in some cases you might want to assign specific
-users to a video positions. You can do this by sending the specified podium
-user-ids as a list, or switch back to auto layout any time.</p>
-<p>Layouts are not available when using the <a href="https://webrtcglossary.com/sfu/" title="Selective Forwarding Unit">SFU</a> mode, so ensure to set the
-<a href="#eyeson-room">room configuration</a> properly or ensure to have more than
-two participants.</p>
+users to a video position. To switch back to auto layout you can send
+layout <code>auto</code> with no further options.</p>
+<p>The custom eyeson podium layout can be set to one, two, four or nine
+participants. This is controlled by the <code>users</code> parameter: Provide a user
+identifier and the specific user will be placed on this position. Use an empty
+string <code>&quot;&quot;</code> to assign no-participant and keep a spot free. This free spots will
+be filled if you choose the <code>auto</code> layout. Additionally you can choose to
+activate voice detection that will replace the spots with participants that
+have said something recently. If you choose layout <code>custom</code> the free spots will
+not be filled and you can use them to show some background using the <a href="#content-integration-aka-layers">media
+inject</a> feature.</p>
+<p>Note that layouts are not available when using the <a href="https://webrtcglossary.com/sfu/" title="Selective Forwarding Unit">SFU</a> mode, so set the <a href="#eyeson-room">room
+configuration</a> properly or take care to have more than two
+participants.</p>
 <pre><code>POST /rooms/:access_key/layout
   RESPONSES 200 OK, 400 BAD REQUEST, 410 GONE
 </code></pre><table>
@@ -711,12 +720,17 @@ two participants.</p>
 </tr>
 <tr>
 <td>users</td>
-<td>String (optional)</td>
+<td>List (optional)</td>
 <td>List of podium user_ids or an empty string for an empty spot.</td>
 </tr>
 <tr>
+<td>voice_activation</td>
+<td>Boolean (optional)</td>
+<td>Fill empty spots by voice detected activation.</td>
+</tr>
+<tr>
 <td>show_names</td>
-<td>String (optional)</td>
+<td>Boolean (optional)</td>
 <td>Public URL to view the live video.</td>
 </tr>
 </tbody>
