@@ -177,6 +177,7 @@ avatar       | String (optional) | HTTP URI to a user avatar.
 EXAMPLE RESPONSE
 ```
 {
+  "access_key": "588a0d32f9c4860024f36f3",
   "ready": false,
   "room": {
     "id":   "596f5e442a3d24196f1b7d32",
