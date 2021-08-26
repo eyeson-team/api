@@ -700,6 +700,9 @@ activate voice detection that will replace the spots with participants that
 have said something recently. If you choose layout <code>custom</code> the free spots will
 not be filled and you can use them to show some background using the <a href="#content-integration-aka-layers">media
 inject</a> feature.</p>
+<p>Besides layouts that are selected by the number of users there are some named
+layouts that can be applied. Those will not provide equal distributed position
+but show some participants in an expanded view.</p>
 <p>Note that layouts are not available when using the <a href="https://webrtcglossary.com/sfu/" title="Selective Forwarding Unit">SFU</a> mode, so set the <a href="#eyeson-room">room
 configuration</a> properly or take care to have more than two
 participants.</p>
@@ -733,6 +736,11 @@ participants.</p>
 <td>show_names</td>
 <td>Boolean (optional)</td>
 <td>Public URL to view the live video.</td>
+</tr>
+<tr>
+<td>name</td>
+<td>String (optional)</td>
+<td>Use a named layout. Current layouts are: <code>present-lower-3</code>, <code>present-upper-6</code>, <code>present-upper-right-9</code>, and <code>present-two-upper-6</code>.</td>
 </tr>
 </tbody>
 </table>
