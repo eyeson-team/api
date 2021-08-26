@@ -337,6 +337,10 @@ have said something recently. If you choose layout `custom` the free spots will
 not be filled and you can use them to show some background using the [media
 inject](#content-integration-aka-layers) feature.
 
+Besides layouts that are selected by the number of users there are some named
+layouts that can be applied. Those will not provide equal distributed position
+but show some participants in an expanded view.
+
 Note that layouts are not available when using the [SFU] mode, so set the [room
 configuration](#eyeson-room) properly or take care to have more than two
 participants.
@@ -352,6 +356,7 @@ layout            | String (optional)  | Value 'auto' or 'custom'.
 users             | List (optional)    | List of podium user\_ids or an empty string for an empty spot.
 voice\_activation | Boolean (optional) | Fill empty spots by voice detected activation.
 show\_names       | Boolean (optional) | Public URL to view the live video.
+name              | String (optional)  | Use a named layout. Current layouts are: `present-lower-3`, `present-upper-6`, `present-upper-right-9`, and `present-two-upper-6`.
 
 
 ```sh
