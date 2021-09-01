@@ -355,7 +355,7 @@ Parameters        | Type               | Description
 layout            | String (optional)  | Value 'auto' or 'custom'.
 users             | List (optional)    | List of podium user\_ids or an empty string for an empty spot.
 voice\_activation | Boolean (optional) | Fill empty spots by voice detected activation.
-show\_names       | Boolean (optional) | Public URL to view the live video.
+show\_names       | Boolean (optional) | Show display names in video. Default: true
 name              | String (optional)  | Use a named layout. Current layouts are: `present-lower-3`, `present-upper-6`, `present-upper-right-9`, and `present-two-upper-6`.
 
 
