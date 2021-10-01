@@ -418,8 +418,9 @@ DELETE /rooms/:access_key/layers/:index # clear layer, index: -1 or 1
 ```
 
 Besides image data you can playback videos. We currently limit it to media
-files in MP4 format that have to be available through a public URL. Note that
-we do not provide any kind of upload service for this feature.
+files in in webm (preferred) or mp4 format that have to be available through a
+public URL. Note that we do not provide any kind of upload service for this
+feature.
 
 ```
 POST /rooms/:access_key/playbacks # play a video
