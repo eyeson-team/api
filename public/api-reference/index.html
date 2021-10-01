@@ -833,8 +833,9 @@ for single and two participants and not show layer media.</p>
 </code></pre></div><pre><code>DELETE /rooms/:access_key/layers/:index # clear layer, index: -1 or 1
   RESPONSES 200 OK, 400 BAD REQUEST, 410 GONE
 </code></pre><p>Besides image data you can playback videos. We currently limit it to media
-files in MP4 format that have to be available through a public URL. Note that
-we do not provide any kind of upload service for this feature.</p>
+files in in webm (preferred) or mp4 format that have to be available through a
+public URL. Note that we do not provide any kind of upload service for this
+feature.</p>
 <pre><code>POST /rooms/:access_key/playbacks # play a video
   RESPONSES 201 CREATED, 400 BAD REQUEST, 410 GONE
 </code></pre><table>
