@@ -7,9 +7,6 @@ all: build deploy
 watch:
 		$(CMD) server -D
 
-setup:
-		git submodule init && git submodule update
-
 build:
 		$(CMD) && git ci -m "Public build `date -u`" public/
 
