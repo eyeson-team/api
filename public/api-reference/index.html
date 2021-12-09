@@ -735,7 +735,7 @@ participants.</p>
 <tr>
 <td>users</td>
 <td>List (optional)</td>
-<td>List of podium user_ids or an empty string for an empty spot.</td>
+<td>List of podium user_ids, a custom layout position identifier or an empty string for an empty spot.</td>
 </tr>
 <tr>
 <td>voice_activation</td>
@@ -751,6 +751,21 @@ participants.</p>
 <td>name</td>
 <td>String (optional)</td>
 <td>Use a named layout. Current layouts are: <code>present-lower-3</code>, <code>present-upper-6</code>, <code>present-upper-right-9</code>, and <code>present-two-upper-6</code>.</td>
+</tr>
+<tr>
+<td>audio_insert</td>
+<td>String (optional)</td>
+<td>Show audio instert (&lsquo;enabled&rsquo;, &lsquo;disabled&rsquo; or &lsquo;audio_only&rsquo;). Default: audio_only</td>
+</tr>
+<tr>
+<td>audio_insert_position[x]</td>
+<td>Number (optional)</td>
+<td>X position value of the audio insert.</td>
+</tr>
+<tr>
+<td>audio_insert_position[y]</td>
+<td>Number (optional)</td>
+<td>Y position value of the audio insert.</td>
 </tr>
 </tbody>
 </table>
@@ -850,7 +865,7 @@ feature.</p>
 <tr>
 <td>playback[play_id]</td>
 <td>String</td>
-<td>Choose an identifier, e.g. current timestamp</td>
+<td>Choose an identifier, e.g. current timestamp or use a custom layout position identifier</td>
 </tr>
 <tr>
 <td>playback[replacement_id]</td>
