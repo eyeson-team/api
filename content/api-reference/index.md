@@ -87,6 +87,9 @@ options[guest\_token\_available]                          | Boolean (optional)  
 options[lock\_available]                                  | Boolean (optional)       | Enable meeting lock. Default: false
 options[kick\_available]                                  | Boolean (optional)       | Allow participant kick. Default: true
 options[sfu\_mode]                                        | String (optional)        | Set a desired sfu mode. Possible values are: 'disabled', 'screencast' or 'ptp'. To either disable the feature, limit it to screencasts or enable it for meetings with only 2 participants. Default: 'ptp'
+options[audio\_insert]                                    | String (optional)        | Show audio insert ('enabled', 'disabled' or 'audio\_only'). Default: audio\_only
+options[audio\_insert\_position][x]                       | Number (optional)        | X position value of the audio insert.
+options[audio\_insert\_position][y]                       | Number (optional)        | Y position value of the audio insert.
 options[custom\_fields]\[locale\]                         | Language Code (optional) | User preferred language code (en, de, fr).
 options[custom\_fields]\[logo\]                           | String (optional)        | URL to custom logo.
 options[custom\_fields]\[hide_chat\]                      | Boolean (optional)       | Hide chat in GUI. Default: false
@@ -353,13 +356,16 @@ POST /rooms/:access_key/layout
   RESPONSES 200 OK, 400 BAD REQUEST, 410 GONE
 ```
 
-Parameters        | Type               | Description
------------       | -----------------  | ------------
-layout            | String (optional)  | Value 'auto' or 'custom'.
-users             | List (optional)    | List of podium user\_ids or an empty string for an empty spot.
-voice\_activation | Boolean (optional) | Fill empty spots by voice detected activation.
-show\_names       | Boolean (optional) | Show display names in video. Default: true
-name              | String (optional)  | Use a named layout. Current layouts are: `present-lower-3`, `present-upper-6`, `present-upper-right-9`, and `present-two-upper-6`.
+Parameters                 | Type               | Description
+-------------------------- | -----------------  | ------------
+layout                     | String (optional)  | Value 'auto' or 'custom'.
+users                      | List (optional)    | List of podium user\_ids, a custom layout position identifier or an empty string for an empty spot.
+voice\_activation          | Boolean (optional) | Fill empty spots by voice detected activation.
+show\_names                | Boolean (optional) | Show display names in video. Default: true
+name                       | String (optional)  | Use a named layout. Current layouts are: `present-lower-3`, `present-upper-6`, `present-upper-right-9`, and `present-two-upper-6`.
+audio\_insert              | String (optional)  | Show audio insert ('enabled', 'disabled' or 'audio\_only'). Default: audio\_only
+audio\_insert\_position[x] | Number (optional)  | X position value of the audio insert.
+audio\_insert\_position[y] | Number (optional)  | Y position value of the audio insert.
 
 
 ```sh
@@ -430,7 +436,7 @@ POST /rooms/:access_key/playbacks # play a video
 Parameters               | Type              | Description
 ------------------------ | ----------------- | ------------
 playback[audio]          | Boolean           | Play audio (default: false)
-playback[play_id]        | String            | Choose an identifier, e.g. current timestamp
+playback[play_id]        | String            | Choose an identifier, e.g. current timestamp or use a custom layout position identifier
 playback[replacement_id] | String            | User-id of the participants video to be replaced
 playback[url]            | String            | Hosted MP4 video file
 playback[name]           | String            | Custom readable name for identification
