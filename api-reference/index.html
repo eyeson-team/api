@@ -420,6 +420,21 @@ DELETE /rooms/:identifier # force to stop a running meeting
 <td>Set a desired sfu mode. Possible values are: &lsquo;disabled&rsquo;, &lsquo;screencast&rsquo; or &lsquo;ptp&rsquo;. To either disable the feature, limit it to screencasts or enable it for meetings with only 2 participants. Default: &lsquo;ptp&rsquo;</td>
 </tr>
 <tr>
+<td>options[audio_insert]</td>
+<td>String (optional)</td>
+<td>Show audio insert (&lsquo;enabled&rsquo;, &lsquo;disabled&rsquo; or &lsquo;audio_only&rsquo;). Default: audio_only</td>
+</tr>
+<tr>
+<td>options[audio_insert_position][x]</td>
+<td>Number (optional)</td>
+<td>X position value of the audio insert.</td>
+</tr>
+<tr>
+<td>options[audio_insert_position][y]</td>
+<td>Number (optional)</td>
+<td>Y position value of the audio insert.</td>
+</tr>
+<tr>
 <td>options[custom_fields][locale]</td>
 <td>Language Code (optional)</td>
 <td>User preferred language code (en, de, fr).</td>
@@ -755,7 +770,7 @@ participants.</p>
 <tr>
 <td>audio_insert</td>
 <td>String (optional)</td>
-<td>Show audio instert (&lsquo;enabled&rsquo;, &lsquo;disabled&rsquo; or &lsquo;audio_only&rsquo;). Default: audio_only</td>
+<td>Show audio insert (&lsquo;enabled&rsquo;, &lsquo;disabled&rsquo; or &lsquo;audio_only&rsquo;). Default: audio_only</td>
 </tr>
 <tr>
 <td>audio_insert_position[x]</td>
