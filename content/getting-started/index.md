@@ -18,8 +18,8 @@ given the choice to join the meeting via mobile applications too.
 Before you can create your first custom eyeson video calls you have to
 generate a new api key.
 
-Sign in at [eyeson Accounts](https://accounts.eyeson.team/), switch to
-the [projects section](https://accounts.eyeson.team/projects), describe your
+Sign in at [eyeson Developers](https://developers.eyeson.team/), switch to
+the [projects section](https://developers.eyeson.team/projects), describe your
 project in a few sentences and request your api key. Soon you will receive an
 email to confirm the key generation. By proceeding you are ready to use
 eyeson with your very personal api key.
