@@ -362,7 +362,7 @@ layout                     | String (optional)  | Value 'auto' or 'custom'.
 users                      | List (optional)    | List of podium user\_ids, a custom layout position identifier or an empty string for an empty spot.
 voice\_activation          | Boolean (optional) | Fill empty spots by voice detected activation.
 show\_names                | Boolean (optional) | Show display names in video. Default: true
-name                       | String (optional)  | Use a named layout. Current layouts are: `present-lower-3`, `present-upper-6`, `present-upper-right-9`, and `present-two-upper-6`.
+name                       | String (optional)  | Use a named layout. Current layouts are: `one`, `two`, `four`, `six`, `nine`, and the presentation layouts with a single or two presenter and other users shown below or above `present-lower-3`, `present-upper-6`, `present-upper-right-9`, and `present-two-upper-6`.
 audio\_insert              | String (optional)  | Show audio insert ('enabled', 'disabled' or 'audio\_only'). Default: audio\_only
 audio\_insert\_position[x] | Number (optional)  | X position value of the audio insert.
 audio\_insert\_position[y] | Number (optional)  | Y position value of the audio insert.
