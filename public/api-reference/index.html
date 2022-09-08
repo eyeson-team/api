@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=10" />
     <title>API Reference - eyeson API documentation</title>
-    <meta name="generator" content="Hugo 0.80.0" />
+    <meta name="generator" content="Hugo 0.87.0" />
 
     
     <meta name="description" content="eyeson API documentation">
@@ -420,6 +420,11 @@ DELETE /rooms/:identifier # force to stop a running meeting
 <td>Set a desired sfu mode. Possible values are: &lsquo;disabled&rsquo;, &lsquo;screencast&rsquo; or &lsquo;ptp&rsquo;. To either disable the feature, limit it to screencasts or enable it for meetings with only 2 participants. Default: &lsquo;ptp&rsquo;</td>
 </tr>
 <tr>
+<td>options[widescreen]</td>
+<td>Boolean (optional)</td>
+<td>Run meeting in widescreen mode (16:9 aspect ratio). Default: false</td>
+</tr>
+<tr>
 <td>options[audio_insert]</td>
 <td>String (optional)</td>
 <td>Show audio insert (&lsquo;enabled&rsquo;, &lsquo;disabled&rsquo; or &lsquo;audio_only&rsquo;). Default: audio_only</td>
@@ -784,7 +789,7 @@ participants.</p>
 </tr>
 </tbody>
 </table>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ curl -X POST <span style="color:#ae81ff">\
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ curl -X POST <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>  -d <span style="color:#e6db74">&#34;users[]=USER_ID_A&#34;</span> <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>  -d <span style="color:#e6db74">&#34;users[]=USER_ID_B&#34;</span> <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>  -d <span style="color:#e6db74">&#34;users[]=USER_ID_C&#34;</span> <span style="color:#ae81ff">\
@@ -798,9 +803,10 @@ listen for tweets in a separate service and display them using the tweet senders
 avatar as an icon, name as title and the tweet as content.</p>
 <p>For more complex data generate an image and either upload the image or provide
 a public URL. For overlaying images use a transparent background.</p>
-<p>Any eyeson room video has a resolution of <strong>1280x960</strong> pixels. Ensure any file
-uploaded is an alpha interlaced PNG image with a corresponding resolution to
-avoid any distortions.</p>
+<p>Any eyeson room video has a resolution of either <strong>1280x960</strong> pixels (960p in
+default) or 1280x720 pixels (HD in widescreen mode). Ensure any file uploaded
+is an alpha interlaced PNG image with a corresponding resolution to avoid any
+distortions.</p>
 <p>When using layers you might want to disable the <a href="https://webrtcglossary.com/sfu/" title="Selective Forwarding Unit">SFU</a> mode that in
 default <a href="#eyeson-room">room configuration</a> will transport individual streams
 for single and two participants and not show layer media.</p>
@@ -852,7 +858,7 @@ for single and two participants and not show layer media.</p>
 </tr>
 </tbody>
 </table>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ curl -X POST <span style="color:#ae81ff">\
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ curl -X POST <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>  -d <span style="color:#e6db74">&#34;url=https://eyeson-team.github.io/api/images/eyeson-overlay.png&#34;</span> <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>  <span style="color:#e6db74">&#34;https://api.eyeson.team/rooms/</span><span style="color:#e6db74">${</span>ACCESS_KEY<span style="color:#e6db74">}</span><span style="color:#e6db74">/layers&#34;</span>
 </code></pre></div><pre><code>DELETE /rooms/:access_key/layers/:index # clear layer, index: -1 or 1
