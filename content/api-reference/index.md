@@ -87,6 +87,7 @@ options[guest\_token\_available]                          | Boolean (optional)  
 options[lock\_available]                                  | Boolean (optional)       | Enable meeting lock. Default: false
 options[kick\_available]                                  | Boolean (optional)       | Allow participant kick. Default: true
 options[sfu\_mode]                                        | String (optional)        | Set a desired sfu mode. Possible values are: 'disabled', 'screencast' or 'ptp'. To either disable the feature, limit it to screencasts or enable it for meetings with only 2 participants. Default: 'ptp'
+options[widescreen]                                       | Boolean (optional)       | Run meeting in widescreen mode (16:9 aspect ratio). Default: false
 options[audio\_insert]                                    | String (optional)        | Show audio insert ('enabled', 'disabled' or 'audio\_only'). Default: audio\_only
 options[audio\_insert\_position][x]                       | Number (optional)        | X position value of the audio insert.
 options[audio\_insert\_position][y]                       | Number (optional)        | Y position value of the audio insert.
@@ -389,9 +390,10 @@ avatar as an icon, name as title and the tweet as content.
 For more complex data generate an image and either upload the image or provide
 a public URL. For overlaying images use a transparent background.
 
-Any eyeson room video has a resolution of **1280x960** pixels. Ensure any file
-uploaded is an alpha interlaced PNG image with a corresponding resolution to
-avoid any distortions.
+Any eyeson room video has a resolution of either **1280x960** pixels (960p in 
+default) or 1280x720 pixels (HD in widescreen mode). Ensure any file uploaded 
+is an alpha interlaced PNG image with a corresponding resolution to avoid any 
+distortions.
 
 When using layers you might want to disable the [SFU] mode that in
 default [room configuration](#eyeson-room) will transport individual streams
