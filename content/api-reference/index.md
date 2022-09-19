@@ -175,11 +175,13 @@ POST /guests/:guest_token # Create a guest user for a meeting.
   RESPONSES 201 CREATED, 401 UNAUTHORIZED
 ```
 
-Parameters   | Type              | Description
------------- | ----------------- | ------------
-id           | String (optional) | User identifier
-name         | String (required) | Users name to be displayed in participants list.
-avatar       | String (optional) | HTTP URI to a user avatar.
+Parameters               | Type                     | Description
+------------------------ | ------------------------ | ------------
+id                       | String (optional)        | User identifier
+name                     | String (required)        | Users name to be displayed in participants list.
+avatar                   | String (optional)        | HTTP URI to a user avatar.
+custom\_fields\[locale\] | Language Code (optional) | User preferred language code (en, de, fr).
+
 
 EXAMPLE RESPONSE
 ```
