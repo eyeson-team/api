@@ -674,6 +674,11 @@ DELETE /rooms/:access_key/recording
 }
 </code></pre><pre><code>DELETE /recordings/:identifier
   RESPONSES 200 OK, 404 NOT FOUND
+</code></pre><h2 id="snapshot">Snapshot</h2>
+<p>This request creates a snapshot of the current meeting. Snapshots are saved in
+eyesons cloud storage and can be downloaded from there.</p>
+<pre><code>POST /rooms/:access_key/snapshot
+  RESPONSES 201 CREATED, 400 BAD REQUEST, 410 GONE
 </code></pre><h2 id="broadcast">Broadcast</h2>
 <p>To connect an eyeson room with a broadcast you have to provide a valid
 streaming RTMP url.</p>
