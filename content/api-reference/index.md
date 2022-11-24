@@ -299,6 +299,16 @@ DELETE /recordings/:identifier
   RESPONSES 200 OK, 404 NOT FOUND
 ```
 
+## Snapshot
+
+This request creates a snapshot of the current meeting. Snapshots are saved in
+eyesons cloud storage and can be downloaded from there.
+
+```
+POST /rooms/:access_key/snapshot
+  RESPONSES 201 CREATED, 400 BAD REQUEST, 410 GONE
+```
+
 ## Broadcast
 
 To connect an eyeson room with a broadcast you have to provide a valid
