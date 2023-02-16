@@ -18,6 +18,3 @@ call in a few simple steps.
 
 Further control over broadcastings, recordings, presentations, screencapturing,
 chats, layouts, image overlays, and others are documented in details in corresponding sections in the [API References](api-reference/)
-
-During an eyeson room meeting session real time events are transported via
-[Websocket events](websocket-events/).
