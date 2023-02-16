@@ -27,14 +27,5 @@ Within an eyeson room, all features like broadcast, recording, layout, data and 
 Authorization There are two levels of authorization: team-based via api-key and user-based temporary access-key.</description>
     </item>
     
-    <item>
-      <title>Websocket Events</title>
-      <link>https://eyeson-team.github.io/api/websocket-events/</link>
-      <pubDate>Fri, 04 Aug 2017 10:01:35 +0200</pubDate>
-      
-      <guid>https://eyeson-team.github.io/api/websocket-events/</guid>
-      <description>The websocket connection endpoint is received in the response of the room creation. Provide the access_key in order to authenticate the user.</description>
-    </item>
-    
   </channel>
 </rss>

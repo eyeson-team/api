@@ -220,24 +220,6 @@
 
 
 
-<a  title="Websocket Events" href="https://eyeson-team.github.io/api/websocket-events/">
-	
-	Websocket Events
-</a>
-
-
-
-  
-</li>
-
-
-
-<li>
-  
-    
-
-
-
 <a  title="eyeson API" href="https://eyeson-team.github.io/api/">
 	
 	eyeson API
@@ -318,18 +300,20 @@ by using this link with any WebRTC capable user-agent like webbrowser Chrome
 or Firefox.</p>
 <p>The guest-token can be used to <strong>quick-join</strong> an eyeson room. Using the eyeson
 web GUI a quick-join URL can be generated using the following pattern:</p>
-<pre><code>https://app.eyeson.team/guest=&lt;guest_token&gt;
+<pre><code>https://app.eyeson.team/?guest=&lt;guest_token&gt;
 </code></pre><p>The user to join the room has to be provided. If someone already created and
 joined the room session, the user provided will join this existing room
 session.</p>
 <pre><code>POST /rooms # create room a new room or join an existing by id.
   HEADERS Authorization
-  RESPONSES 201 CREATED, 400 BAD REQUEST
-GET  /rooms/:access_key # receive details of a persisted room.
+  RESPONSES 201 CREATED, 400 BAD REQUEST, 403 FORBIDDEN
+
+GET /rooms/&lt;access_key&gt; # receive details of a persisted room.
   RESPONSES 200 OK, 404 NOT FOUND, 410 GONE
-DELETE /rooms/:identifier # force to stop a running meeting
+
+DELETE /rooms/&lt;room_id&gt; # force to stop a running meeting
   HEADERS Authorization
-  RESPONSES 204 NO CONTENT, 404 NOT FOUND, 400 BAD REQUEST
+  RESPONSES 204 NO CONTENT, 400 BAD REQUEST, 403 FORBIDDEN, 404 NOT FOUND
 </code></pre><table>
 <thead>
 <tr>
@@ -471,68 +455,91 @@ DELETE /rooms/:identifier # force to stop a running meeting
 </tr>
 </tbody>
 </table>
-<p>EXAMPLE RESPONSE</p>
+<p>Example Response</p>
 <pre><code>{
-  &quot;access_key&quot;: &quot;5cd3f7dce1382379a013d874&quot;,
-  &quot;ready&quot;: false,
-  &quot;room&quot;: {
-    &quot;id&quot;:   &quot;596f5e442a3d24196f1b7d32&quot;,
+  &quot;access_key&quot;: &quot;vAX29sGYPZEvZQwvg0jycrPX&quot;,
+  &quot;ready&quot;: false,
+  &quot;locked&quot;: false,
+  &quot;room&quot;: {
+    &quot;id&quot;: &quot;63ede350b20526000f64376b&quot;,
     &quot;name&quot;: &quot;eyeson room&quot;,
     &quot;ready&quot;: false,
+    &quot;started_at&quot;: &quot;2021-01-01T09:00:00.000Z&quot;,
     &quot;shutdown&quot;: false,
     &quot;sip&quot;: {
-      &quot;uri&quot;: &quot;https://.../&quot;,
-      &quot;domain&quot;: &quot;example.eyeson.team&quot;,
-      &quot;authorizationUser&quot;: &quot;username&quot;,
+      ...
     },
-    &quot;guest_token&quot;: &quot;5971daf62a3d241b0d263ec6&quot;
+    &quot;guest_token&quot;: &quot;gKsiVlrvkFyL3klk1wBHLlm3&quot;
   },
-  &quot;team&quot;: {
+  &quot;team&quot;: {
     &quot;name&quot;: &quot;My Company Ltd.&quot;
   },
   &quot;user&quot;: {
-    &quot;id&quot;: &quot;596f5e442a3d24196f1b7d32&quot;,
+    &quot;id&quot;: &quot;63ede350b20526000f64376d&quot;,
+    &quot;room_id&quot;: &quot;63ede350b20526000f64376b&quot;,
     &quot;name&quot;: &quot;Jane Doe&quot;,
-    &quot;avatar&quot;: &quot;https://example.com/avatar.png&quot;,
+    &quot;avatar&quot;: &quot;https://myawesomeapp.com/images/avatar.png&quot;,
     &quot;guest&quot;: false,
     &quot;ready&quot;: false,
     &quot;sip&quot;: {
-      &quot;uri&quot;: &quot;https://.../&quot;,
-      &quot;domain&quot;: &quot;example.eyeson.team&quot;,
-      &quot;wsServers&quot;: [ &quot;...&quot; ],
-      &quot;instanceId&quot;: &quot;some-instance-id&quot;,
-      &quot;userAgentString&quot;: &quot;user-id&quot;,
-      &quot;authorizationUser&quot;: &quot;username&quot;,
-      &quot;displayName&quot;: &quot;mrs. doe&quot;,
-      &quot;stunServers&quot;: [ &quot;...&quot; ],
-      &quot;turnServers&quot;: [ &quot;...&quot; ],
-      &quot;registerExpires&quot;: &quot;...&quot;,
-      &quot;password&quot;: &quot;sip-password&quot;
-    },
+      ...
+    }
   },
-  &quot;links&quot;: {
-    &quot;gui&quot;: &quot;https://app.eyeson.team/?588a0d32f9c4860024f36f3&quot;,
-    &quot;self&quot;: &quot;https://api.eyeson.team/rooms&quot;,
-    &quot;websocket&quot;: &quot;https://api.eyeson.team/rt&quot;
+  &quot;links&quot;: {
+    &quot;self&quot;: &quot;https://api.eyeson.team/rooms/vAX29sGYPZEvZQwvg0jycrPX&quot;,
+    &quot;gui&quot;: &quot;https://app.eyeson.team/?vAX29sGYPZEvZQwvg0jycrPX&quot;,
+    &quot;guest_join&quot;: &quot;https://app.eyeson.team/?guest=gKsiVlrvkFyL3klk1wBHLlm3&quot;,
+    &quot;websocket&quot;: &quot;https://api.eyeson.team/rt?access_key=vAX29sGYPZEvZQwvg0jycrPX&quot;
+  },
+  &quot;options&quot;: {
+    &quot;show_names&quot;: true,
+    &quot;show_label&quot;: true,
+    &quot;exit_url&quot;: &quot;https://myawesomeapp.com/meeting-end&quot;,
+    &quot;recording_available&quot;: true,
+    &quot;broadcast_available&quot;: true,
+    &quot;layout_available&quot;: true,
+    &quot;layout&quot;: &quot;auto&quot;,
+    &quot;reaction_available&quot;: true,
+    &quot;suggest_guest_names&quot;: true,
+    &quot;lock_available&quot;: false,
+    &quot;kick_available&quot;: true,
+    &quot;sfu_mode&quot;: &quot;ptp&quot;,
+    &quot;layout_users&quot;: null,
+    &quot;layout_name&quot;: null,
+    &quot;voice_activation&quot;: false,
+    &quot;custom_fields&quot;: {},
+    &quot;widescreen&quot;: false
+  },
+  &quot;presentation&quot;: null,
+  &quot;broadcasts&quot;: [],
+  &quot;recording&quot;: null,
+  &quot;snapshots&quot;: [],
+  &quot;signaling&quot;: {
+    ...
   }
 }
-</code></pre><h2 id="user-and-guest-user">User and Guest User</h2>
-<pre><code>GET /rooms/:access_key/users/:identifier # Fetch user details.
+</code></pre><p>If <code>recording_available</code>, <code>broadcast_available</code>, <code>layout_available</code>, or
+other <code>...available</code> options are set to false, related API requests will respond
+with status <code>405 METHOD NOT ALLOWED</code>. Except for kick and lock, they will
+respond with status <code>403 FORBIDDEN</code>.</p>
+<h2 id="user-and-guest-user">User and Guest User</h2>
+<pre><code>GET /rooms/&lt;access_key&gt;/users/&lt;user_id&gt; # Fetch user details.
   RESPONSES 200 OK, 404 NOT FOUND, 410 GONE
-</code></pre><p>EXAMPLE RESPONSE</p>
+</code></pre><p>Example Response</p>
 <pre><code>{
-  &quot;id&quot;: &quot;596f5e442a3d24196f1b7d32&quot;,
+  &quot;id&quot;: &quot;63ede350b20526000f64376d&quot;,
   &quot;name&quot;: &quot;Jane Doe&quot;,
-  &quot;avatar&quot;: &quot;https://example.com/avatar.png&quot;,
-  &quot;guest&quot;: false
+  &quot;avatar&quot;: &quot;https://myawesomeapp.com/images/avatar.png&quot;,
+  &quot;guest&quot;: false,
+  &quot;joined_at&quot;: &quot;2021-01-01T09:00:00.000Z&quot;
 }
 </code></pre><p>Using the guest token received from the room creation, any number of guest
 users can be created. This provides an option for you to offer a &ldquo;quick join&rdquo;
 method to a meeting.</p>
 <p>A guest user only has access to a running meeting session. Once a meeting
 ends, the guest user cannot join any future meetings in this room.</p>
-<pre><code>POST /guests/:guest_token # Create a guest user for a meeting.
-  RESPONSES 201 CREATED, 401 UNAUTHORIZED
+<pre><code>POST /guests/&lt;guest_token&gt; # Create a guest user for a meeting.
+  RESPONSES 201 CREATED, 400 BAD REQUEST, 410 GONE, 423 LOCKED
 </code></pre><table>
 <thead>
 <tr>
@@ -564,55 +571,85 @@ ends, the guest user cannot join any future meetings in this room.</p>
 </tr>
 </tbody>
 </table>
-<p>EXAMPLE RESPONSE</p>
+<p>Example Response</p>
 <pre><code>{
-  &quot;access_key&quot;: &quot;588a0d32f9c4860024f36f3&quot;,
-  &quot;ready&quot;: false,
-  &quot;room&quot;: {
-    &quot;id&quot;:   &quot;596f5e442a3d24196f1b7d32&quot;,
+  &quot;access_key&quot;: &quot;cnNqsoJlGIsf8L2WtqDzrH4y&quot;,
+  &quot;ready&quot;: false,
+  &quot;locked&quot;: false,
+  &quot;room&quot;: {
+    &quot;id&quot;: &quot;63ede350b20526000f64376b&quot;,
     &quot;name&quot;: &quot;eyeson room&quot;,
-    &quot;ready&quot;: false,
+    &quot;ready&quot;: true,
+    &quot;started_at&quot;: &quot;2021-01-01T09:00:00.000Z&quot;,
     &quot;shutdown&quot;: false,
     &quot;sip&quot;: {
-      &quot;uri&quot;: &quot;https://.../&quot;,
-      &quot;domain&quot;: &quot;example.eyeson.team&quot;,
-      &quot;authorizationUser&quot;: &quot;username&quot;,
+      ...
     },
-    &quot;guest_token&quot;: &quot;5971daf62a3d241b0d263ec6&quot;
+    &quot;guest_token&quot;: &quot;gKsiVlrvkFyL3klk1wBHLlm3&quot;
   },
-  &quot;team&quot;: {
-    &quot;name&quot;: &quot;my own company&quot;
+  &quot;team&quot;: {
+    &quot;name&quot;: &quot;My Company Ltd.&quot;
   },
   &quot;user&quot;: {
-    &quot;id&quot;: &quot;unique-user-id&quot;,
-    &quot;name&quot;: &quot;Some User&quot;,
-    &quot;avatar&quot;: &quot;https://example.com/avatar.png&quot;,
-    &quot;guest&quot;: false,
+    &quot;id&quot;: &quot;63ede4a773b114000faa26eb&quot;,
+    &quot;room_id&quot;: &quot;63ede350b20526000f64376b&quot;,
+    &quot;name&quot;: &quot;Guest user&quot;,
+    &quot;avatar&quot;: &quot;https://myawesomeapp.com/images/guest-avatar.png&quot;,
+    &quot;guest&quot;: true,
     &quot;ready&quot;: false,
     &quot;sip&quot;: {
-      &quot;uri&quot;: &quot;https://.../&quot;,
-      &quot;domain&quot;: &quot;example.eyeson.team&quot;,
-      &quot;wsServers&quot;: [ &quot;...&quot; ],
-      &quot;instanceId&quot;: &quot;instance-id&quot;,
-      &quot;userAgentString&quot;: &quot;user-id&quot;,
-      &quot;authorizationUser&quot;: &quot;username&quot;,
-      &quot;displayName&quot;: &quot;display name&quot;,
-      &quot;stunServers&quot;: [ &quot;...&quot; ],
-      &quot;turnServers&quot;: [ &quot;...&quot; ],
-      &quot;registerExpires&quot;: &quot;...&quot;,
-      &quot;password&quot;: &quot;sip-password&quot;
-    },
+      ...
+    }
   },
-  &quot;links&quot;: {
-    &quot;gui&quot;: &quot;https://app.eyeson.team/?588a0d32f9c4860024f36f3&quot;,
-    &quot;self&quot;: &quot;https://api.eyeson.team/rooms&quot;,
-    &quot;websocket&quot;: &quot;https://api.eyeson.team/rt&quot;
+  &quot;links&quot;: {
+    &quot;self&quot;: &quot;https://api.eyeson.team/rooms/cnNqsoJlGIsf8L2WtqDzrH4y&quot;,
+    &quot;gui&quot;: &quot;https://app.eyeson.team/?cnNqsoJlGIsf8L2WtqDzrH4y&quot;,
+    &quot;guest_join&quot;: &quot;https://app.eyeson.team/?guest=gKsiVlrvkFyL3klk1wBHLlm3&quot;,
+    &quot;websocket&quot;: &quot;https://api.eyeson.team/rt?access_key=cnNqsoJlGIsf8L2WtqDzrH4y&quot;
+  },
+  &quot;options&quot;: {
+    &quot;show_names&quot;: true,
+    &quot;show_label&quot;: true,
+    &quot;exit_url&quot;: null,
+    &quot;recording_available&quot;: true,
+    &quot;broadcast_available&quot;: true,
+    &quot;layout_available&quot;: true,
+    &quot;layout&quot;: &quot;auto&quot;,
+    &quot;reaction_available&quot;: true,
+    &quot;suggest_guest_names&quot;: true,
+    &quot;lock_available&quot;: false,
+    &quot;kick_available&quot;: true,
+    &quot;sfu_mode&quot;: &quot;ptp&quot;,
+    &quot;layout_users&quot;: null,
+    &quot;layout_name&quot;: null,
+    &quot;voice_activation&quot;: false,
+    &quot;custom_fields&quot;: {},
+    &quot;widescreen&quot;: false
+  },
+  &quot;presentation&quot;: null,
+  &quot;broadcasts&quot;: [],
+  &quot;recording&quot;: null,
+  &quot;snapshots&quot;: [],
+  &quot;signaling&quot;: {
+    ...
   }
 }
+</code></pre><h2 id="lock-meeting-and-kick-user">Lock meeting and kick user</h2>
+<p>A meeting can be locked, so that only participants who are actively in the
+meeting at the moment of locking are allowed to stay. No more users can join
+afterwards.<br>
+<em>Heads-up! There&rsquo;s no &ldquo;unlock&rdquo; yet. Once locked, there&rsquo;s no way to let new users
+join the running meeting.</em></p>
+<pre><code>POST /rooms/&lt;access_key&gt;/lock
+  RESPONSES 201 CREATED, 403 FORBIDDEN, 404 NOT FOUND, 410 GONE
+</code></pre><p>Sometimes it may be necessary to remove a participant from a meeting. Please
+note, that kicked users can re-join at any time!</p>
+<pre><code>DELETE /rooms/&lt;access_key&gt;/users/&lt;user_id&gt;
+  RESPONSES 200 OK, 403 FORBIDDEN, 404 NOT FOUND, 410 GONE
 </code></pre><h2 id="messages">Messages</h2>
 <p>Broadcast data messages to all users of a meeting.</p>
-<pre><code>POST /rooms/:access_key/messages
-  RESPONSE 201 CREATED, 400 BAD REQUEST, 410 GONE
+<pre><code>POST /rooms/&lt;access_key&gt;/messages
+  RESPONSE 201 CREATED, 400 BAD REQUEST, 404 NOT FOUND, 410 GONE
 </code></pre><table>
 <thead>
 <tr>
@@ -638,52 +675,89 @@ ends, the guest user cannot join any future meetings in this room.</p>
 <p>Recordings are saved in eyesons cloud storage and can be downloaded from there.
 Direct URLs to downloads <em>expire</em>, so it&rsquo;s better store the recording identifier
 and fetch a valid resource link on demand.</p>
-<pre><code>POST /rooms/:access_key/recording
-  RESPONSES 201 CREATED, 400 BAD REQUEST, 410 GONE
-DELETE /rooms/:access_key/recording
-  RESPONSES 200 OK, 410 GONE
-</code></pre><pre><code>GET /recordings/:identifier
+<pre><code>POST /rooms/&lt;access_key&gt;/recording # start recording
+  RESPONSES 201 CREATED, 404 NOT FOUND, 405 METHOD NOT ALLOWED, 406 NOT ACCEPTABLE, 410 GONE
+
+DELETE /rooms/&lt;access_key&gt;/recording # stop recording
+  RESPONSES 200 OK, 404 NOT FOUND, 410 GONE
+</code></pre><pre><code>GET /recordings/&lt;recording_id&gt;
+  HEADERS Authorization
   RESPONSES 200 OK, 404 NOT FOUND
-</code></pre><p>EXAMPLE RESPONSE</p>
+</code></pre><p>Example Response</p>
 <pre><code>{
-  &quot;id&quot;: &quot;596f5e442a3d24196f1b7d32&quot;,
-  &quot;created_at&quot;: &quot;TODO&quot;,
-  &quot;duration&quot;: 12345, // duration in seconds
+  &quot;id&quot;: &quot;63ede57ff3e015000fbe1af5&quot;,
+  &quot;created_at&quot;: 1609491600,
+  &quot;duration&quot;: 1800, // duration in seconds
   &quot;links&quot;: {
-    &quot;self&quot;: &quot;https://api.eyeson.team/recordings/596f5e442a3d24196f1b7d32&quot;,
-    &quot;download&quot;: &quot;https://cloud-storage.eyeson.team/recordings/&lt;key&gt;.webm&quot;
+    &quot;self&quot;: &quot;https://api.eyeson.team/recordings/63ede57ff3e015000fbe1af5&quot;,
+    &quot;download&quot;: &quot;https://fs.eyeson.com/meetings/&lt;key&gt;.webm?...&quot;
   },
   &quot;user&quot;: {
-    &quot;id&quot;: &quot;596f5e442a3d24196f1b7d32&quot;,
+    &quot;id&quot;: &quot;63ede350b20526000f64376d&quot;,
     &quot;name&quot;: &quot;Jane Doe&quot;,
-    &quot;avatar&quot;: &quot;https://example.com/avatar.png&quot;,
-    &quot;guest&quot;: false
+    &quot;avatar&quot;: &quot;https://myawesomeapp.com/images/avatar.png&quot;,
+    &quot;guest&quot;: false,
+    &quot;joined_at&quot;: &quot;2021-01-01T09:00:00.000Z&quot;
   },
-  &quot;room&quot;: {
-    &quot;id&quot;:   &quot;596f5e442a3d24196f1b7d32&quot;,
+  &quot;room&quot;: {
+    &quot;id&quot;: &quot;63ede350b20526000f64376b&quot;,
     &quot;name&quot;: &quot;eyeson room&quot;,
-    &quot;ready&quot;: false,
+    &quot;ready&quot;: true,
+    &quot;started_at&quot;: &quot;2021-01-01T09:00:00.000Z&quot;,
     &quot;shutdown&quot;: false,
     &quot;sip&quot;: {
-      &quot;uri&quot;: &quot;https://.../&quot;,
-      &quot;domain&quot;: &quot;example.eyeson.team&quot;,
-      &quot;authorizationUser&quot;: &quot;username&quot;,
+      ...
     },
-    &quot;guest_token&quot;: &quot;5971daf62a3d241b0d263ec6&quot;
+    &quot;guest_token&quot;: &quot;gKsiVlrvkFyL3klk1wBHLlm3&quot;
   }
 }
-</code></pre><pre><code>DELETE /recordings/:identifier
+</code></pre><pre><code>DELETE /recordings/&lt;recording_id&gt;
+  HEADERS Authorization
   RESPONSES 200 OK, 404 NOT FOUND
 </code></pre><h2 id="snapshot">Snapshot</h2>
 <p>This request creates a snapshot of the current meeting. Snapshots are saved in
 eyesons cloud storage and can be downloaded from there.</p>
-<pre><code>POST /rooms/:access_key/snapshot
-  RESPONSES 201 CREATED, 400 BAD REQUEST, 410 GONE
+<pre><code>POST /rooms/&lt;access_key&gt;/snapshot
+  RESPONSES 201 CREATED, 404 NOT FOUND, 410 GONE
+</code></pre><pre><code>GET /snapshots/&lt;snapshot_id&gt;
+  HEADERS Authorization
+  RESPONSES 200 OK, 404 NOT FOUND
+
+DELETE /snapshots/&lt;snapshot_id&gt;
+  HEADERS Authorization
+  RESPONSES 200 OK, 404 NOT FOUND
+</code></pre><p>Example Response</p>
+<pre><code>{
+  &quot;id&quot;: &quot;63ede760f3e015000fbe1af8&quot;,
+  &quot;name&quot;: &quot;1609491900&quot;,
+  &quot;links&quot;: {
+    &quot;download&quot;: &quot;https://fs.eyeson.com/meetings/&lt;key&gt;.jpg?...&quot;
+  },
+  &quot;creator&quot;: {
+    &quot;id&quot;: &quot;63ede350b20526000f64376d&quot;,
+    &quot;name&quot;: &quot;Jane Doe&quot;,
+    &quot;avatar&quot;: &quot;https://myawesomeapp.com/images/avatar.png&quot;,
+    &quot;guest&quot;: false,
+    &quot;joined_at&quot;: &quot;2021-01-01T09:00:00.000Z&quot;
+  },
+  &quot;joined_at&quot;: &quot;2021-01-01T09:05:00.000Z&quot;
+  &quot;room&quot;: {
+    &quot;id&quot;: &quot;63ede350b20526000f64376b&quot;,
+    &quot;name&quot;: &quot;eyeson room&quot;,
+    &quot;ready&quot;: true,
+    &quot;started_at&quot;: &quot;2021-01-01T09:00:00.000Z&quot;,
+    &quot;shutdown&quot;: false,
+    &quot;sip&quot;: {
+      ...
+    },
+    &quot;guest_token&quot;: &quot;gKsiVlrvkFyL3klk1wBHLlm3&quot;
+  }
+}
 </code></pre><h2 id="broadcast">Broadcast</h2>
 <p>To connect an eyeson room with a broadcast you have to provide a valid
 streaming RTMP url.</p>
-<pre><code>POST /rooms/:access_key/broadcasts
-  RESPONSES 201 CREATED, 400 BAD REQUEST, 410 GONE
+<pre><code>POST /rooms/&lt;access_key&gt;/broadcasts # start broadcast
+  RESPONSES 201 CREATED, 400 BAD REQUEST, 404 NOT FOUND, 405 METHOD NOT ALLOWED, 406 NOT ACCEPTABLE, 410 GONE
 </code></pre><table>
 <thead>
 <tr>
@@ -705,7 +779,7 @@ streaming RTMP url.</p>
 </tr>
 </tbody>
 </table>
-<pre><code>PUT /rooms/:access_key/broadcasts/generic
+<pre><code>PUT /rooms/&lt;access_key&gt;/broadcasts/generic # update broadcast player_url
   RESPONSES 200 OK, 400 BAD REQUEST, 404 NOT FOUND, 410 GONE
 </code></pre><table>
 <thead>
@@ -723,8 +797,8 @@ streaming RTMP url.</p>
 </tr>
 </tbody>
 </table>
-<pre><code>DELETE /rooms/:access_key/broadcasts # stop broadcast
-  RESPONSES 200 OK, 400 BAD REQUEST, 404 NOT FOUND, 410 GONE
+<pre><code>DELETE /rooms/&lt;access_key&gt;/broadcasts # stop broadcast
+  RESPONSES 200 OK, 404 NOT FOUND, 410 GONE
 </code></pre><h2 id="layout">Layout</h2>
 <p>The meeting participants will be presented in an equally distributed tiled
 video layout where eyeson takes care to always update the stream depending on
@@ -746,8 +820,8 @@ but show some participants in an expanded view.</p>
 <p>Note that layouts are not available when using the <a href="https://webrtcglossary.com/sfu/" title="Selective Forwarding Unit">SFU</a> mode, so set the <a href="#eyeson-room">room
 configuration</a> properly or take care to have more than two
 participants.</p>
-<pre><code>POST /rooms/:access_key/layout
-  RESPONSES 200 OK, 400 BAD REQUEST, 410 GONE
+<pre><code>POST /rooms/&lt;access_key&gt;/layout
+  RESPONSES 200 OK, 400 BAD REQUEST, 404 NOT FOUND, 405 METHOD NOT ALLOWED, 410 GONE
 </code></pre><table>
 <thead>
 <tr>
@@ -804,7 +878,7 @@ participants.</p>
 </span><span style="color:#ae81ff"></span>  -d <span style="color:#e6db74">&#34;users[]=USER_ID_B&#34;</span> <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>  -d <span style="color:#e6db74">&#34;users[]=USER_ID_C&#34;</span> <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>  -d <span style="color:#e6db74">&#34;users[]=USER_ID_D&#34;</span> <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>  <span style="color:#e6db74">&#34;https://api.eyeson.team/rooms/ACCESS_KEY/layout&#34;</span>
+</span><span style="color:#ae81ff"></span>  <span style="color:#e6db74">&#34;https://api.eyeson.team/rooms/&lt;ACCESS_KEY&gt;/layout&#34;</span>
 </code></pre></div><h2 id="content-integration-aka-layers">Content Integration aka Layers</h2>
 <p>Show any data content inside your video using the eyeson layer service. There
 are currently three ways to achieve this.</p>
@@ -820,8 +894,8 @@ distortions.</p>
 <p>When using layers you might want to disable the <a href="https://webrtcglossary.com/sfu/" title="Selective Forwarding Unit">SFU</a> mode that in
 default <a href="#eyeson-room">room configuration</a> will transport individual streams
 for single and two participants and not show layer media.</p>
-<pre><code>POST /rooms/:access_key/layers # insert image or text message
-  RESPONSES 201 CREATED, 400 BAD REQUEST, 410 GONE
+<pre><code>POST /rooms/&lt;access_key&gt;/layers # insert image or text message
+  RESPONSES 201 CREATED, 400 BAD REQUEST, 404 NOT FOUND, 410 GONE
 </code></pre><table>
 <thead>
 <tr>
@@ -871,14 +945,15 @@ for single and two participants and not show layer media.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ curl -X POST <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>  -d <span style="color:#e6db74">&#34;url=https://eyeson-team.github.io/api/images/eyeson-overlay.png&#34;</span> <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>  <span style="color:#e6db74">&#34;https://api.eyeson.team/rooms/</span><span style="color:#e6db74">${</span>ACCESS_KEY<span style="color:#e6db74">}</span><span style="color:#e6db74">/layers&#34;</span>
-</code></pre></div><pre><code>DELETE /rooms/:access_key/layers/:index # clear layer, index: -1 or 1
-  RESPONSES 200 OK, 400 BAD REQUEST, 410 GONE
-</code></pre><p>Besides image data you can playback videos. We currently limit it to media
+</code></pre></div><pre><code>DELETE /rooms/&lt;access_key&gt;/layers/&lt;layer_index&gt; # clear layer, layer_index: -1 or 1
+  RESPONSES 200 OK, 404 NOT FOUND, 410 GONE
+</code></pre><h2 id="playbacks">Playbacks</h2>
+<p>Besides image data you can playback videos. We currently limit it to media
 files in webm (preferred) or mp4 format that have to be available through a
 public URL. Note that we do not provide any kind of upload service for this
 feature.</p>
-<pre><code>POST /rooms/:access_key/playbacks # play a video
-  RESPONSES 201 CREATED, 400 BAD REQUEST, 410 GONE
+<pre><code>POST /rooms/&lt;access_key&gt;/playbacks # play a video
+  RESPONSES 201 CREATED, 400 BAD REQUEST, 404 NOT FOUND, 410 GONE
 </code></pre><table>
 <thead>
 <tr>
@@ -906,7 +981,7 @@ feature.</p>
 <tr>
 <td>playback[url]</td>
 <td>String</td>
-<td>Hosted MP4 video file</td>
+<td>Hosted MP4/WEBM video file</td>
 </tr>
 <tr>
 <td>playback[name]</td>
@@ -919,7 +994,11 @@ feature.</p>
 use the layout to set this user to fullscreen during the video playback and
 switch back afterwards using the layout feature. As with layers ensure you
 disable SFU mode.</p>
-<h2 id="register-webhooks">Register Webhooks</h2>
+<p>If the playback has been started with <code>playback[play_id]</code>, it can be stopped
+using the following request:</p>
+<pre><code>DELETE /rooms/&lt;access_key&gt;/playbacks/&lt;play_id&gt; # stop playback with play_id
+  RESPONSES 200 OK, 404 NOT FOUND
+</code></pre><h2 id="register-webhooks">Register Webhooks</h2>
 <p>Register a webhook for any updates using one or multiple of the following
 resource types comma separated: recording_update, room_update. Note that you
 can register a single webhook, use the received response type to detect its
@@ -927,8 +1006,9 @@ purpose. The webhook endpoint on your server requires to accept an HTTPS POST
 request, the body of the request is provided in JSON format.
 You can verify your requests using a SHA256 HMAC on the request body using your
 API key, the corresponding hash is sent within header <code>X-Eyeson-Signature</code>.</p>
-<pre><code>webhooks POST /webhooks
+<pre><code>POST /webhooks
   HEADERS Authorization
+  RESPONSES 201 CREATED, 400 BAD REQUEST, 403 FORBIDDEN
 </code></pre><table>
 <thead>
 <tr>
@@ -954,63 +1034,79 @@ API key, the corresponding hash is sent within header <code>X-Eyeson-Signature</
 and response code.</p>
 <pre><code>GET /webhooks
   HEADERS Authorization
-  RESPONSES 200 OK
-</code></pre><p>EXAMPLE RESPONSE</p>
+  RESPONSES 200 OK, 403 FORBIDDEN
+</code></pre><p>Example Response</p>
 <pre><code>{
-  &quot;id&quot;: &quot;596f5e442a3d24196f1b7d32&quot;,
-  &quot;url&quot;: &quot;https://eyeson.com/webhook&quot;,
-  &quot;types&quot;: &quot;room_update&quot;,
-  &quot;last_request_sent_at&quot;:&quot;2020-08-20T11:00:57.117+00:00&quot;,
-  &quot;last_response_code&quot;:&quot;204&quot;
+  &quot;id&quot;: &quot;63ede98fb20526000f64378a&quot;,
+  &quot;types&quot;: [
+    &quot;room_update&quot;
+  ],
+  &quot;url&quot;: &quot;https://myawesomeapp.com/meeting-webhook&quot;,
+  &quot;last_request_sent_at&quot;: &quot;2021-01-01T09:00:00.000+00:00&quot;,
+  &quot;last_response_code&quot;: &quot;201&quot;
 }
-</code></pre><pre><code>DELETE /webhooks/:id
+</code></pre><pre><code>DELETE /webhooks/&lt;webhook_id&gt;
   HEADERS Authorization
-  RESPONSES 204 OK, 400 BAD REQUEST
+  RESPONSES 204 NO CONTENT, 400 BAD REQUEST, 403 FORBIDDEN, 404 NOT FOUND
 </code></pre><p>In order to get notified for new recordings in any room session, you can
 register a webhook upfront, using your target location and the webhook type
 <code>recording_update</code>. See the recording resource on details of the received JSON
 document.</p>
-<p>EXAMPLE</p>
+<p>Example Webhook</p>
 <pre><code>{
+  &quot;timestamp&quot;: 1676540818,
   &quot;type&quot;: &quot;recording_update&quot;,
   &quot;recording&quot;: {
-    &quot;id&quot;: &quot;...&quot;,
-    &quot;created_at:&quot;: 1591700000,
-    &quot;duration:&quot;: 60,
-    &quot;links:&quot;: {
-      &quot;self&quot;: &quot;https://...&quot;,
-      &quot;download&quot;: &quot;https://...&quot;
+    &quot;id&quot;: '63edf48973b114000faa272b',
+    &quot;created_at&quot;: 1676539018,
+    &quot;duration&quot;: 1800,
+    &quot;links&quot;: {
+      &quot;self&quot;: &quot;https://api.eyeson.team/recordings/63edf48973b114000faa272b&quot;,
+      &quot;download&quot;: &quot;https://fs.eyeson.com/meetings/&lt;key&gt;.webm?...&quot;
     },
     &quot;user&quot;: {
-      &quot;id&quot;: &quot;...&quot;,
-      &quot;name&quot;: &quot;...&quot;,
-      &quot;avatar&quot;: &quot;...&quot;
+      &quot;id&quot;: &quot;63ede350b20526000f64376d&quot;,
+      &quot;name&quot;: &quot;Jane Doe&quot;,
+      &quot;avatar&quot;: &quot;https://myawesomeapp.com/images/avatar.png&quot;,
+      &quot;guest&quot;: false,
+      &quot;joined_at&quot;: &quot;2021-01-01T09:00:00.000Z&quot;
     },
     &quot;room&quot;: {
-      &quot;id&quot;: &quot;...&quot;,
-      &quot;name&quot;: &quot;...&quot;,
-      &quot;started_at&quot;: &quot;...&quot;,
+      &quot;id&quot;: &quot;63ede350b20526000f64376b&quot;,
+      &quot;name&quot;: &quot;eyeson room&quot;,
+      &quot;ready&quot;: true,
+      &quot;started_at&quot;: &quot;2021-01-01T09:00:00.000Z&quot;,
+      &quot;shutdown&quot;: false,
+      &quot;sip&quot;: {
+        ...
+      },
+      &quot;guest_token&quot;: &quot;gKsiVlrvkFyL3klk1wBHLlm3&quot;
     }
   }
 }
 </code></pre><p>If you want to build up a meeting history in your application, register a
 webhook for <code>room_update</code> and track when receiving a room update where
 <code>shutdown</code> attribute is <code>true</code>.</p>
-<p>EXAMPLE</p>
+<p>Example Webhook</p>
 <pre><code>{
+  &quot;timestamp&quot;: 1676540818,
   &quot;type&quot;: &quot;room_update&quot;,
   &quot;room&quot;: {
-    &quot;id&quot;: &quot;...&quot;,
-    &quot;name&quot;: &quot;...&quot;,
-    &quot;started_at&quot;: &quot;...&quot;,
-    &quot;shutdown&quot;: true
+    &quot;id&quot;: &quot;63ede350b20526000f64376b&quot;,
+    &quot;name&quot;: &quot;eyeson room&quot;,
+    &quot;ready&quot;: false,
+    &quot;started_at&quot;: null,
+    &quot;shutdown&quot;: true,
+    &quot;sip&quot;: {
+      ...
+    }
   }
 }
 </code></pre>
 
 			<aside class="copyright" role="note">
 				
-				&copy; 2022 eyeson GmbH &ndash;
+				&copy; 2023 eyeson GmbH &ndash;
 				
 				Documentation built with
 				<a href="https://www.gohugo.io" target="_blank">Hugo</a>
@@ -1023,22 +1119,6 @@ webhook for <code>room_update</code> and track when receiving a room update wher
 
 <nav class="pagination" aria-label="Footer">
   <div class="previous">
-  
-      <a href="https://eyeson-team.github.io/api/websocket-events/" title="Websocket Events">
-        <span class="direction">
-          Previous
-        </span>
-        <div class="page">
-          <div class="button button-previous" role="button" aria-label="Previous">
-            <i class="icon icon-back"></i>
-          </div>
-          <div class="stretch">
-            <div class="title">
-              Websocket Events
-            </div>
-          </div>
-        </div>
-      </a>
   
   </div>
 
