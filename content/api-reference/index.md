@@ -635,14 +635,14 @@ document.
 Example Webhook
 ```
 {
-  "timestamp": 1676540818,
+  "timestamp": 1609493400,
   "type": "recording_update",
   "recording": {
-    "id": '63edf48973b114000faa272b',
-    "created_at": 1676539018,
+    "id": "63ede57ff3e015000fbe1af5",
+    "created_at": 1609491600,
     "duration": 1800,
     "links": {
-      "self": "https://api.eyeson.team/recordings/63edf48973b114000faa272b",
+      "self": "https://api.eyeson.team/recordings/63ede57ff3e015000fbe1af5",
       "download": "https://fs.eyeson.com/meetings/<key>.webm?..."
     },
     "user": {
@@ -674,7 +674,7 @@ webhook for `room_update` and track when receiving a room update where
 Example Webhook
 ```
 {
-  "timestamp": 1676540818,
+  "timestamp": 1609493400,
   "type": "room_update",
   "room": {
     "id": "63ede350b20526000f64376b",
