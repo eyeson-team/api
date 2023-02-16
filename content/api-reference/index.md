@@ -401,7 +401,7 @@ Example Response
     "guest": false,
     "joined_at": "2021-01-01T09:00:00.000Z"
   },
-  "joined_at": "2021-01-01T09:05:00.000Z"
+  "created_at": "2021-01-01T09:05:00.000Z"
   "room": {
     "id": "63ede350b20526000f64376b",
     "name": "eyeson room",
