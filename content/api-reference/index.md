@@ -50,23 +50,24 @@ The guest-token can be used to **quick-join** an eyeson room. Using the eyeson
 web GUI a quick-join URL can be generated using the following pattern:
 
 ```
-https://app.eyeson.team/guest=<guest_token>
+https://app.eyeson.team/?guest=<guest_token>
 ```
 
 The user to join the room has to be provided. If someone already created and
 joined the room session, the user provided will join this existing room
 session.
 
-
 ```
 POST /rooms # create room a new room or join an existing by id.
   HEADERS Authorization
-  RESPONSES 201 CREATED, 400 BAD REQUEST
-GET  /rooms/:access_key # receive details of a persisted room.
+  RESPONSES 201 CREATED, 400 BAD REQUEST, 403 FORBIDDEN
+
+GET /rooms/<access_key> # receive details of a persisted room.
   RESPONSES 200 OK, 404 NOT FOUND, 410 GONE
-DELETE /rooms/:identifier # force to stop a running meeting
+
+DELETE /rooms/<room_id> # force to stop a running meeting
   HEADERS Authorization
-  RESPONSES 204 NO CONTENT, 404 NOT FOUND, 400 BAD REQUEST
+  RESPONSES 204 NO CONTENT, 400 BAD REQUEST, 403 FORBIDDEN, 404 NOT FOUND
 ```
 
 Parameters                                                | Type                     | Description
@@ -98,68 +99,92 @@ options[custom\_fields]\[virtual_background\]             | Boolean (optional)  
 options[custom\_fields]\[virtual_background_allow_guest\] | Boolean (optional)       | Enable Virtual Background selection for Guest users. Default: false
 options[custom\_fields]\[virtual_background_image\]       | String (optional)        | Provide a custom Virtual Background image for selection.
 
-EXAMPLE RESPONSE
+Example Response
 ```
 {
-  "access_key": "5cd3f7dce1382379a013d874",
-  "ready": false,
-  "room": {
-    "id":   "596f5e442a3d24196f1b7d32",
+  "access_key": "vAX29sGYPZEvZQwvg0jycrPX",
+  "ready": false,
+  "locked": false,
+  "room": {
+    "id": "63ede350b20526000f64376b",
     "name": "eyeson room",
     "ready": false,
+    "started_at": "2021-01-01T09:00:00.000Z",
     "shutdown": false,
     "sip": {
-      "uri": "https://.../",
-      "domain": "example.eyeson.team",
-      "authorizationUser": "username",
+      ...
     },
-    "guest_token": "5971daf62a3d241b0d263ec6"
+    "guest_token": "gKsiVlrvkFyL3klk1wBHLlm3"
   },
-  "team": {
+  "team": {
     "name": "My Company Ltd."
   },
   "user": {
-    "id": "596f5e442a3d24196f1b7d32",
+    "id": "63ede350b20526000f64376d",
+    "room_id": "63ede350b20526000f64376b",
     "name": "Jane Doe",
-    "avatar": "https://example.com/avatar.png",
+    "avatar": "https://myawesomeapp.com/images/avatar.png",
     "guest": false,
     "ready": false,
     "sip": {
-      "uri": "https://.../",
-      "domain": "example.eyeson.team",
-      "wsServers": [ "..." ],
-      "instanceId": "some-instance-id",
-      "userAgentString": "user-id",
-      "authorizationUser": "username",
-      "displayName": "mrs. doe",
-      "stunServers": [ "..." ],
-      "turnServers": [ "..." ],
-      "registerExpires": "...",
-      "password": "sip-password"
-    },
+      ...
+    }
   },
-  "links": {
-    "gui": "https://app.eyeson.team/?588a0d32f9c4860024f36f3",
-    "self": "https://api.eyeson.team/rooms",
-    "websocket": "https://api.eyeson.team/rt"
+  "links": {
+    "self": "https://api.eyeson.team/rooms/vAX29sGYPZEvZQwvg0jycrPX",
+    "gui": "https://app.eyeson.team/?vAX29sGYPZEvZQwvg0jycrPX",
+    "guest_join": "https://app.eyeson.team/?guest=gKsiVlrvkFyL3klk1wBHLlm3",
+    "websocket": "https://api.eyeson.team/rt?access_key=vAX29sGYPZEvZQwvg0jycrPX"
+  },
+  "options": {
+    "show_names": true,
+    "show_label": true,
+    "exit_url": "https://myawesomeapp.com/meeting-end",
+    "recording_available": true,
+    "broadcast_available": true,
+    "layout_available": true,
+    "layout": "auto",
+    "reaction_available": true,
+    "suggest_guest_names": true,
+    "lock_available": false,
+    "kick_available": true,
+    "sfu_mode": "ptp",
+    "layout_users": null,
+    "layout_name": null,
+    "voice_activation": false,
+    "custom_fields": {},
+    "widescreen": false
+  },
+  "presentation": null,
+  "broadcasts": [],
+  "recording": null,
+  "snapshots": [],
+  "signaling": {
+    ...
   }
 }
 ```
 
+If `recording_available`, `broadcast_available`, `layout_available`, or
+other `...available` options are set to false, related API requests will respond
+with status `405 METHOD NOT ALLOWED`. Except for kick and lock, they will
+respond with status `403 FORBIDDEN`.
+
 ## User and Guest User
 
 ```
-GET /rooms/:access_key/users/:identifier # Fetch user details.
+GET /rooms/<access_key>/users/<user_id> # Fetch user details.
   RESPONSES 200 OK, 404 NOT FOUND, 410 GONE
 ```
 
-EXAMPLE RESPONSE
+Example Response
 ```
 {
-  "id": "596f5e442a3d24196f1b7d32",
+  "id": "63ede350b20526000f64376d",
   "name": "Jane Doe",
-  "avatar": "https://example.com/avatar.png",
-  "guest": false
+  "avatar": "https://myawesomeapp.com/images/avatar.png",
+  "guest": false,
+  "joined_at": "2021-01-01T09:00:00.000Z"
 }
 ```
 
@@ -171,8 +196,8 @@ A guest user only has access to a running meeting session. Once a meeting
 ends, the guest user cannot join any future meetings in this room.
 
 ```
-POST /guests/:guest_token # Create a guest user for a meeting.
-  RESPONSES 201 CREATED, 401 UNAUTHORIZED
+POST /guests/<guest_token> # Create a guest user for a meeting.
+  RESPONSES 201 CREATED, 400 BAD REQUEST, 410 GONE, 423 LOCKED
 ```
 
 Parameters               | Type                     | Description
@@ -183,52 +208,91 @@ avatar                   | String (optional)        | HTTP URI to a user avatar.
 custom\_fields\[locale\] | Language Code (optional) | User preferred language code (en, de, fr).
 
 
-EXAMPLE RESPONSE
+Example Response
 ```
 {
-  "access_key": "588a0d32f9c4860024f36f3",
-  "ready": false,
-  "room": {
-    "id":   "596f5e442a3d24196f1b7d32",
+  "access_key": "cnNqsoJlGIsf8L2WtqDzrH4y",
+  "ready": false,
+  "locked": false,
+  "room": {
+    "id": "63ede350b20526000f64376b",
     "name": "eyeson room",
-    "ready": false,
+    "ready": true,
+    "started_at": "2021-01-01T09:00:00.000Z",
     "shutdown": false,
     "sip": {
-      "uri": "https://.../",
-      "domain": "example.eyeson.team",
-      "authorizationUser": "username",
+      ...
     },
-    "guest_token": "5971daf62a3d241b0d263ec6"
+    "guest_token": "gKsiVlrvkFyL3klk1wBHLlm3"
   },
-  "team": {
-    "name": "my own company"
+  "team": {
+    "name": "My Company Ltd."
   },
   "user": {
-    "id": "unique-user-id",
-    "name": "Some User",
-    "avatar": "https://example.com/avatar.png",
-    "guest": false,
+    "id": "63ede4a773b114000faa26eb",
+    "room_id": "63ede350b20526000f64376b",
+    "name": "Guest user",
+    "avatar": "https://myawesomeapp.com/images/guest-avatar.png",
+    "guest": true,
     "ready": false,
     "sip": {
-      "uri": "https://.../",
-      "domain": "example.eyeson.team",
-      "wsServers": [ "..." ],
-      "instanceId": "instance-id",
-      "userAgentString": "user-id",
-      "authorizationUser": "username",
-      "displayName": "display name",
-      "stunServers": [ "..." ],
-      "turnServers": [ "..." ],
-      "registerExpires": "...",
-      "password": "sip-password"
-    },
+      ...
+    }
   },
-  "links": {
-    "gui": "https://app.eyeson.team/?588a0d32f9c4860024f36f3",
-    "self": "https://api.eyeson.team/rooms",
-    "websocket": "https://api.eyeson.team/rt"
+  "links": {
+    "self": "https://api.eyeson.team/rooms/cnNqsoJlGIsf8L2WtqDzrH4y",
+    "gui": "https://app.eyeson.team/?cnNqsoJlGIsf8L2WtqDzrH4y",
+    "guest_join": "https://app.eyeson.team/?guest=gKsiVlrvkFyL3klk1wBHLlm3",
+    "websocket": "https://api.eyeson.team/rt?access_key=cnNqsoJlGIsf8L2WtqDzrH4y"
+  },
+  "options": {
+    "show_names": true,
+    "show_label": true,
+    "exit_url": null,
+    "recording_available": true,
+    "broadcast_available": true,
+    "layout_available": true,
+    "layout": "auto",
+    "reaction_available": true,
+    "suggest_guest_names": true,
+    "lock_available": false,
+    "kick_available": true,
+    "sfu_mode": "ptp",
+    "layout_users": null,
+    "layout_name": null,
+    "voice_activation": false,
+    "custom_fields": {},
+    "widescreen": false
+  },
+  "presentation": null,
+  "broadcasts": [],
+  "recording": null,
+  "snapshots": [],
+  "signaling": {
+    ...
   }
 }
+```
+
+## Lock meeting and kick user
+
+A meeting can be locked, so that only participants who are actively in the
+meeting at the moment of locking are allowed to stay. No more users can join
+afterwards.\
+_Heads-up! There's no "unlock" yet. Once locked, there's no way to let new users
+join the running meeting._
+
+```
+POST /rooms/<access_key>/lock
+  RESPONSES 201 CREATED, 403 FORBIDDEN, 404 NOT FOUND, 410 GONE
+```
+
+Sometimes it may be necessary to remove a participant from a meeting. Please
+note, that kicked users can re-join at any time!
+
+```
+DELETE /rooms/<access_key>/users/<user_id>
+  RESPONSES 200 OK, 403 FORBIDDEN, 404 NOT FOUND, 410 GONE
 ```
 
 ## Messages
@@ -236,8 +300,8 @@ EXAMPLE RESPONSE
 Broadcast data messages to all users of a meeting.
 
 ```
-POST /rooms/:access_key/messages
-  RESPONSE 201 CREATED, 400 BAD REQUEST, 410 GONE
+POST /rooms/<access_key>/messages
+  RESPONSE 201 CREATED, 400 BAD REQUEST, 404 NOT FOUND, 410 GONE
 ```
 
 Parameters   | Type              | Description
@@ -252,50 +316,53 @@ Direct URLs to downloads _expire_, so it's better store the recording identifier
 and fetch a valid resource link on demand.
 
 ```
-POST /rooms/:access_key/recording
-  RESPONSES 201 CREATED, 400 BAD REQUEST, 410 GONE
-DELETE /rooms/:access_key/recording
-  RESPONSES 200 OK, 410 GONE
+POST /rooms/<access_key>/recording # start recording
+  RESPONSES 201 CREATED, 404 NOT FOUND, 405 METHOD NOT ALLOWED, 406 NOT ACCEPTABLE, 410 GONE
+
+DELETE /rooms/<access_key>/recording # stop recording
+  RESPONSES 200 OK, 404 NOT FOUND, 410 GONE
 ```
 
 ```
-GET /recordings/:identifier
+GET /recordings/<recording_id>
+  HEADERS Authorization
   RESPONSES 200 OK, 404 NOT FOUND
 ```
 
-EXAMPLE RESPONSE
+Example Response
 ```
 {
-  "id": "596f5e442a3d24196f1b7d32",
-  "created_at": "TODO",
-  "duration": 12345, // duration in seconds
+  "id": "63ede57ff3e015000fbe1af5",
+  "created_at": 1609491600,
+  "duration": 1800, // duration in seconds
   "links": {
-    "self": "https://api.eyeson.team/recordings/596f5e442a3d24196f1b7d32",
-    "download": "https://cloud-storage.eyeson.team/recordings/<key>.webm"
+    "self": "https://api.eyeson.team/recordings/63ede57ff3e015000fbe1af5",
+    "download": "https://fs.eyeson.com/meetings/<key>.webm?..."
   },
   "user": {
-    "id": "596f5e442a3d24196f1b7d32",
+    "id": "63ede350b20526000f64376d",
     "name": "Jane Doe",
-    "avatar": "https://example.com/avatar.png",
-    "guest": false
+    "avatar": "https://myawesomeapp.com/images/avatar.png",
+    "guest": false,
+    "joined_at": "2021-01-01T09:00:00.000Z"
   },
-  "room": {
-    "id":   "596f5e442a3d24196f1b7d32",
+  "room": {
+    "id": "63ede350b20526000f64376b",
     "name": "eyeson room",
-    "ready": false,
+    "ready": true,
+    "started_at": "2021-01-01T09:00:00.000Z",
     "shutdown": false,
     "sip": {
-      "uri": "https://.../",
-      "domain": "example.eyeson.team",
-      "authorizationUser": "username",
+      ...
     },
-    "guest_token": "5971daf62a3d241b0d263ec6"
+    "guest_token": "gKsiVlrvkFyL3klk1wBHLlm3"
   }
 }
 ```
 
 ```
-DELETE /recordings/:identifier
+DELETE /recordings/<recording_id>
+  HEADERS Authorization
   RESPONSES 200 OK, 404 NOT FOUND
 ```
 
@@ -305,8 +372,48 @@ This request creates a snapshot of the current meeting. Snapshots are saved in
 eyesons cloud storage and can be downloaded from there.
 
 ```
-POST /rooms/:access_key/snapshot
-  RESPONSES 201 CREATED, 400 BAD REQUEST, 410 GONE
+POST /rooms/<access_key>/snapshot
+  RESPONSES 201 CREATED, 404 NOT FOUND, 410 GONE
+```
+
+```
+GET /snapshots/<snapshot_id>
+  HEADERS Authorization
+  RESPONSES 200 OK, 404 NOT FOUND
+
+DELETE /snapshots/<snapshot_id>
+  HEADERS Authorization
+  RESPONSES 200 OK, 404 NOT FOUND
+```
+
+Example Response
+```
+{
+  "id": "63ede760f3e015000fbe1af8",
+  "name": "1609491900",
+  "links": {
+    "download": "https://fs.eyeson.com/meetings/<key>.jpg?..."
+  },
+  "creator": {
+    "id": "63ede350b20526000f64376d",
+    "name": "Jane Doe",
+    "avatar": "https://myawesomeapp.com/images/avatar.png",
+    "guest": false,
+    "joined_at": "2021-01-01T09:00:00.000Z"
+  },
+  "joined_at": "2021-01-01T09:05:00.000Z"
+  "room": {
+    "id": "63ede350b20526000f64376b",
+    "name": "eyeson room",
+    "ready": true,
+    "started_at": "2021-01-01T09:00:00.000Z",
+    "shutdown": false,
+    "sip": {
+      ...
+    },
+    "guest_token": "gKsiVlrvkFyL3klk1wBHLlm3"
+  }
+}
 ```
 
 ## Broadcast
@@ -315,8 +422,8 @@ To connect an eyeson room with a broadcast you have to provide a valid
 streaming RTMP url.
 
 ```
-POST /rooms/:access_key/broadcasts
-  RESPONSES 201 CREATED, 400 BAD REQUEST, 410 GONE
+POST /rooms/<access_key>/broadcasts # start broadcast
+  RESPONSES 201 CREATED, 400 BAD REQUEST, 404 NOT FOUND, 405 METHOD NOT ALLOWED, 406 NOT ACCEPTABLE, 410 GONE
 ```
 
 Parameters   | Type              | Description
@@ -325,7 +432,7 @@ stream\_url  | String (required) | Streaming URL.
 player\_url  | String (optional) | Public URL to view the live video.
 
 ```
-PUT /rooms/:access_key/broadcasts/generic
+PUT /rooms/<access_key>/broadcasts/generic # update broadcast player_url
   RESPONSES 200 OK, 400 BAD REQUEST, 404 NOT FOUND, 410 GONE
 ```
 
@@ -334,8 +441,8 @@ Parameters   | Type              | Description
 player\_url  | String (required) | Public URL to view the live video.
 
 ```
-DELETE /rooms/:access_key/broadcasts # stop broadcast
-  RESPONSES 200 OK, 400 BAD REQUEST, 404 NOT FOUND, 410 GONE
+DELETE /rooms/<access_key>/broadcasts # stop broadcast
+  RESPONSES 200 OK, 404 NOT FOUND, 410 GONE
 ```
 
 ## Layout
@@ -365,8 +472,8 @@ configuration](#eyeson-room) properly or take care to have more than two
 participants.
 
 ```
-POST /rooms/:access_key/layout
-  RESPONSES 200 OK, 400 BAD REQUEST, 410 GONE
+POST /rooms/<access_key>/layout
+  RESPONSES 200 OK, 400 BAD REQUEST, 404 NOT FOUND, 405 METHOD NOT ALLOWED, 410 GONE
 ```
 
 Parameters                 | Type               | Description
@@ -387,7 +494,7 @@ $ curl -X POST \
   -d "users[]=USER_ID_B" \
   -d "users[]=USER_ID_C" \
   -d "users[]=USER_ID_D" \
-  "https://api.eyeson.team/rooms/ACCESS_KEY/layout"
+  "https://api.eyeson.team/rooms/<ACCESS_KEY>/layout"
 ```
 
 ## Content Integration aka Layers
@@ -412,8 +519,8 @@ default [room configuration](#eyeson-room) will transport individual streams
 for single and two participants and not show layer media.
 
 ```
-POST /rooms/:access_key/layers # insert image or text message
-  RESPONSES 201 CREATED, 400 BAD REQUEST, 410 GONE
+POST /rooms/<access_key>/layers # insert image or text message
+  RESPONSES 201 CREATED, 400 BAD REQUEST, 404 NOT FOUND, 410 GONE
 ```
 
 Parameters      | Type              | Description
@@ -433,9 +540,11 @@ $ curl -X POST \
 ```
 
 ```
-DELETE /rooms/:access_key/layers/:index # clear layer, index: -1 or 1
-  RESPONSES 200 OK, 400 BAD REQUEST, 410 GONE
+DELETE /rooms/<access_key>/layers/<layer_index> # clear layer, layer_index: -1 or 1
+  RESPONSES 200 OK, 404 NOT FOUND, 410 GONE
 ```
+
+## Playbacks
 
 Besides image data you can playback videos. We currently limit it to media
 files in webm (preferred) or mp4 format that have to be available through a
@@ -443,8 +552,8 @@ public URL. Note that we do not provide any kind of upload service for this
 feature.
 
 ```
-POST /rooms/:access_key/playbacks # play a video
-  RESPONSES 201 CREATED, 400 BAD REQUEST, 410 GONE
+POST /rooms/<access_key>/playbacks # play a video
+  RESPONSES 201 CREATED, 400 BAD REQUEST, 404 NOT FOUND, 410 GONE
 ```
 
 Parameters               | Type              | Description
@@ -452,13 +561,22 @@ Parameters               | Type              | Description
 playback[audio]          | Boolean           | Play audio (default: false)
 playback[play_id]        | String            | Choose an identifier, e.g. current timestamp or use a custom layout position identifier
 playback[replacement_id] | String            | User-id of the participants video to be replaced
-playback[url]            | String            | Hosted MP4 video file
+playback[url]            | String            | Hosted MP4/WEBM video file
 playback[name]           | String            | Custom readable name for identification
 
 The video will replace the current stream of a specific user. For sure you can
 use the layout to set this user to fullscreen during the video playback and
 switch back afterwards using the layout feature. As with layers ensure you
 disable SFU mode.
+
+If the playback has been started with `playback[play_id]`, it can be stopped
+using the following request:
+
+```
+DELETE /rooms/<access_key>/playbacks/<play_id> # stop playback with play_id
+  RESPONSES 200 OK, 404 NOT FOUND
+```
+
 
 ## Register Webhooks
 
@@ -471,8 +589,9 @@ You can verify your requests using a SHA256 HMAC on the request body using your
 API key, the corresponding hash is sent within header `X-Eyeson-Signature`.
 
 ```
-webhooks POST /webhooks
+POST /webhooks
   HEADERS Authorization
+  RESPONSES 201 CREATED, 400 BAD REQUEST, 403 FORBIDDEN
 ```
 
 Parameters   | Type              | Description
@@ -486,24 +605,26 @@ and response code.
 ```
 GET /webhooks
   HEADERS Authorization
-  RESPONSES 200 OK
+  RESPONSES 200 OK, 403 FORBIDDEN
 ```
 
-EXAMPLE RESPONSE
+Example Response
 ```
 {
-  "id": "596f5e442a3d24196f1b7d32",
-  "url": "https://eyeson.com/webhook",
-  "types": "room_update",
-  "last_request_sent_at":"2020-08-20T11:00:57.117+00:00",
-  "last_response_code":"204"
+  "id": "63ede98fb20526000f64378a",
+  "types": [
+    "room_update"
+  ],
+  "url": "https://myawesomeapp.com/meeting-webhook",
+  "last_request_sent_at": "2021-01-01T09:00:00.000+00:00",
+  "last_response_code": "201"
 }
 ```
 
 ```
-DELETE /webhooks/:id
+DELETE /webhooks/<webhook_id>
   HEADERS Authorization
-  RESPONSES 204 OK, 400 BAD REQUEST
+  RESPONSES 204 NO CONTENT, 400 BAD REQUEST, 403 FORBIDDEN, 404 NOT FOUND
 ```
 
 In order to get notified for new recordings in any room session, you can
@@ -511,27 +632,36 @@ register a webhook upfront, using your target location and the webhook type
 `recording_update`. See the recording resource on details of the received JSON
 document.
 
-EXAMPLE
+Example Webhook
 ```
 {
+  "timestamp": 1676540818,
   "type": "recording_update",
   "recording": {
-    "id": "...",
-    "created_at:": 1591700000,
-    "duration:": 60,
-    "links:": {
-      "self": "https://...",
-      "download": "https://..."
+    "id": '63edf48973b114000faa272b',
+    "created_at": 1676539018,
+    "duration": 1800,
+    "links": {
+      "self": "https://api.eyeson.team/recordings/63edf48973b114000faa272b",
+      "download": "https://fs.eyeson.com/meetings/<key>.webm?..."
     },
     "user": {
-      "id": "...",
-      "name": "...",
-      "avatar": "..."
+      "id": "63ede350b20526000f64376d",
+      "name": "Jane Doe",
+      "avatar": "https://myawesomeapp.com/images/avatar.png",
+      "guest": false,
+      "joined_at": "2021-01-01T09:00:00.000Z"
     },
     "room": {
-      "id": "...",
-      "name": "...",
-      "started_at": "...",
+      "id": "63ede350b20526000f64376b",
+      "name": "eyeson room",
+      "ready": true,
+      "started_at": "2021-01-01T09:00:00.000Z",
+      "shutdown": false,
+      "sip": {
+        ...
+      },
+      "guest_token": "gKsiVlrvkFyL3klk1wBHLlm3"
     }
   }
 }
@@ -541,15 +671,20 @@ If you want to build up a meeting history in your application, register a
 webhook for `room_update` and track when receiving a room update where
 `shutdown` attribute is `true`.
 
-EXAMPLE
+Example Webhook
 ```
 {
+  "timestamp": 1676540818,
   "type": "room_update",
   "room": {
-    "id": "...",
-    "name": "...",
-    "started_at": "...",
-    "shutdown": true
+    "id": "63ede350b20526000f64376b",
+    "name": "eyeson room",
+    "ready": false,
+    "started_at": null,
+    "shutdown": true,
+    "sip": {
+      ...
+    }
   }
 }
 ```
