@@ -6,23 +6,23 @@ weight: 10
 ---
 
 To start a fully featured video call all you have to do is send a single
-request to the eyeson API. The eyeson services organize video calls in
+request to the Eyeson API. The Eyeson services organize video calls in
 rooms. After you create a room the API provides you with an URL you can use to
-send a user to the eyeson web GUI. The web GUI is hosted by the eyeson team and
+send a user to the Eyeson web GUI. The web GUI is hosted by the Eyeson team and
 ensures regular updates with the latest features as well as a stable and well
 designed user experience. Any mobile visitors will be handled automatically
 given the choice to join the meeting via mobile applications too.
 
 ## Get Your Api Key
 
-Before you can create your first custom eyeson video calls you have to
+Before you can create your first custom Eyeson video calls you have to
 generate a new api key.
 
-Sign in at [eyeson Developers](https://developers.eyeson.team/), switch to
+Sign in at [Eyeson Developers](https://developers.eyeson.team/), switch to
 the [projects section](https://developers.eyeson.team/projects), describe your
 project in a few sentences and request your api key. Soon you will receive an
 email to confirm the key generation. By proceeding you are ready to use
-eyeson with your very personal api key.
+Eyeson with your very personal api key.
 
 The api is free to use and does not require any payment method to be stored and
 does not cause costs. However, please note that the free service has a
@@ -43,14 +43,14 @@ Authorization: <YOUR_API_KEY>
 Responses will always contain an appropriate HTML status code plus a JSON
 object in the body.
 
-## Start and Join eyeson Room
+## Start and Join Eyeson Room
 
 It's incredibly easy to get started. All you need to do is implement a single
-request. This request creates an eyeson MCU instance and provides you with a
+request. This request creates an Eyeson MCU instance and provides you with a
 link to a reference web UI which can be used right away.
 
-The eyeson API provides eyeson room features to all WebRTC and WebSocket
-capable clients. All communication with eyeson occurs over Secure HTTP and
+The Eyeson API provides Eyeson room features to all WebRTC and WebSocket
+capable clients. All communication with Eyeson occurs over Secure HTTP and
 Secure WebSocket protocols.
 
 ```
@@ -79,7 +79,7 @@ EXAMPLE RESPONSE
 ```
 
 Redirect your client to the URL given in the `links.gui` attribute, to use
-with the eyeson pre-defined user interface.
+with the Eyeson pre-defined user interface.
 
 ```
 $ curl -X POST \
@@ -90,16 +90,16 @@ $ curl -X POST \
 
 ## Next Steps
 
-The eyeson service provides an API for real-time data synchronization. The RT
+The Eyeson service provides an API for real-time data synchronization. The RT
 API is a modern WebSocket based API providing you with a real time stream of
 events and enabling you to build a powerful UI in combination with our
 JavaScript libraries, SDKs and REST API.
 
 ### Go Further with SDKs
 
-Test your integration by using the predefined eyeson UI. Build a totally
-customized UI and UX by using the SDKs. Integrate eyeson features in your own
-mobile and web applications. Use additional eyeson cloud MCU features,
+Test your integration by using the predefined Eyeson UI. Build a totally
+customized UI and UX by using the SDKs. Integrate Eyeson features in your own
+mobile and web applications. Use additional Eyeson cloud MCU features,
 available via the API.
 
 Our REST API allows you to build your individual video communication solutions.

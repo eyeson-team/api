@@ -1,6 +1,6 @@
 baseurl = "https://eyeson-team.github.io/api/"
 languageCode = "en-us"
-title = "eyeson API documentation"
+title = "Eyeson API Documentation"
 theme = "hugo-material-docs"
 metadataformat = "yaml"
 canonifyurls = true
@@ -10,7 +10,7 @@ googleAnalytics = ""
 [params]
 	# General information
 	author = "eyeson GmbH"
-	description = "eyeson API documentation"
+	description = "Eyeson API Documentation"
 	copyright = "eyeson GmbH"
 
 	# Repository
@@ -35,7 +35,7 @@ googleAnalytics = ""
     	accent  = "light-blue"
 
     [params.font]
-    	text = "Ubuntu"
+    	text = "Hubot Sans"
     	code = "Ubuntu Mono"
 
 [social]
@@ -45,7 +45,7 @@ googleAnalytics = ""
 
 
 [[menu.main]]
-	name   = "eyeson API"
+	name   = "Eyeson API"
 	url    = "/"
 	weight = 0
 
