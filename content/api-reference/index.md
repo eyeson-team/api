@@ -5,12 +5,12 @@ draft: false
 weight: 20
 ---
 
-Video calls are organized in eyeson rooms. You can control who will join
+Video calls are organized in Eyeson rooms. You can control who will join
 a room by using a unique identifier. Every user will receive a link to the
 GUI containing a unique access key scoped to the room and user. This key grants
-access to the the eyeson room.
+access to the the Eyeson room.
 
-Within an eyeson room, all features like broadcast, recording, layout,
+Within an Eyeson room, all features like broadcast, recording, layout,
 data and image injection be directly controlled.
 
 ## Authorization
@@ -34,19 +34,19 @@ An expired access key - meeting has been shutdown - will result in a HTTP
 response code of `410 GONE` for any request that uses the access key for
 authorization.
 
-## eyeson Room
+## Eyeson Room
 
 Any room can be created with a team-based API request, resulting in everything
-to be needed to join a eyeson video calls. Within the response the current
+to be needed to join a Eyeson video calls. Within the response the current
 state of a room can be seen on the ready states for user, room and the global
 ready state that combines these two.
 
-In the links section you can find a direct URL to the eyeson GUI. By using this
+In the links section you can find a direct URL to the Eyeson GUI. By using this
 no further communication with the API is required and your user is ready-to-go
 by using this link with any WebRTC capable user-agent like webbrowser Chrome
 or Firefox.
 
-The guest-token can be used to **quick-join** an eyeson room. Using the eyeson
+The guest-token can be used to **quick-join** an Eyeson room. Using the Eyeson
 web GUI a quick-join URL can be generated using the following pattern:
 
 ```
@@ -74,11 +74,11 @@ Parameters                                                | Type                
 ------------------------------------                      | ------------------------ | ------------
 id                                                        | String (optional)        | If you want to get a single user or a handful of users into a specific meeting room, you can define an arbitrary id here. If kept empty, a random id will be returned.
 name                                                      | String (optional)        | If you want to give the room a readable name.
-user[id]                                                  | String (optional)        | You can supply a custom user id to identify the user in further REST requests without the need of remembering the eyeson user id e.g. your internal user id, an e-mail address, phone number, etc. If kept empty, a random id will be assigned.
+user[id]                                                  | String (optional)        | You can supply a custom user id to identify the user in further REST requests without the need of remembering the Eyeson user id e.g. your internal user id, an e-mail address, phone number, etc. If kept empty, a random id will be assigned.
 user[name]                                                | String (required)        | Display name of the user.
 user[avatar]                                              | URL (optional)           | Avatars will be displayed in the sidebar of our pre-defined user interface.
 options[show\_names]                                      | Boolean (optional)       | Show display names in video. Default: true
-options[show\_label]                                      | Boolean (optional)       | Show eyeson logos in GUI. Default: true
+options[show\_label]                                      | Boolean (optional)       | Show Eyeson logos in GUI. Default: true
 options[exit\_url]                                        | String (optional)        | Exit destination, URL for exit button in GUI
 options[recording\_available]                             | Boolean (optional)       | Allow recordings. Default: true
 options[broadcast\_available]                             | Boolean (optional)       | Allow broadcasting. Default: true
@@ -311,7 +311,7 @@ content      | String (required) | Data content.
 
 ## Recording
 
-Recordings are saved in eyesons cloud storage and can be downloaded from there.
+Recordings are saved in Eyesons cloud storage and can be downloaded from there.
 Direct URLs to downloads _expire_, so it's better store the recording identifier
 and fetch a valid resource link on demand.
 
@@ -369,7 +369,7 @@ DELETE /recordings/<recording_id>
 ## Snapshot
 
 This request creates a snapshot of the current meeting. Snapshots are saved in
-eyesons cloud storage and can be downloaded from there.
+Eyesons cloud storage and can be downloaded from there.
 
 ```
 POST /rooms/<access_key>/snapshot
@@ -418,7 +418,7 @@ Example Response
 
 ## Broadcast
 
-To connect an eyeson room with a broadcast you have to provide a valid
+To connect an Eyeson room with a broadcast you have to provide a valid
 streaming RTMP url.
 
 ```
@@ -448,12 +448,12 @@ DELETE /rooms/<access_key>/broadcasts # stop broadcast
 ## Layout
 
 The meeting participants will be presented in an equally distributed tiled
-video layout where eyeson takes care to always update the stream depending on
+video layout where Eyeson takes care to always update the stream depending on
 the number of users. However in some cases you might want to assign specific
 users to a video position. To switch back to auto layout you can send
 layout `auto` with no further options.
 
-The custom eyeson podium layout can be set to one, two, four or nine
+The custom Eyeson podium layout can be set to one, two, four or nine
 participants. This is controlled by the `users` parameter: Provide a user
 identifier and the specific user will be placed on this position. Use an empty
 string `""` to assign no-participant and keep a spot free. This free spots will
@@ -499,7 +499,7 @@ $ curl -X POST \
 
 ## Content Integration aka Layers
 
-Show any data content inside your video using the eyeson layer service. There
+Show any data content inside your video using the Eyeson layer service. There
 are currently three ways to achieve this.
 
 To show simple text message inserts you can use the insert parameter. You'd
@@ -509,13 +509,13 @@ avatar as an icon, name as title and the tweet as content.
 For more complex data generate an image and either upload the image or provide
 a public URL. For overlaying images use a transparent background.
 
-Any eyeson room video has a resolution of either **1280x960** pixels (960p in 
+Any Eyeson room video has a resolution of either **1280x960** pixels (960p in 
 default) or 1280x720 pixels (HD in widescreen mode). Ensure any file uploaded 
 is an alpha interlaced PNG image with a corresponding resolution to avoid any 
 distortions.
 
 When using layers you might want to disable the [SFU] mode that in
-default [room configuration](#eyeson-room) will transport individual streams
+default [room configuration](#Eyeson-room) will transport individual streams
 for single and two participants and not show layer media.
 
 ```

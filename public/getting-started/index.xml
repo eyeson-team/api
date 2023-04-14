@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Getting-starteds on eyeson API documentation</title>
+    <title>Getting-starteds on Eyeson API documentation</title>
     <link>https://eyeson-team.github.io/api/getting-started/</link>
-    <description>Recent content in Getting-starteds on eyeson API documentation</description>
+    <description>Recent content in Getting-starteds on Eyeson API documentation</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>eyeson GmbH</copyright>
@@ -18,7 +18,7 @@
       <pubDate>Thu, 03 Aug 2017 11:23:37 +0200</pubDate>
       
       <guid>https://eyeson-team.github.io/api/getting-started/</guid>
-      <description>To start a fully featured video conference all you have to do is send a single request to the eyeson API. The eyeson services organize video conferences in rooms. After you create a room the API provides you with an URL you can use to send a user to the eyeson web GUI. The web GUI is hosted by the eyeson team and ensures regular updates with the latest features as well as a stable and well designed user experience.</description>
+      <description>To start a fully featured video conference all you have to do is send a single request to the Eyeson API. The Eyeson services organize video conferences in rooms. After you create a room the API provides you with an URL you can use to send a user to the Eyeson web GUI. The web GUI is hosted by the Eyeson team and ensures regular updates with the latest features as well as a stable and well designed user experience.</description>
     </item>
     
   </channel>

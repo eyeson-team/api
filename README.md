@@ -1,4 +1,4 @@
-# eyeson API Documentation
+# Eyeson API Documentation
 
 Documentation for [eyeson room](https://apiservice.eyeson.com/videoconferencing-api) API, hosted on GitHub
 pages at [eyeson-team.github.io/api](https://eyeson-team.github.io/api).
