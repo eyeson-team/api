@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Eyeson API Documentation on Eyeson API documentation</title>
+    <title>Eyeson API Documentation</title>
     <link>https://eyeson-team.github.io/api/</link>
-    <description>Recent content in Eyeson API Documentation on Eyeson API documentation</description>
+    <description>Recent content on Eyeson API Documentation</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 03 Aug 2017 12:00:00 +0200</lastBuildDate><atom:link href="https://eyeson-team.github.io/api/index.xml" rel="self" type="application/rss+xml" />
