@@ -18,4 +18,4 @@ Further control over broadcastings, recordings, presentations, screencapturing,
 chats, layouts, image overlays, and others are documented in details in corresponding sections in the [API References](api-reference/)
 
 ---
-![](./images/curl.svg)  
+![](./images/curl.svg)

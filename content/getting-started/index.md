@@ -2,7 +2,7 @@
 title: "How to get started"
 date: 2017-08-03T11:23:37+02:00
 draft: false
-weight: 10
+weight: 0
 ---
 
 To start a fully featured video call all you have to do is send a single

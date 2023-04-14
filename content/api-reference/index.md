@@ -2,7 +2,7 @@
 title: "API Reference"
 date: 2017-08-04T10:01:35+02:00
 draft: false
-weight: 20
+weight: 0
 ---
 
 Video calls are organized in Eyeson rooms. You can control who will join
@@ -509,9 +509,9 @@ avatar as an icon, name as title and the tweet as content.
 For more complex data generate an image and either upload the image or provide
 a public URL. For overlaying images use a transparent background.
 
-Any Eyeson room video has a resolution of either **1280x960** pixels (960p in 
-default) or 1280x720 pixels (HD in widescreen mode). Ensure any file uploaded 
-is an alpha interlaced PNG image with a corresponding resolution to avoid any 
+Any Eyeson room video has a resolution of either **1280x960** pixels (960p in
+default) or 1280x720 pixels (HD in widescreen mode). Ensure any file uploaded
+is an alpha interlaced PNG image with a corresponding resolution to avoid any
 distortions.
 
 When using layers you might want to disable the [SFU] mode that in
