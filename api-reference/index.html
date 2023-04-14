@@ -9,11 +9,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=10" />
-    <title>API Reference - eyeson API documentation</title>
+    <title>API Reference - Eyeson API Documentation</title>
     <meta name="generator" content="Hugo 0.87.0" />
 
     
-    <meta name="description" content="eyeson API documentation">
+    <meta name="description" content="Eyeson API Documentation">
     
     <link rel="canonical" href="https://eyeson-team.github.io/api/api-reference/">
     
@@ -21,9 +21,9 @@
     
 
     <meta property="og:url" content="https://eyeson-team.github.io/api/api-reference/">
-    <meta property="og:title" content="eyeson API documentation">
+    <meta property="og:title" content="Eyeson API Documentation">
     <meta property="og:image" content="https://eyeson-team.github.io/api/images/logo.png">
-    <meta name="apple-mobile-web-app-title" content="eyeson API documentation">
+    <meta name="apple-mobile-web-app-title" content="Eyeson API Documentation">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
@@ -220,9 +220,9 @@
 
 
 
-<a  title="eyeson API" href="https://eyeson-team.github.io/api/">
+<a  title="Eyeson API" href="https://eyeson-team.github.io/api/">
 	
-	eyeson API
+	Eyeson API
 </a>
 
 
@@ -269,11 +269,11 @@
 		<div class="wrapper">
 			<h1>API Reference </h1>
 
-			<p>Video calls are organized in eyeson rooms. You can control who will join
+			<p>Video calls are organized in Eyeson rooms. You can control who will join
 a room by using a unique identifier. Every user will receive a link to the
 GUI containing a unique access key scoped to the room and user. This key grants
-access to the the eyeson room.</p>
-<p>Within an eyeson room, all features like broadcast, recording, layout,
+access to the the Eyeson room.</p>
+<p>Within an Eyeson room, all features like broadcast, recording, layout,
 data and image injection be directly controlled.</p>
 <h2 id="authorization">Authorization</h2>
 <p>There are two levels of authorization: team-based via api-key and user-based
@@ -289,16 +289,16 @@ is provided by the resource endpoint, no additional headers are needed.</p>
 <p>An expired access key - meeting has been shutdown - will result in a HTTP
 response code of <code>410 GONE</code> for any request that uses the access key for
 authorization.</p>
-<h2 id="eyeson-room">eyeson Room</h2>
+<h2 id="eyeson-room">Eyeson Room</h2>
 <p>Any room can be created with a team-based API request, resulting in everything
-to be needed to join a eyeson video calls. Within the response the current
+to be needed to join a Eyeson video calls. Within the response the current
 state of a room can be seen on the ready states for user, room and the global
 ready state that combines these two.</p>
-<p>In the links section you can find a direct URL to the eyeson GUI. By using this
+<p>In the links section you can find a direct URL to the Eyeson GUI. By using this
 no further communication with the API is required and your user is ready-to-go
 by using this link with any WebRTC capable user-agent like webbrowser Chrome
 or Firefox.</p>
-<p>The guest-token can be used to <strong>quick-join</strong> an eyeson room. Using the eyeson
+<p>The guest-token can be used to <strong>quick-join</strong> an Eyeson room. Using the Eyeson
 web GUI a quick-join URL can be generated using the following pattern:</p>
 <pre><code>https://app.eyeson.team/?guest=&lt;guest_token&gt;
 </code></pre><p>The user to join the room has to be provided. If someone already created and
@@ -336,7 +336,7 @@ DELETE /rooms/&lt;room_id&gt; # force to stop a running meeting
 <tr>
 <td>user[id]</td>
 <td>String (optional)</td>
-<td>You can supply a custom user id to identify the user in further REST requests without the need of remembering the eyeson user id e.g. your internal user id, an e-mail address, phone number, etc. If kept empty, a random id will be assigned.</td>
+<td>You can supply a custom user id to identify the user in further REST requests without the need of remembering the Eyeson user id e.g. your internal user id, an e-mail address, phone number, etc. If kept empty, a random id will be assigned.</td>
 </tr>
 <tr>
 <td>user[name]</td>
@@ -356,7 +356,7 @@ DELETE /rooms/&lt;room_id&gt; # force to stop a running meeting
 <tr>
 <td>options[show_label]</td>
 <td>Boolean (optional)</td>
-<td>Show eyeson logos in GUI. Default: true</td>
+<td>Show Eyeson logos in GUI. Default: true</td>
 </tr>
 <tr>
 <td>options[exit_url]</td>
@@ -672,7 +672,7 @@ note, that kicked users can re-join at any time!</p>
 </tbody>
 </table>
 <h2 id="recording">Recording</h2>
-<p>Recordings are saved in eyesons cloud storage and can be downloaded from there.
+<p>Recordings are saved in Eyeson's cloud storage and can be downloaded from there.
 Direct URLs to downloads <em>expire</em>, so it&rsquo;s better store the recording identifier
 and fetch a valid resource link on demand.</p>
 <pre><code>POST /rooms/&lt;access_key&gt;/recording # start recording
@@ -716,7 +716,7 @@ DELETE /rooms/&lt;access_key&gt;/recording # stop recording
   RESPONSES 200 OK, 404 NOT FOUND
 </code></pre><h2 id="snapshot">Snapshot</h2>
 <p>This request creates a snapshot of the current meeting. Snapshots are saved in
-eyesons cloud storage and can be downloaded from there.</p>
+Eyeson's cloud storage and can be downloaded from there.</p>
 <pre><code>POST /rooms/&lt;access_key&gt;/snapshot
   RESPONSES 201 CREATED, 404 NOT FOUND, 410 GONE
 </code></pre><pre><code>GET /snapshots/&lt;snapshot_id&gt;
@@ -754,7 +754,7 @@ DELETE /snapshots/&lt;snapshot_id&gt;
   }
 }
 </code></pre><h2 id="broadcast">Broadcast</h2>
-<p>To connect an eyeson room with a broadcast you have to provide a valid
+<p>To connect an Eyeson room with a broadcast you have to provide a valid
 streaming RTMP url.</p>
 <pre><code>POST /rooms/&lt;access_key&gt;/broadcasts # start broadcast
   RESPONSES 201 CREATED, 400 BAD REQUEST, 404 NOT FOUND, 405 METHOD NOT ALLOWED, 406 NOT ACCEPTABLE, 410 GONE
@@ -801,11 +801,11 @@ streaming RTMP url.</p>
   RESPONSES 200 OK, 404 NOT FOUND, 410 GONE
 </code></pre><h2 id="layout">Layout</h2>
 <p>The meeting participants will be presented in an equally distributed tiled
-video layout where eyeson takes care to always update the stream depending on
+video layout where Eyeson takes care to always update the stream depending on
 the number of users. However in some cases you might want to assign specific
 users to a video position. To switch back to auto layout you can send
 layout <code>auto</code> with no further options.</p>
-<p>The custom eyeson podium layout can be set to one, two, four or nine
+<p>The custom Eyeson podium layout can be set to one, two, four or nine
 participants. This is controlled by the <code>users</code> parameter: Provide a user
 identifier and the specific user will be placed on this position. Use an empty
 string <code>&quot;&quot;</code> to assign no-participant and keep a spot free. This free spots will
@@ -880,14 +880,14 @@ participants.</p>
 </span><span style="color:#ae81ff"></span>  -d <span style="color:#e6db74">&#34;users[]=USER_ID_D&#34;</span> <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>  <span style="color:#e6db74">&#34;https://api.eyeson.team/rooms/&lt;ACCESS_KEY&gt;/layout&#34;</span>
 </code></pre></div><h2 id="content-integration-aka-layers">Content Integration aka Layers</h2>
-<p>Show any data content inside your video using the eyeson layer service. There
+<p>Show any data content inside your video using the Eyeson layer service. There
 are currently three ways to achieve this.</p>
 <p>To show simple text message inserts you can use the insert parameter. You&rsquo;d
 listen for tweets in a separate service and display them using the tweet senders
 avatar as an icon, name as title and the tweet as content.</p>
 <p>For more complex data generate an image and either upload the image or provide
 a public URL. For overlaying images use a transparent background.</p>
-<p>Any eyeson room video has a resolution of either <strong>1280x960</strong> pixels (960p in
+<p>Any Eyeson room video has a resolution of either <strong>1280x960</strong> pixels (960p in
 default) or 1280x720 pixels (HD in widescreen mode). Ensure any file uploaded
 is an alpha interlaced PNG image with a corresponding resolution to avoid any
 distortions.</p>
