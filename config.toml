@@ -47,17 +47,17 @@ googleAnalytics = ""
 [[menu.main]]
 	name   = "Eyeson API"
 	url    = "/"
-	weight = 0
+	weight = 1
 
 [[menu.main]]
 	name   = "Getting started"
 	url    = "getting-started/"
-	weight = 10
+	weight = 2
 
 [[menu.main]]
 	name   = "API Reference"
 	url    = "api-reference/"
-	weight = 20
+	weight = 3
 
 [blackfriday]
 	smartypants	= true
