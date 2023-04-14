@@ -8,7 +8,7 @@ watch:
 		$(CMD) server -D
 
 build:
-		$(CMD) && git ci -m "Public build `date -u`" public/
+		$(CMD) && git commit -m "Public build `date -u`" public/
 
 deploy:
 		git push origin main && git subtree push --prefix public origin gh-pages
