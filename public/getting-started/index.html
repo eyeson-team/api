@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=10" />
     <title>How to get started - Eyeson API Documentation</title>
-    <meta name="generator" content="Hugo 0.98.0" />
+    <meta name="generator" content="Hugo 0.80.0" />
 
     
     <meta name="description" content="Eyeson API Documentation">
@@ -292,7 +292,7 @@ upgrade to a paid plan anytime.</p>
 <h2 id="access-the-api">Access the API</h2>
 <p>API endpoint: <a href="https://api.eyeson.team">https://api.eyeson.team</a></p>
 <p>For authorization, required for team-based services, send an HTTP header with:</p>
-<pre tabindex="0"><code>Authorization: &lt;YOUR_API_KEY&gt;
+<pre><code>Authorization: &lt;YOUR_API_KEY&gt;
 </code></pre><p>Responses will always contain an appropriate HTML status code plus a JSON
 object in the body.</p>
 <h2 id="start-and-join-eyeson-room">Start and Join Eyeson Room</h2>
@@ -302,7 +302,7 @@ link to a reference web UI which can be used right away.</p>
 <p>The Eyeson API provides Eyeson room features to all WebRTC and WebSocket
 capable clients. All communication with Eyeson occurs over Secure HTTP and
 Secure WebSocket protocols.</p>
-<pre tabindex="0"><code>POST /rooms
+<pre><code>POST /rooms
 </code></pre><table>
 <thead>
 <tr>
@@ -330,11 +330,11 @@ Secure WebSocket protocols.</p>
 </tbody>
 </table>
 <p>EXAMPLE RESPONSE</p>
-<pre tabindex="0"><code>{
+<pre><code>{
   links: {
-    gui: &#34;https://app.eyeson.team/?588a0d32f9c4860024f36f3&#34;,
-    self: &#34;...&#34;,
-    websocket: &#34;...&#34;
+    gui: &quot;https://app.eyeson.team/?588a0d32f9c4860024f36f3&quot;,
+    self: &quot;...&quot;,
+    websocket: &quot;...&quot;
   },
   ready: false,
   room: { ... },
@@ -343,10 +343,10 @@ Secure WebSocket protocols.</p>
 }
 </code></pre><p>Redirect your client to the URL given in the <code>links.gui</code> attribute, to use
 with the Eyeson pre-defined user interface.</p>
-<pre tabindex="0"><code>$ curl -X POST \
-  -H &#34;Authorization: YOUR_API_KEY&#34; \
-  -d &#34;user[name]=Bob&#34; \
-  &#34;https://api.eyeson.team/rooms&#34;
+<pre><code>$ curl -X POST \
+  -H &quot;Authorization: YOUR_API_KEY&quot; \
+  -d &quot;user[name]=Bob&quot; \
+  &quot;https://api.eyeson.team/rooms&quot;
 </code></pre><h2 id="next-steps">Next Steps</h2>
 <p>The Eyeson service provides an API for real-time data synchronization. The RT
 API is a modern WebSocket based API providing you with a real time stream of
