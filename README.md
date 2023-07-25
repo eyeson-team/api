@@ -1,12 +1,10 @@
 # Eyeson API Documentation
 
-Documentation for [eyeson room](https://apiservice.eyeson.com/videoconferencing-api) API, hosted on GitHub
-pages at [eyeson-team.github.io/api](https://eyeson-team.github.io/api).
+Documentation for the [eyeson](https://www.eyeson.com) API.
 
-## Build Documentation
+**:construction: :rotating_light: Attention! This documentation has moved to https://docs.eyeson.com/docs/rest/intro/**
 
-```sh
-$ make watch # start static site generator dev server
-$ make # build and deploy documentation updates
-```
+## Issues
 
+Github issues are still in use. If you have any issue, feel free to open a new ticket  
+https://github.com/eyeson-team/api/issues/
