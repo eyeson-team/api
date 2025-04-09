@@ -62,7 +62,7 @@ header h1 {
 
     <p>&nbsp;</p>
 
-    <p>This documentation has moved to <a href="https://docs.eyeson.com/docs/js/intro/">https://docs.eyeson.com/docs/rest/intro/</a></p>
+    <p>This documentation has moved to <a href="https://docs.eyeson.com/docs/rest/eyeson-api">https://docs.eyeson.com/docs/rest/eyeson-api</a></p>
 
     <div id="redirect"></div>
 
@@ -77,7 +77,7 @@ const redirect = () => {
     _countdown--;
     document.querySelector('#countdown').textContent = _countdown;
     if (_countdown === 0) {
-        location.assign('https://docs.eyeson.com/docs/rest/intro/');
+        location.assign('https://docs.eyeson.com/docs/rest/eyeson-api');
     } else {
         setTimeout(redirect, 1000);
     }
